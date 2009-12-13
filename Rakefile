@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require 'lib/tasks/churn_tasks'
 
 begin
   require 'jeweler'

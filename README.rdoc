@@ -1,6 +1,11 @@
 = churn
 
-Description goes here.
+A Project to give the churn file, class, and method for a project for a given checkin
+This will allow us over time to give the number of times a file, class, or method is changing during the life of a project.
+
+TODO:
+* SVN only supports file
+* make storage directory configurable instead of using tmp
 
 == Note on Patches/Pull Requests
  
