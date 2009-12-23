@@ -8,4 +8,5 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'churn/churn_calculator'
 
 class Test::Unit::TestCase
+  include Construct::Helpers
 end

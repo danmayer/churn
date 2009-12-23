@@ -2,10 +2,12 @@ require 'chronic'
 require 'sexp_processor'
 require 'ruby_parser'
 require 'json'
+require 'fileutils'
 require 'lib/churn/source_control'
 require 'lib/churn/git_analyzer'
 require 'lib/churn/svn_analyzer'
-require 'fileutils'
+require 'lib/churn/location_mapping'
+require 'lib/churn/churn_history'
 
 module Churn
 
@@ -32,14 +34,10 @@ module Churn
       self.analyze
       self.to_h
     end
-
-    def self.git?
-      system("git branch")
-    end
     
     def emit
-      @changes       = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count}
-      @revisions     = parse_log_for_revision_changes  
+      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count}
+      @revisions = parse_log_for_revision_changes  
     end 
 
     def analyze
@@ -65,13 +63,17 @@ module Churn
         hash[:churn][:method_churn]    = @method_changes
         hash[:churn][:class_churn]     = @class_changes
       end
-      #puts hash[:churn].inspect
       #TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice
-      store_hash(hash)
+      revision = @revisions.first
+      ChurnHistory.store_revision_history(revision, hash)
       hash
     end
 
     private
+
+    def self.git?
+      system("git branch")
+    end
 
     def calculate_revision_changes
       @revisions.each do |revision|
@@ -81,7 +83,7 @@ module Churn
           #parsing requires the files
           changed_files, changed_classes, changed_methods = calculate_revision_data(revision)
         else
-          changed_files, changed_classes, changed_methods = load_revision_data(revision)
+          changed_files, changed_classes, changed_methods = ChurnHistory.load_revision_data(revision)
         end
         calculate_changes!(changed_methods, @method_changes) if changed_methods
         calculate_changes!(changed_classes, @class_changes) if changed_classes
@@ -104,19 +106,6 @@ module Churn
       [changed_files, changed_classes, changed_methods]
     end
 
-    def load_revision_data(revision)
-      #load revision data from scratch folder if it exists
-      filename = "tmp/#{revision}.json"
-      if File.exists?(filename)
-        json_data = File.read(filename)
-        data      = JSON.parse(json_data)
-        changed_files   = data['churn']['changed_files']
-        changed_classes = data['churn']['changed_classes']
-        changed_methods = data['churn']['changed_methods']
-      end
-      [changed_files, changed_classes, changed_methods]
-    end
-
     def calculate_changes!(changed, total_changes)
       if changed
         changed.each do |change|
@@ -124,12 +113,6 @@ module Churn
         end
       end
       total_changes
-    end
-
-    def store_hash(hash)
-      revision = @revisions.first
-      FileUtils.mkdir 'tmp' unless File.directory?('tmp')
-      File.open("tmp/#{revision}.json", 'w') {|f| f.write(hash.to_json) }
     end
 
     def get_changes(change)

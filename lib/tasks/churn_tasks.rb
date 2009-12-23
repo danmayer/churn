@@ -6,9 +6,13 @@ end
 desc "Report the current churn for the project"
 task :churn do
   report = report_churn()
+  puts "entire report"
   puts report.inspect.to_s
-  puts "classes: #{hash[:churn][:changed_classes].inspect}"
-  puts "methods: #{hash[:churn][:changed_methods].inspect}"
-  puts "method churn: #{hash[:churn][:method_churn].inspect}"
+  puts "_"*50
+  puts "classes: #{report[:churn][:changed_classes].inspect}"
+  puts "_"*50
+  puts "methods: #{report[:churn][:changed_methods].inspect}"
+  puts "_"*50
+  puts "method churn: #{report[:churn][:method_churn].inspect}"
 end
 

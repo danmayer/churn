@@ -6,6 +6,8 @@ This will allow us over time to give the number of times a file, class, or metho
 TODO:
 * SVN only supports file
 * make storage directory configurable instead of using tmp
+* allow passing in directories to churn, directories to ignore
+* add a bin/ with args passed as well as just the rake task
 
 == Note on Patches/Pull Requests
  
