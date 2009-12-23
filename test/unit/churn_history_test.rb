@@ -1,5 +1,4 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
-require File.expand_path("../../lib/churn/churn_history", File.dirname(__FILE__))
 
 class ChurnHistoryTest < Test::Unit::TestCase
  
