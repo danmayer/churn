@@ -16,7 +16,6 @@ module Churn
     def initialize(options={})
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
-      puts start_date
       if self.class.git?
         @source_control = GitAnalyzer.new(start_date)
       elsif File.exist?(".svn")
