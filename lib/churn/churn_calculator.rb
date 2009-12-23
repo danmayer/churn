@@ -106,9 +106,9 @@ module Churn
       [changed_files, changed_classes, changed_methods]
     end
 
-    def calculate_changes!(changed, total_changes)
-      if changed
-        changed.each do |change|
+    def calculate_changes!(changed_objs, total_changes)
+      if changed_objs
+        changed_objs.each do |change|
           total_changes.include?(change) ? total_changes[change] = total_changes[change]+1 : total_changes[change] = 1
         end
       end
@@ -169,47 +169,9 @@ module Churn
     end
     
     def parse_logs_for_updated_files(revision, revisions)
-      updated     = {}
-      recent_file = nil
-
       #SVN doesn't support this
-      return updated unless @source_control.respond_to?(:get_updated_files_from_log)
-      logs = @source_control.get_updated_files_from_log(revision, revisions)
-      logs.each do |line|
-        if line.match(/^---/) || line.match(/^\+\+\+/)
-          line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
-          unless updated.include?(line)
-            updated[line] = [] 
-          end
-          recent_file = line
-        elsif line.match(/^@@/)
-          #TODO cleanup / refactor
-          #puts "#{recent_file}: #{line}"
-          removed        = line.match(/-[0-9]+/)
-          removed_length = line.match(/-[0-9]+,[0-9]+/)
-          removed        = removed.to_s.gsub(/-/,'')
-          removed_length = removed_length.to_s.gsub(/.*,/,'')
-          added          = line.match(/\+[0-9]+/)
-          added_length   = line.match(/\+[0-9]+,[0-9]+/)
-          added          = added.to_s.gsub(/\+/,'')
-          added_length   = added_length.to_s.gsub(/.*,/,'')
-          removed_range  = if removed_length && removed_length!=''
-                             (removed.to_i..(removed.to_i+removed_length.to_i))
-                           else
-                             (removed.to_i..removed.to_i)
-                           end
-          added_range    = if added_length && added_length!=''
-                             (added.to_i..(added.to_i+added_length.to_i))
-                           else
-                             (added.to_i..added.to_i)
-                           end
-          updated[recent_file] << removed_range
-          updated[recent_file] << added_range
-        else
-          raise "git diff lines that don't match the two patterns aren't expected"
-        end
-      end
-      updated
+      return {} unless @source_control.respond_to?(:get_updated_files_change_info)
+      @source_control.get_updated_files_change_info(revision, revisions)
     end
 
   end
