@@ -26,42 +26,43 @@ module Churn
       recent_file = nil
       logs.each do |line|
         if line.match(/^---/) || line.match(/^\+\+\+/)
-          line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
-          unless updated.include?(line)
-            updated[line] = [] 
-          end
-          recent_file = line
+          recent_file = get_recent_file(line)
+          updated[recent_file] = [] unless updated.include?(recent_file)
         elsif line.match(/^@@/)
           #TODO cleanup / refactor
           #puts "#{recent_file}: #{line}"
-          removed        = line.match(/-[0-9]+/)
-          removed_length = line.match(/-[0-9]+,[0-9]+/)
-          removed        = removed.to_s.gsub(/-/,'')
-          removed_length = removed_length.to_s.gsub(/.*,/,'')
-          added          = line.match(/\+[0-9]+/)
-          added_length   = line.match(/\+[0-9]+,[0-9]+/)
-          added          = added.to_s.gsub(/\+/,'')
-          added_length   = added_length.to_s.gsub(/.*,/,'')
-          removed_range  = if removed_length && removed_length!=''
-                             (removed.to_i..(removed.to_i+removed_length.to_i))
-                           else
-                             (removed.to_i..removed.to_i)
-                           end
-          added_range    = if added_length && added_length!=''
-                             (added.to_i..(added.to_i+added_length.to_i))
-                           else
-                             (added.to_i..added.to_i)
-                           end
+          removed_range = get_changed_range(line, '-')
+          added_range   = get_changed_range(line, '\+')
           updated[recent_file] << removed_range
           updated[recent_file] << added_range
         else
-          raise "git diff lines that don't match the two patterns aren't expected"
+          puts line.match(/^---/)
+          raise "git diff lines that don't match the two patterns aren't expected: '#{line}'"
         end
       end
       updated
     end
     
     private
+
+    def get_changed_range(line, matcher)
+      change_start = line.match(/#{matcher}[0-9]+/)
+      change_end   = line.match(/#{matcher}[0-9]+,[0-9]+/)
+      change_start = change_start.to_s.gsub(/#{matcher}/,'')
+      change_end   = change_end.to_s.gsub(/.*,/,'')
+
+      range  = if change_end && change_end!=''
+                 (change_start.to_i..(change_start.to_i+change_end.to_i))
+               else
+                 (change_start.to_i..change_start.to_i)
+               end
+      range
+    end
+
+    def get_recent_file(line)
+      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
+    end
+
     def date_range
       if @start_date
         date = Chronic.parse(@start_date)
