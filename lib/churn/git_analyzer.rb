@@ -29,8 +29,6 @@ module Churn
           recent_file = get_recent_file(line)
           updated[recent_file] = [] unless updated.include?(recent_file)
         elsif line.match(/^@@/)
-          #TODO cleanup / refactor
-          #puts "#{recent_file}: #{line}"
           removed_range = get_changed_range(line, '-')
           added_range   = get_changed_range(line, '\+')
           updated[recent_file] << removed_range

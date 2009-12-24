@@ -16,13 +16,7 @@ module Churn
     def initialize(options={})
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
-      if self.class.git?
-        @source_control = GitAnalyzer.new(start_date)
-      elsif File.exist?(".svn")
-        @source_control = SvnAnalyzer.new(start_date)
-      else
-        raise "Churning requires a subversion or git repo"
-      end
+      @source_control = set_source_control(start_date)
       @revision_changes = {}
       @method_changes   = {}
       @class_changes    = {}
@@ -63,8 +57,7 @@ module Churn
         hash[:churn][:changed_methods] = changes[:methods]
       end
       #TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice
-      revision = @revisions.first
-      ChurnHistory.store_revision_history(revision, hash)
+      ChurnHistory.store_revision_history(@revisions.first, hash)
       hash
     end
 
@@ -72,6 +65,16 @@ module Churn
 
     def self.git?
       system("git branch")
+    end
+
+    def set_source_control(start_date)
+      if self.class.git?
+        GitAnalyzer.new(start_date)
+      elsif File.exist?(".svn")
+        SvnAnalyzer.new(start_date)
+      else
+        raise "Churning requires a subversion or git repo"
+      end
     end
 
     def calculate_revision_changes
@@ -115,32 +118,24 @@ module Churn
     end
 
     def get_changes(change)
-      begin
-        file = change.first
-        breakdown = LocationMapping.new
-        breakdown.get_info(file)
-        changes = change.last
-        classes = changes_for_type(changes, breakdown, :classes)
-        methods = changes_for_type(changes, breakdown, :methods)
-        #todo move to method
-        classes = classes.map{ |klass| {'file' => file, 'klass' => klass} }
-        methods = methods.map{ |method| {'file' => file, 'klass' => get_klass_for(method), 'method' => method} }
-        [classes, methods]
-      rescue => error
-        [[],[]]
-      end
+      file = change.first
+      breakdown = LocationMapping.new
+      breakdown.get_info(file)
+      changes = change.last
+      classes = changes_for_type(changes, breakdown.klasses_collection)
+      methods = changes_for_type(changes, breakdown.methods_collection)
+      classes = classes.map{ |klass| {'file' => file, 'klass' => klass} }
+      methods = methods.map{ |method| {'file' => file, 'klass' => get_klass_for(method), 'method' => method} }
+      [classes, methods]
+    rescue => error
+      [[],[]]
     end
 
     def get_klass_for(method)
       method.gsub(/(#|\.).*/,'')
     end
 
-    def changes_for_type(changes, breakdown, type)
-      item_collection = if type == :classes
-                          breakdown.klasses_collection
-                        elsif type == :methods
-                          breakdown.methods_collection
-                        end
+    def changes_for_type(changes, item_collection)
       changed_items  = []
       item_collection.each_pair do |item, item_lines|
         item_lines = item_lines[0].to_a
