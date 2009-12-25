@@ -27,7 +27,7 @@ module Churn
     def report
       self.emit 
       self.analyze
-      self.to_h
+      self.to_s
     end
     
     def emit
@@ -41,16 +41,16 @@ module Churn
 
       calculate_revision_changes
 
-      @method_changes.to_a.sort {|x,y| y[1] <=> x[1]}
-      @method_changes          = @method_changes.map {|method, times_changed| {'method' => method, 'times_changed' => times_changed }}
-      @class_changes.to_a.sort {|x,y| y[1] <=> x[1]}
-      @class_changes          = @class_changes.map {|klass, times_changed| {'klass' => klass, 'times_changed' => times_changed }}
+      @method_changes = @method_changes.to_a.sort {|x,y| y[1] <=> x[1]}
+      @method_changes = @method_changes.map {|method, times_changed| {'method' => method, 'times_changed' => times_changed }}
+      @class_changes  =@class_changes.to_a.sort {|x,y| y[1] <=> x[1]}
+      @class_changes  = @class_changes.map {|klass, times_changed| {'klass' => klass, 'times_changed' => times_changed }}
     end
 
     def to_h
       hash                        = {:churn => {:changes => @changes}}
-      hash[:churn][:method_churn] = @method_changes
       hash[:churn][:class_churn]  = @class_changes
+      hash[:churn][:method_churn] = @method_changes
       #detail the most recent changes made this revision
       if @revision_changes[@revisions.first]
         changes = @revision_changes[@revisions.first]
@@ -63,7 +63,39 @@ module Churn
       hash
     end
 
+    def to_s
+      hash   = to_h
+      result = seperator 
+      result +="* Revision Changes \n"
+      result += seperator
+      result += "files: \n"
+      result += display_array(hash[:churn][:changed_files])
+      result += "\nclasses: \n"
+      result += display_array(hash[:churn][:changed_classes])
+      result += "\nmethods: \n"
+      result += display_array(hash[:churn][:changed_methods])
+      result += seperator 
+      result +="* Project Churn \n"
+      result += seperator
+      result += "files: \n"
+      result += display_array(hash[:churn][:changes])
+      result += "\nclasses: \n"
+      result += display_array(hash[:churn][:class_churn])
+      result += "\nmethods: \n"
+      result += display_array(hash[:churn][:method_churn])
+    end
+
     private
+
+    def display_array(array)
+      result = ""
+      array.each { |element| result += " * #{element.inspect}\n" }
+      result
+    end
+
+    def seperator
+      "*"*70+"\n"
+    end
 
     def self.git?
       system("git branch")
