@@ -8,6 +8,7 @@ TODO:
 * make storage directory configurable instead of using tmp
 * allow passing in directories to churn, directories to ignore
 * add a bin/ with args passed as well as just the rake task
+* todo add a filter that allows for other files besides. *.rb
 
 == Note on Patches/Pull Requests
  

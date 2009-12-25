@@ -9,9 +9,9 @@ task :churn do
   puts "entire report"
   puts report.inspect.to_s
   puts "_"*50
-  puts "classes: #{report[:churn][:changed_classes].inspect}"
+  puts "changed classes: #{report[:churn][:changed_classes].inspect}"
   puts "_"*50
-  puts "methods: #{report[:churn][:changed_methods].inspect}"
+  puts "cahnged methods: #{report[:churn][:changed_methods].inspect}"
   puts "_"*50
   puts "method churn: #{report[:churn][:method_churn].inspect}"
 end

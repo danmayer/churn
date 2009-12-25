@@ -7,7 +7,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "churn"
     gem.summary = %Q{Providing additional churn metrics over the original metric_fu churn}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. }
     gem.email = "Danmayer@gmail.com"
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]

@@ -3,11 +3,13 @@ require 'sexp_processor'
 require 'ruby_parser'
 require 'json'
 require 'fileutils'
-require 'lib/churn/source_control'
-require 'lib/churn/git_analyzer'
-require 'lib/churn/svn_analyzer'
-require 'lib/churn/location_mapping'
-require 'lib/churn/churn_history'
+
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'source_control'
+require 'git_analyzer'
+require 'svn_analyzer'
+require 'location_mapping'
+require 'churn_history'
 
 module Churn
 
@@ -99,10 +101,12 @@ module Churn
       
       changed_classes = []
       changed_methods = []
-      changed_files.each do |file|
-        classes, methods = get_changes(file)
-        changed_classes += classes
-        changed_methods += methods
+      changed_files.each do |file_changes|
+        if file_changes.first.match(/.*\.rb/)
+          classes, methods = get_changes(file_changes)
+          changed_classes += classes
+          changed_methods += methods
+        end
       end
       changed_files   = changed_files.map { |file, lines| file }
       [changed_files, changed_classes, changed_methods]
