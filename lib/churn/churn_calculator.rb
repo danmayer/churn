@@ -43,7 +43,7 @@ module Churn
 
       @method_changes = @method_changes.to_a.sort {|x,y| y[1] <=> x[1]}
       @method_changes = @method_changes.map {|method, times_changed| {'method' => method, 'times_changed' => times_changed }}
-      @class_changes  =@class_changes.to_a.sort {|x,y| y[1] <=> x[1]}
+      @class_changes  = @class_changes.to_a.sort {|x,y| y[1] <=> x[1]}
       @class_changes  = @class_changes.map {|klass, times_changed| {'klass' => klass, 'times_changed' => times_changed }}
     end
 
