@@ -24,10 +24,10 @@ module Churn
       @class_changes    = {}
     end
 
-    def report
+    def report(print = true)
       self.emit 
       self.analyze
-      self.to_s
+      print ? self.to_s : self.to_h
     end
     
     def emit
@@ -89,7 +89,7 @@ module Churn
 
     def display_array(array)
       result = ""
-      array.each { |element| result += " * #{element.inspect}\n" }
+      array.each { |element| result += " * #{element.inspect}\n" } if array
       result
     end
 
