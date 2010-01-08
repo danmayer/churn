@@ -7,14 +7,5 @@ desc "Report the current churn for the project"
 task :churn do
   report = report_churn()
   puts report
- #  puts "entire report"
-#   puts report.inspect.to_s
-#   puts "_"*50
-#   puts "changed classes: #{report[:churn][:changed_classes].inspect}"
-#   puts "_"*50
-#   puts "cahnged methods: #{report[:churn][:changed_methods].inspect}"
-#   puts "_"*50
-#   put
-#  s "method churn: #{report[:churn][:method_churn].inspect}"
 end
 

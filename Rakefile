@@ -8,10 +8,12 @@ begin
     gem.name = "churn"
     gem.summary = %Q{Providing additional churn metrics over the original metric_fu churn}
     gem.description = %Q{High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. }
-    gem.email = "Danmayer@gmail.com"
+    gem.email = "dan@devver.net"
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "thoughtbot-shoulda"
+    gem.add_development_dependency "main"
+    gem.executables = ['churn']
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

@@ -1,0 +1,22 @@
+#! /usr/bin/env ruby
+require 'main'
+
+#example usage. In the root of a project 'churn', or 'churn --help'
+Main do
+  option('minimum_churn_count', 'c') do
+  argument :required
+    cast :int
+    default 3
+  end
+
+  def report_churn()
+    require File.join(File.dirname(__FILE__), '..', 'lib', 'churn', 'churn_calculator')
+    Churn::ChurnCalculator.new({:minimum_churn_count => params['minimum_churn_count'].value}).report
+  end
+
+  def run
+    report = report_churn
+    puts report
+  end
+
+end
