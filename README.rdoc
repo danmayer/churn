@@ -1,7 +1,51 @@
 = churn
 
 A Project to give the churn file, class, and method for a project for a given checkin
-This will allow us over time to give the number of times a file, class, or method is changing during the life of a project.
+Over time the tool adds up the history of chruns to give the number of times a file, class, or method is changing during the life of a project.
+Churn for files is immediate, but classes and methods requires buildings up a history using churn between revisions. The history is stored in ./tmp
+
+== Example Output
+  **********************************************************************
+  * Project Churn 
+  **********************************************************************
+  files: 
+   * {:file_path=>"lib/churn/churn_calculator.rb", :times_changed=>11}
+   * {:file_path=>"README.rdoc", :times_changed=>6}
+   * {:file_path=>"lib/tasks/churn_tasks.rb", :times_changed=>6}
+   * {:file_path=>"Rakefile", :times_changed=>4}
+   * {:file_path=>"lib/churn/git_analyzer.rb", :times_changed=>4}
+   * {:file_path=>"test/test_helper.rb", :times_changed=>4}
+   * {:file_path=>"test/unit/churn_calculator_test.rb", :times_changed=>3}
+   * {:file_path=>"test/churn_test.rb", :times_changed=>3}
+   * {:file_path=>"VERSION", :times_changed=>3}
+
+  classes: 
+   * {"klass"=>{"klass"=>"ChurnCalculator", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>7}
+   * {"klass"=>{"klass"=>"LocationMapping", "file"=>"lib/churn/location_mapping.rb"}, "times_changed"=>1}
+   * {"klass"=>{"klass"=>"GitAnalyzer", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
+   * {"klass"=>{"klass"=>"ChurnTest", "file"=>"test/churn_test.rb"}, "times_changed"=>1}
+   * {"klass"=>{"klass"=>"ChurnCalculatorTest", "file"=>"test/unit/churn_calculator_test.rb"}, "times_changed"=>1}
+
+  methods: 
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#to_h", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>3}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#analyze", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>2}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#report", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>2}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_changes!", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#display_array", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_revision_changes", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#initialize", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#set_source_control", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#get_changes", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_revision_data", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#emit", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#date_range", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"", "method"=>"#report_churn", "file"=>"lib/tasks/churn_tasks.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#get_klass_for", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_recent_file", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_updated_files_change_info", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_changed_range", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#parse_logs_for_updated_files", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
+   * {"method"=>{"klass"=>"LocationMapping", "method"=>"LocationMapping#process_class", "file"=>"lib/churn/location_mapping.rb"}, "times_changed"=>1}
 
 TODO:
 * SVN only supports file
@@ -9,7 +53,11 @@ TODO:
 * allow passing in directories to churn, directories to ignore
 * todo add a filter that allows for other files besides. *.rb
 
-Usage:
+Executable Usage:
+* 'gem install churn'
+* go to project root run 'churn'
+
+Rake Usage:
 * 'gem install churn'
 * on any project you want to use churn, add "require 'churn'" to your rake file
 * run 'rake churn' to view the current output, file churn history is immediate, class and method churn builds up a history as it is run on each revision
