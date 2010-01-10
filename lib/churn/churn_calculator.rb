@@ -19,6 +19,7 @@ module Churn
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
       @source_control = set_source_control(start_date)
+      @changes          = {}
       @revision_changes = {}
       @method_changes   = {}
       @class_changes    = {}
