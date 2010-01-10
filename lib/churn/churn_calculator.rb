@@ -21,8 +21,8 @@ module Churn
       @source_control = set_source_control(start_date)
       @changes          = {}
       @revision_changes = {}
-      @method_changes   = {}
       @class_changes    = {}
+      @method_changes   = {}
     end
 
     def report(print = true)
@@ -88,6 +88,10 @@ module Churn
 
     private
 
+    def filters
+      /.*\.rb/
+    end
+
     def display_array(array)
       result = ""
       array.each { |element| result += " * #{element.inspect}\n" } if array
@@ -135,7 +139,7 @@ module Churn
       changed_classes = []
       changed_methods = []
       changed_files.each do |file_changes|
-        if file_changes.first.match(/.*\.rb/)
+        if file_changes.first.match(filters)
           classes, methods = get_changes(file_changes)
           changed_classes += classes
           changed_methods += methods
