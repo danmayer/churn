@@ -14,6 +14,10 @@ begin
     gem.add_development_dependency "thoughtbot-shoulda"
     gem.add_dependency "main"
     gem.add_dependency "json"
+    gem.add_dependency "chronic", '~> 0.2.3'
+    gem.add_dependency "sexp_processor", '~> 3.0.3'
+    gem.add_dependency "ruby_parser", '~> 2.0.4'
+
     gem.executables = ['churn']
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
