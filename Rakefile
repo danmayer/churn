@@ -14,6 +14,7 @@ begin
     gem.add_development_dependency "thoughtbot-shoulda"
     gem.add_dependency "main"
     gem.add_dependency "json"
+    gem.add_dependency 'hirb'
     gem.executables = ['churn']
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

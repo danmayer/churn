@@ -2,6 +2,7 @@ require 'chronic'
 require 'sexp_processor'
 require 'ruby_parser'
 require 'json'
+require 'hirb'
 require 'fileutils'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
@@ -69,21 +70,23 @@ module Churn
       result = seperator 
       result +="* Revision Changes \n"
       result += seperator
-      result += "files: \n"
-      result += display_array(hash[:churn][:changed_files])
-      result += "\nclasses: \n"
+      result += "Files: \n"
+      result += display_array(hash[:churn][:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
+      result += "\nClasses: \n"
       result += display_array(hash[:churn][:changed_classes])
-      result += "\nmethods: \n"
-      result += display_array(hash[:churn][:changed_methods])
+      result += "\nMethods: \n"
+      result += display_array(hash[:churn][:changed_methods]) + "\n"
       result += seperator 
       result +="* Project Churn \n"
       result += seperator
-      result += "files: \n"
+      result += "Files: \n"
       result += display_array(hash[:churn][:changes])
-      result += "\nclasses: \n"
-      result += display_array(hash[:churn][:class_churn])
-      result += "\nmethods: \n"
-      result += display_array(hash[:churn][:method_churn])
+      result += "\nClasses: \n"
+      class_churn = hash[:churn][:class_churn].map {|e| (e.delete('klass') || {}).merge(e) }
+      result += display_array(class_churn)
+      result += "\nMethods: \n"
+      method_churn = hash[:churn][:method_churn].map {|e| (e.delete('method') || {}).merge(e) }
+      result += display_array(method_churn)
     end
 
     private
@@ -92,10 +95,8 @@ module Churn
       /.*\.rb/
     end
 
-    def display_array(array)
-      result = ""
-      array.each { |element| result += " * #{element.inspect}\n" } if array
-      result
+    def display_array(array, options={})
+      array ? Hirb::Helpers::AutoTable.render(array, options.merge(:description=>false)) + "\n" : ''
     end
 
     def seperator
