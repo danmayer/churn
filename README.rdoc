@@ -6,46 +6,70 @@ Churn for files is immediate, but classes and methods requires buildings up a hi
 
 == Example Output
   **********************************************************************
+  * Revision Changes 
+  **********************************************************************
+  Files: 
+  +-------------------------------+
+  | file                          |
+  +-------------------------------+
+  | Rakefile                      |
+  | lib/churn/churn_calculator.rb |
+  +-------------------------------+
+   
+  Classes: 
+  +-------------------------------+-----------------+
+  | file                          | klass           |
+  +-------------------------------+-----------------+
+  | lib/churn/churn_calculator.rb | ChurnCalculator |
+  +-------------------------------+-----------------+
+   
+  Methods: 
+  +-------------------------------+-----------------+-------------------------------+
+  | file                          | klass           | method                        |
+  +-------------------------------+-----------------+-------------------------------+
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#filters       |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#display_array |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s          |
+  +-------------------------------+-----------------+-------------------------------+
+ 
+  **********************************************************************
   * Project Churn 
   **********************************************************************
-  files: 
-   * {:file_path=>"lib/churn/churn_calculator.rb", :times_changed=>11}
-   * {:file_path=>"README.rdoc", :times_changed=>6}
-   * {:file_path=>"lib/tasks/churn_tasks.rb", :times_changed=>6}
-   * {:file_path=>"Rakefile", :times_changed=>4}
-   * {:file_path=>"lib/churn/git_analyzer.rb", :times_changed=>4}
-   * {:file_path=>"test/test_helper.rb", :times_changed=>4}
-   * {:file_path=>"test/unit/churn_calculator_test.rb", :times_changed=>3}
-   * {:file_path=>"test/churn_test.rb", :times_changed=>3}
-   * {:file_path=>"VERSION", :times_changed=>3}
-
-  classes: 
-   * {"klass"=>{"klass"=>"ChurnCalculator", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>7}
-   * {"klass"=>{"klass"=>"LocationMapping", "file"=>"lib/churn/location_mapping.rb"}, "times_changed"=>1}
-   * {"klass"=>{"klass"=>"GitAnalyzer", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
-   * {"klass"=>{"klass"=>"ChurnTest", "file"=>"test/churn_test.rb"}, "times_changed"=>1}
-   * {"klass"=>{"klass"=>"ChurnCalculatorTest", "file"=>"test/unit/churn_calculator_test.rb"}, "times_changed"=>1}
-
-  methods: 
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#to_h", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>3}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#analyze", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>2}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#report", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>2}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_changes!", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#display_array", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_revision_changes", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#initialize", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#set_source_control", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#get_changes", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#calculate_revision_data", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#emit", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#date_range", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"", "method"=>"#report_churn", "file"=>"lib/tasks/churn_tasks.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#get_klass_for", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_recent_file", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_updated_files_change_info", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"GitAnalyzer", "method"=>"GitAnalyzer#get_changed_range", "file"=>"lib/churn/git_analyzer.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"ChurnCalculator", "method"=>"ChurnCalculator#parse_logs_for_updated_files", "file"=>"lib/churn/churn_calculator.rb"}, "times_changed"=>1}
-   * {"method"=>{"klass"=>"LocationMapping", "method"=>"LocationMapping#process_class", "file"=>"lib/churn/location_mapping.rb"}, "times_changed"=>1}
+  Files: 
+  +------------------------------------+---------------+
+  | file_path                          | times_changed |
+  +------------------------------------+---------------+
+  | lib/churn/churn_calculator.rb      | 14            |
+  | README.rdoc                        | 7             |
+  | lib/tasks/churn_tasks.rb           | 6             |
+  | Rakefile                           | 6             |
+  | lib/churn/git_analyzer.rb          | 4             |
+  | VERSION                            | 4             |
+  | test/test_helper.rb                | 4             |
+  | test/unit/churn_calculator_test.rb | 3             |
+  | test/churn_test.rb                 | 3             |
+  +------------------------------------+---------------+ 
+   
+  Classes: 
+  +-------------------------------+-----------------+---------------+
+  | file                          | klass           | times_changed |
+  +-------------------------------+-----------------+---------------+
+  | lib/churn/churn_calculator.rb | ChurnCalculator | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | 1             |
+  +-------------------------------+-----------------+---------------+
+   
+  Methods: 
+  +-------------------------------+-----------------+-----------------------------------------+---------------+
+  | file                          | klass           | method                                  | times_changed |
+  +-------------------------------+-----------------+-----------------------------------------+---------------+
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#display_array           | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#calculate_revision_data | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#filters                 | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#initialize              | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#filters                 | 1             |
+  | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
+  +-------------------------------+-----------------+-----------------------------------------+---------------+
 
 TODO:
 * SVN only supports file
