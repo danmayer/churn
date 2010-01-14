@@ -12,12 +12,13 @@ begin
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "thoughtbot-shoulda"
+    gem.add_development_dependency "devver-construct"
     gem.add_dependency "main"
     gem.add_dependency "json"
     gem.add_dependency "chronic", '~> 0.2.3'
     gem.add_dependency "sexp_processor", '~> 3.0.3'
     gem.add_dependency "ruby_parser", '~> 2.0.4'
-
+    gem.add_dependency 'hirb'
     gem.executables = ['churn']
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
