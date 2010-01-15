@@ -201,6 +201,7 @@ module Churn
     end
 
     def parse_log_for_revision_changes
+      return [] unless @source_control.respond_to?(:get_revisions)
       @source_control.get_revisions
     end
     
