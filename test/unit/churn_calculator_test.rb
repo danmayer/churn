@@ -39,7 +39,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
       
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
-      churn.stubs(:parse_logs_for_updated_files).returns(['fake_file.rb'])
+      churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
       report = churn.report(false)
       assert_equal ["fake_file.rb"], report[:churn][:changed_files]
     end
@@ -52,7 +52,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
       
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
-      churn.stubs(:parse_logs_for_updated_files).returns(['fake_file.rb'])
+      churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
       klasses = [{"klass"=>"LocationMapping", "file"=>"lib/churn/location_mapping.rb"}]
       methods = [{"klass"=>"LocationMapping", "method"=>"LocationMapping#process_class", "file"=>"lib/churn/location_mapping.rb"}]
       churn.stubs(:get_changes).returns([klasses,methods])
@@ -69,7 +69,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
       
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
-      churn.stubs(:parse_logs_for_updated_files).returns(['fake_file.rb'])
+      churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
       klasses = [{"klass"=>"LocationMapping", "file"=>"lib/churn/location_mapping.rb"}]
       methods = [{"klass"=>"LocationMapping", "method"=>"LocationMapping#process_class", "file"=>"lib/churn/location_mapping.rb"}]
       churn.stubs(:get_changes).returns([klasses,methods])

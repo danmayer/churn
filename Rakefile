@@ -13,6 +13,7 @@ begin
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "thoughtbot-shoulda"
     gem.add_development_dependency "devver-construct"
+    gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
     gem.add_dependency "json"
     gem.add_dependency "chronic", '~> 0.2.3'
