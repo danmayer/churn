@@ -76,6 +76,7 @@ TODO:
 * make storage directory configurable instead of using tmp
 * allow passing in directories to churn, directories to ignore
 * todo add a filter that allows for other files besides. *.rb
+* ignore files pattern, so you can ignore things like vendor/, lib/, or docs/
 
 Executable Usage:
 * 'gem install churn'
