@@ -6,6 +6,11 @@ Churn for files is immediate, but classes and methods requires buildings up a hi
 
 Currently has Full Git and Mercurial (hg) support, and partial SVN support (supports only file level churn currnetly)
 
+Authors:
+* danmayer
+* ajwalters 
+* cldwalker
+
 == Example Output
   **********************************************************************
   * Revision Changes 
@@ -72,11 +77,6 @@ Currently has Full Git and Mercurial (hg) support, and partial SVN support (supp
   | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#filters                 | 1             |
   | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
   +-------------------------------+-----------------+-----------------------------------------+---------------+
-
-Authors:
-* danmayer
-* ajwalters 
-* cldwalker
 
 
 TODO:
