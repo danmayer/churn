@@ -4,6 +4,8 @@ A Project to give the churn file, class, and method for a project for a given ch
 Over time the tool adds up the history of chruns to give the number of times a file, class, or method is changing during the life of a project.
 Churn for files is immediate, but classes and methods requires buildings up a history using churn between revisions. The history is stored in ./tmp
 
+Currently has Full Git and Mercurial (hg) support, and partial SVN support (supports only file level churn currnetly)
+
 == Example Output
   **********************************************************************
   * Revision Changes 
@@ -71,12 +73,20 @@ Churn for files is immediate, but classes and methods requires buildings up a hi
   | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
   +-------------------------------+-----------------+-----------------------------------------+---------------+
 
+Authors:
+* danmayer
+* ajwalters 
+* cldwalker
+
+
 TODO:
-* SVN only supports file
+* SVN only supports file, add full SVN support 
+* support bazaar, cvs, and darcs 
 * make storage directory configurable instead of using tmp
 * allow passing in directories to churn, directories to ignore
-* todo add a filter that allows for other files besides. *.rb
+* add a filter that allows for other files besides. *.rb
 * ignore files pattern, so you can ignore things like vendor/, lib/, or docs/
+* finish adding better documenation using YARD
 
 Executable Usage:
 * 'gem install churn'
@@ -101,4 +111,4 @@ Rake Usage:
 
 == Copyright
 
-Copyright (c) 2009 Dan Mayer. See LICENSE for details.
+Copyright (c) 2010 Dan Mayer. See LICENSE for details.
