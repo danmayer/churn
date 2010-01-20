@@ -16,6 +16,7 @@ module Churn
 
   class ChurnCalculator
 
+    # intialized the churn calculator object
     def initialize(options={})
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
@@ -26,17 +27,23 @@ module Churn
       @method_changes   = {}
     end
 
+    # prepares the data for the given project to be reported.
+    # reads git/svn logs analyzes the output, generates a report and either formats as a nice string or returns hash.
+    # @param [Bolean] format to return the data, true for string or false for hash
+    # @return [Object] returns either a pretty string or a hash representing the chrun of the project
     def report(print = true)
       self.emit 
       self.analyze
       print ? self.to_s : self.to_h
     end
     
+    # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
     def emit
       @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count}
       @revisions = parse_log_for_revision_changes  
     end 
 
+    # Analyze the source control data, filter, sort, and find more information on the editted files
     def analyze
       @changes = @changes.to_a.sort {|x,y| y[1] <=> x[1]}
       @changes = @changes.map {|file_path, times_changed| {:file_path => file_path, :times_changed => times_changed }}
@@ -49,6 +56,7 @@ module Churn
       @class_changes  = @class_changes.map {|klass, times_changed| {'klass' => klass, 'times_changed' => times_changed }}
     end
 
+    # collect all the data into a single hash data structure.
     def to_h
       hash                        = {:churn => {:changes => @changes}}
       hash[:churn][:class_churn]  = @class_changes
@@ -65,6 +73,7 @@ module Churn
       hash
     end
 
+    # Pretty print the data as a string for the user
     def to_s
       hash   = to_h
       result = seperator 
