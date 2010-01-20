@@ -78,5 +78,13 @@ class ChurnCalculatorTest < Test::Unit::TestCase
       assert_equal [{"klass"=>{"klass"=>"LocationMapping", "file"=>"lib/churn/location_mapping.rb"}, "times_changed"=>1}], report[:churn][:class_churn]
     end
   end
+
+  should "initialize a churn calculator for hg repositories" do
+    Churn::ChurnCalculator.stubs(:git?).returns(false)
+    Churn::ChurnCalculator.stubs(:system).with('hg branch').returns(true)
+    churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
+    assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
+  end
+
   
 end
