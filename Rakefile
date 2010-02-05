@@ -15,7 +15,7 @@ begin
     gem.add_development_dependency "test-construct"
     gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
-    gem.add_dependency "json"
+    gem.add_dependency "json_pure"
     gem.add_dependency "chronic", '~> 0.2.3'
     gem.add_dependency "sexp_processor", '~> 3.0.3'
     gem.add_dependency "ruby_parser", '~> 2.0.4'
