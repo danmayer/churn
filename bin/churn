@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
 require 'main'
+require 'yaml'
 
 #example usage. In the root of a project 'churn', or 'churn --help'
 Main do
