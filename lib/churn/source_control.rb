@@ -55,6 +55,10 @@ module Churn
       range
     end
 
+    def get_recent_file(line)
+      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
+    end
+
   end
 
 end

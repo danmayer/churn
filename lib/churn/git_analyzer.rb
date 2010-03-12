@@ -1,5 +1,6 @@
 module Churn
 
+  #analizes git SCM to find recently changed files, and what lines have been altered
   class GitAnalyzer < SourceControl
     def get_logs
       `git log #{date_range} --name-only --pretty=format:`.split(/\n/).reject{|line| line == ""}
@@ -13,10 +14,6 @@ module Churn
 
     def get_diff(revision, previous_revision)
       `git diff #{revision} #{previous_revision} --unified=0`.split(/\n/).select{|line| line.match(/^@@/) || line.match(/^---/) || line.match(/^\+\+\+/) }
-    end
-
-    def get_recent_file(line)
-      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
     end
 
     def date_range

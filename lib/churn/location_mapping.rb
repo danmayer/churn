@@ -1,5 +1,8 @@
 module Churn
   
+  # Given a ruby file, map the klass and methods to a range of line numbers
+  # The klass and method to line numbers mappings, are stored in
+  # @klasses_collection and @methods_collection
   class LocationMapping < SexpProcessor
     
     attr_reader :klasses_collection, :methods_collection

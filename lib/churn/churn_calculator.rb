@@ -15,6 +15,9 @@ require 'churn_history'
 
 module Churn
 
+  # The work horse of the the churn library. This class takes user input, determins the SCM the user is using. It then determines changes
+  # made during this revision. Finally it reads all the changes from previous revisions and displays human readable output to the command
+  # line. It can also ouput a yaml format readable by other tools such as metric_fu and Caliper.
   class ChurnCalculator
 
     # intialized the churn calculator object
@@ -63,39 +66,41 @@ module Churn
       hash[:churn][:class_churn]  = @class_changes
       hash[:churn][:method_churn] = @method_changes
       #detail the most recent changes made this revision
-      if @revision_changes[@revisions.first]
-        changes = @revision_changes[@revisions.first]
+      first_revision         = @revisions.first
+      first_revision_changes = @revision_changes[first_revision]
+      if first_revision_changes
+        changes = first_revision_changes
         hash[:churn][:changed_files]   = changes[:files]
         hash[:churn][:changed_classes] = changes[:classes]
         hash[:churn][:changed_methods] = changes[:methods]
       end
       #TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice
-      ChurnHistory.store_revision_history(@revisions.first, hash)
+      ChurnHistory.store_revision_history(first_revision, hash)
       hash
     end
 
     # Pretty print the data as a string for the user
     def to_s
-      hash   = to_h
+      hash   = to_h[:churn]
       result = seperator 
       result +="* Revision Changes \n"
       result += seperator
       result += "Files: \n"
-      result += display_array(hash[:churn][:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
+      result += display_array(hash[:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
       result += "\nClasses: \n"
-      result += display_array(hash[:churn][:changed_classes])
+      result += display_array(hash[:changed_classes])
       result += "\nMethods: \n"
-      result += display_array(hash[:churn][:changed_methods]) + "\n"
+      result += display_array(hash[:changed_methods]) + "\n"
       result += seperator 
       result +="* Project Churn \n"
       result += seperator
       result += "Files: \n"
-      result += display_array(hash[:churn][:changes])
+      result += display_array(hash[:changes])
       result += "\nClasses: \n"
-      class_churn = collect_items(hash[:churn][:class_churn], 'klass')
+      class_churn = collect_items(hash[:class_churn], 'klass')
       result += display_array(class_churn)
       result += "\nMethods: \n"
-      method_churn = collect_items(hash[:churn][:method_churn], 'method')
+      method_churn = collect_items(hash[:method_churn], 'method')
       result += display_array(method_churn)
     end
 
@@ -106,7 +111,7 @@ module Churn
     end
 
     def sort_changes(changes)
-      changes.to_a.sort! {|x,y| y[1] <=> x[1]}
+      changes.to_a.sort! {|first,second| second[1] <=> first[1]}
     end
 
     def filters
@@ -230,7 +235,7 @@ module Churn
     end
     
     def parse_logs_for_updated_files(revision, revisions)
-      #SVN doesn't support this
+      #TODO SVN doesn't support this
       return {} unless @source_control.respond_to?(:get_updated_files_change_info)
       @source_control.get_updated_files_change_info(revision, revisions)
     end

@@ -1,11 +1,13 @@
 module Churn
+
+  #analizes Hg / Mercurial SCM to find recently changed files, and what lines have been altered
   class HgAnalyzer < SourceControl
     def get_logs
-      `hg log -v#{date_range}`.split("\n").reject{|line| line !~ /^files:/}.map{|l| l.split(" ")[1..-1]}.flatten
+      `hg log -v#{date_range}`.split("\n").reject{|line| line !~ /^files:/}.map{|line| line.split(" ")[1..-1]}.flatten
     end
 
     def get_revisions
-      `hg log#{date_range}`.split("\n").reject{|line| line !~ /^changeset:/}.map{|l| l[/:(\S+)$/, 1] }
+      `hg log#{date_range}`.split("\n").reject{|line| line !~ /^changeset:/}.map{|line| line[/:(\S+)$/, 1] }
     end
 
     private
@@ -22,7 +24,7 @@ module Churn
     end
 
     def get_recent_file(line)
-      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'').split("\t")[0]
+      super().split("\t")[0]
     end
 
   end
