@@ -92,14 +92,18 @@ module Churn
       result += "Files: \n"
       result += display_array(hash[:churn][:changes])
       result += "\nClasses: \n"
-      class_churn = hash[:churn][:class_churn].map {|e| (e.delete('klass') || {}).merge(e) }
+      class_churn = collect_items(hash[:churn][:class_churn], 'klass')
       result += display_array(class_churn)
       result += "\nMethods: \n"
-      method_churn = hash[:churn][:method_churn].map {|e| (e.delete('method') || {}).merge(e) }
+      method_churn = collect_items(hash[:churn][:method_churn], 'method')
       result += display_array(method_churn)
     end
 
     private
+    
+    def collect_items(collection, match)
+      collection.map {|item| (item.delete(match) || {}).merge(item) }
+    end
 
     def sort_changes(changes)
       changes.to_a.sort! {|x,y| y[1] <=> x[1]}
