@@ -24,7 +24,7 @@ module Churn
     end
 
     def get_recent_file(line)
-      super().split("\t")[0]
+      super(line).split("\t")[0]
     end
 
   end
