@@ -1,5 +1,6 @@
 module Churn
 
+  # Base clase for analyzing various SCM systems like git, HG, and SVN
   class SourceControl
     def initialize(start_date=nil)
       @start_date = start_date
@@ -47,10 +48,11 @@ module Churn
       change_start = change_start.to_s.gsub(/#{matcher}/,'')
       change_end   = change_end.to_s.gsub(/.*,/,'')
       
+      change_start_num = change_start.to_i
       range  = if change_end && change_end!=''
-                 (change_start.to_i..(change_start.to_i+change_end.to_i))
+                 (change_start_num..(change_start_num+change_end.to_i))
                else
-                 (change_start.to_i..change_start.to_i)
+                 (change_start_num..change_start_num)
                end
       range
     end
