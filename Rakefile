@@ -28,7 +28,7 @@ rescue LoadError
 end
 
 begin
-  #for additional metrics
+  #for additional metrics, mostly Rcov which caliper doesn't do
   require 'metric_fu'
   
   MetricFu::Configuration.run do |config|
@@ -55,28 +55,7 @@ begin
                      "--profile",
                      "--exclude /gems/,spec"]}
   end
-  
-  namespace :metrics do
-    desc "Generate just the Flog report"
-    task :flog do
-    MetricFu::Configuration.run {}
-      MetricFu.report.add(:flog)
-      MetricFu.report.save_output(MetricFu.report.to_yaml,
-                                  MetricFu.base_directory,
-                                  "report.yml")
-      MetricFu.report.save_output(MetricFu.report.to_yaml,
-                                  MetricFu.data_directory,
-                                  "#{Time.now.strftime("%Y%m%d")}.yml")
-      MetricFu.report.save_templatized_report
-      
-      MetricFu.graph.add(:flog)
-      MetricFu.graph.generate
-      
-      if MetricFu.report.open_in_browser?
-        MetricFu.report.show_in_browser(MetricFu.output_directory)
-      end
-    end
-  end
+
 end
 
 require 'rake/testtask'
