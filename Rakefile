@@ -16,7 +16,7 @@ begin
     gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
     gem.add_dependency "json_pure"
-    gem.add_dependency "chronic", '~> 0.2.3'
+    gem.add_dependency "chronic", '>= 0.2.3'
     gem.add_dependency "sexp_processor", '~> 3.0.3'
     gem.add_dependency "ruby_parser", '~> 2.0.4'
     gem.add_dependency 'hirb'
@@ -32,7 +32,7 @@ begin
   require 'metric_fu'
   
   MetricFu::Configuration.run do |config|
-    config.metrics  = [:churn, :saikuro, :roodi, :flog, :flay, :reek, :roodi, :rcov]
+    config.metrics  = [:churn, :saikuro, :roodi, :flog, :flay, :reek, :roodi, :rcov, :hotspots]
     config.graphs   = [:roodi, :flog, :flay, :reek, :roodi, :rcov]
     
     config.flay     = { :dirs_to_flay => ['lib']  } 
@@ -55,7 +55,8 @@ begin
                      "--profile",
                      "--exclude /gems/,spec"]}
   end
-
+rescue Exception
+  puts "metric_fu not working install it"
 end
 
 require 'rake/testtask'
