@@ -10,6 +10,7 @@ require 'source_control'
 require 'git_analyzer'
 require 'svn_analyzer'
 require 'hg_analyzer'
+require 'bzr_analyzer'
 require 'location_mapping'
 require 'churn_history'
 
@@ -134,15 +135,21 @@ module Churn
       system("hg branch")
     end
 
+    def self.bzr?
+        system("bzr nick")
+    end
+
     def set_source_control(start_date)
       if self.class.git?
         GitAnalyzer.new(start_date)
       elsif self.class.hg?
         HgAnalyzer.new(start_date)
+      elsif self.class.bzr?
+          BzrAnalyzer.new(start_date)
       elsif File.exist?(".svn")
         SvnAnalyzer.new(start_date)
       else
-        raise "Churning requires a subversion or git repo"
+        raise "Churning requires a bazaar, git, mercurial, or subversion repo"
       end
     end
 
