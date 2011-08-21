@@ -1,0 +1,20 @@
+GIT
+  remote: https://github.com/oliamb/main.git
+  revision: 0bddcc31a64c80bfaf4918289063d70570296b9d
+  specs:
+    main (4.5.1)
+      arrayfields (>= 4.7.4)
+      fattr (>= 2.1.0)
+      map (>= 2.0.0)
+
+GEM
+  specs:
+    arrayfields (4.7.4)
+    fattr (2.2.0)
+    map (4.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  main!
