@@ -5,3 +5,5 @@ rdoc
 pkg
 tmp
 .rvmrc
+.bundle
+specs
