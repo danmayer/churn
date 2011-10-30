@@ -8,7 +8,7 @@ begin
     gem.name = "churn"
     gem.summary = %Q{Providing additional churn metrics over the original metric_fu churn}
     gem.description = %Q{High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. }
-    gem.email = "dan@devver.net"
+    gem.email = "dan@mayerdan.com"
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "shoulda"
@@ -18,10 +18,9 @@ begin
     gem.add_dependency "json_pure"
     gem.add_dependency "chronic", '>= 0.2.3'
     gem.add_dependency "sexp_processor", '~> 3.0.3'
-    gem.add_dependency "ruby_parser", '~> 2.0.4'
+    gem.add_dependency "ruby_parser", '~> 2.3'
     gem.add_dependency 'hirb'
     gem.executables = ['churn']
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"

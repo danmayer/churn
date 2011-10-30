@@ -145,7 +145,7 @@ module Churn
       elsif self.class.hg?
         HgAnalyzer.new(start_date)
       elsif self.class.bzr?
-          BzrAnalyzer.new(start_date)
+        BzrAnalyzer.new(start_date)
       elsif File.exist?(".svn")
         SvnAnalyzer.new(start_date)
       else

@@ -12,6 +12,10 @@ Authors:
 * cldwalker
 * absurdhero
 
+Execute with:
+    rake churn #after adding require 'lib/tasks/churn_tasks' to projects rakefile
+    churn
+    
 == Example Output
   **********************************************************************
   * Revision Changes 
