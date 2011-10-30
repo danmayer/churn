@@ -12,6 +12,7 @@ begin
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "shoulda"
+    gem.add_development_dependency "jeweler", '~> 1.6.0'
     gem.add_development_dependency "test-construct"
     gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
