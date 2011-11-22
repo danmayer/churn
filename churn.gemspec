@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "churn"
-  s.version = "0.0.14"
+  s.version = "0.0.15"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Mayer"]
-  s.date = "2011-10-30"
+  s.date = "2011-11-22"
   s.description = "High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. "
   s.email = "dan@mayerdan.com"
   s.executables = ["churn"]
@@ -59,12 +59,12 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<arrayfields>, ["= 4.7.4"])
-      s.add_runtime_dependency(%q<chronic>, ["= 0.6.4"])
+      s.add_runtime_dependency(%q<chronic>, [">= 0.2.3"])
       s.add_runtime_dependency(%q<fattr>, ["= 2.2.0"])
       s.add_runtime_dependency(%q<hirb>, ["= 0.5.0"])
       s.add_runtime_dependency(%q<jeweler>, ["= 1.6.4"])
       s.add_runtime_dependency(%q<json>, ["= 1.6.1"])
-      s.add_runtime_dependency(%q<main>, ["= 4.7.7"])
+      s.add_runtime_dependency(%q<main>, [">= 4.6.0"])
       s.add_runtime_dependency(%q<map>, ["= 4.3.0"])
       s.add_runtime_dependency(%q<ruby_parser>, ["= 2.3.1"])
       s.add_runtime_dependency(%q<sexp_processor>, ["= 3.0.7"])
@@ -80,12 +80,12 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<hirb>, [">= 0"])
     else
       s.add_dependency(%q<arrayfields>, ["= 4.7.4"])
-      s.add_dependency(%q<chronic>, ["= 0.6.4"])
+      s.add_dependency(%q<chronic>, [">= 0.2.3"])
       s.add_dependency(%q<fattr>, ["= 2.2.0"])
       s.add_dependency(%q<hirb>, ["= 0.5.0"])
       s.add_dependency(%q<jeweler>, ["= 1.6.4"])
       s.add_dependency(%q<json>, ["= 1.6.1"])
-      s.add_dependency(%q<main>, ["= 4.7.7"])
+      s.add_dependency(%q<main>, [">= 4.6.0"])
       s.add_dependency(%q<map>, ["= 4.3.0"])
       s.add_dependency(%q<ruby_parser>, ["= 2.3.1"])
       s.add_dependency(%q<sexp_processor>, ["= 3.0.7"])
@@ -102,12 +102,12 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<arrayfields>, ["= 4.7.4"])
-    s.add_dependency(%q<chronic>, ["= 0.6.4"])
+    s.add_dependency(%q<chronic>, [">= 0.2.3"])
     s.add_dependency(%q<fattr>, ["= 2.2.0"])
     s.add_dependency(%q<hirb>, ["= 0.5.0"])
     s.add_dependency(%q<jeweler>, ["= 1.6.4"])
     s.add_dependency(%q<json>, ["= 1.6.1"])
-    s.add_dependency(%q<main>, ["= 4.7.7"])
+    s.add_dependency(%q<main>, [">= 4.6.0"])
     s.add_dependency(%q<map>, ["= 4.3.0"])
     s.add_dependency(%q<ruby_parser>, ["= 2.3.1"])
     s.add_dependency(%q<sexp_processor>, ["= 3.0.7"])

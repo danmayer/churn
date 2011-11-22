@@ -94,6 +94,8 @@ TODO:
 * finish adding better documenation using YARD
 * better man page formatting from README (switch to markdown?)
 * rake task for building manpage (currently manually run  ronn -b1 README.rdoc)
+* bug that reports '/dev/null' as a file during revision changes
+* don't output methods and classes on a commit that has none detected (css and view only commits, etc)
 
 Executable Usage:
 * 'gem install churn'

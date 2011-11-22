@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     arrayfields (4.7.4)
-    chronic (0.6.4)
+    chronic (0.6.5)
     fattr (2.2.0)
     git (1.2.5)
     hirb (0.5.0)
@@ -11,7 +11,7 @@ GEM
       git (>= 1.2.5)
       rake
     json (1.6.1)
-    main (4.7.7)
+    main (4.8.0)
       arrayfields (~> 4.7.4)
       chronic (~> 0.6.2)
       fattr (~> 2.2.0)
@@ -32,12 +32,12 @@ PLATFORMS
 
 DEPENDENCIES
   arrayfields (= 4.7.4)
-  chronic (= 0.6.4)
+  chronic (>= 0.2.3)
   fattr (= 2.2.0)
   hirb (= 0.5.0)
   jeweler (= 1.6.4)
   json (= 1.6.1)
-  main (= 4.7.7)
+  main (>= 4.6.0)
   map (= 4.3.0)
   mocha (= 0.10.0)
   rake (= 0.8.7)
