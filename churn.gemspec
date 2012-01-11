@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "churn"
-  s.version = "0.0.16"
+  s.version = "0.0.17"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Mayer"]
@@ -65,7 +65,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_runtime_dependency(%q<json>, [">= 1.6.1"])
       s.add_runtime_dependency(%q<main>, [">= 4.6.0"])
-      s.add_runtime_dependency(%q<map>, [">= 4.3.0"])
       s.add_runtime_dependency(%q<ruby_parser>, [">= 2.3.1"])
       s.add_runtime_dependency(%q<sexp_processor>, [">= 3.0.7"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
@@ -85,7 +84,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<json>, [">= 1.6.1"])
       s.add_dependency(%q<main>, [">= 4.6.0"])
-      s.add_dependency(%q<map>, [">= 4.3.0"])
       s.add_dependency(%q<ruby_parser>, [">= 2.3.1"])
       s.add_dependency(%q<sexp_processor>, [">= 3.0.7"])
       s.add_dependency(%q<shoulda>, [">= 0"])
@@ -106,7 +104,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<json>, [">= 1.6.1"])
     s.add_dependency(%q<main>, [">= 4.6.0"])
-    s.add_dependency(%q<map>, [">= 4.3.0"])
     s.add_dependency(%q<ruby_parser>, [">= 2.3.1"])
     s.add_dependency(%q<sexp_processor>, [">= 3.0.7"])
     s.add_dependency(%q<shoulda>, [">= 0"])
