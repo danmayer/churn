@@ -12,13 +12,13 @@ begin
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
     gem.add_development_dependency "shoulda"
-    gem.add_development_dependency "jeweler", '~> 1.6.0'
+    gem.add_development_dependency "jeweler", '~> 1.6'
     gem.add_development_dependency "test-construct"
     gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
     gem.add_dependency "json_pure"
     gem.add_dependency "chronic", '>= 0.2.3'
-    gem.add_dependency "sexp_processor", '~> 3.0.3'
+    gem.add_dependency "sexp_processor", '~> 3.0'
     gem.add_dependency "ruby_parser", '~> 2.3'
     gem.add_dependency 'hirb'
     gem.executables = ['churn']

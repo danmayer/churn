@@ -1,29 +1,39 @@
+PATH
+  remote: .
+  specs:
+    churn (0.0.19)
+      chronic (>= 0.2.3)
+      hirb
+      json_pure
+      main
+      rake
+      ruby_parser (~> 2.3)
+      sexp_processor (~> 3.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
     arrayfields (4.7.4)
-    chronic (0.6.5)
+    chronic (0.6.6)
     fattr (2.2.0)
     git (1.2.5)
-    hirb (0.5.0)
+    hirb (0.6.0)
     jeweler (1.6.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
-    json (1.6.1)
-    main (4.8.0)
+    json_pure (1.6.4)
+    main (4.8.1)
       arrayfields (~> 4.7.4)
       chronic (~> 0.6.2)
       fattr (~> 2.2.0)
-      map (~> 4.3.0)
-    map (4.3.0)
-    metaclass (0.0.1)
-    mocha (0.10.0)
-      metaclass (~> 0.0.1)
+      map (~> 5.1.0)
+    map (5.1.0)
+    mocha (0.9.12)
     rake (0.8.7)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
-    sexp_processor (3.0.7)
+    sexp_processor (3.0.10)
     shoulda (2.11.3)
     test-construct (1.2.0)
 
@@ -31,17 +41,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  arrayfields (= 4.7.4)
-  chronic (>= 0.2.3)
-  fattr (= 2.2.0)
-  hirb (= 0.5.0)
-  jeweler (= 1.6.4)
-  json (= 1.6.1)
-  main (>= 4.6.0)
-  map (= 4.3.0)
-  mocha (= 0.10.0)
-  rake (= 0.8.7)
-  ruby_parser (= 2.3.1)
-  sexp_processor (= 3.0.7)
-  shoulda (= 2.11.3)
-  test-construct (= 1.2.0)
+  churn!
+  jeweler (~> 1.6)
+  mocha (~> 0.9.5)
+  rake
+  shoulda
+  test-construct
