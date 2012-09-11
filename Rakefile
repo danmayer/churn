@@ -3,6 +3,11 @@ require 'rake'
 require 'lib/tasks/churn_tasks'
 
 begin
+  #Bug in jeweler or bundler to make jeweler
+  #create a proper gemspec that doesn't have a circular dependancy
+  # on itself uninstall churn
+  # Then comment this line out of the Gemfile 'gemspec'
+  # then rake gemspec
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "churn"
@@ -11,9 +16,12 @@ begin
     gem.email = "dan@mayerdan.com"
     gem.homepage = "http://github.com/danmayer/churn"
     gem.authors = ["Dan Mayer"]
+    gem.executables = ['churn']
+
     gem.add_development_dependency "shoulda"
-    gem.add_development_dependency "jeweler", '~> 1.6'
+    gem.add_development_dependency "jeweler"
     gem.add_development_dependency "test-construct"
+    gem.add_development_dependency "rake"
     gem.add_development_dependency "mocha", '~> 0.9.5'
     gem.add_dependency "main"
     gem.add_dependency "json_pure"
@@ -21,7 +29,6 @@ begin
     gem.add_dependency "sexp_processor", '~> 3.0'
     gem.add_dependency "ruby_parser", '~> 2.3'
     gem.add_dependency 'hirb'
-    gem.executables = ['churn']
   end
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
@@ -30,16 +37,16 @@ end
 begin
   #for additional metrics, mostly Rcov which caliper doesn't do
   require 'metric_fu'
-  
+
   MetricFu::Configuration.run do |config|
     config.metrics  = [:churn, :saikuro, :roodi, :flog, :flay, :reek, :roodi, :rcov, :hotspots]
     config.graphs   = [:roodi, :flog, :flay, :reek, :roodi, :rcov]
-    
-    config.flay     = { :dirs_to_flay => ['lib']  } 
+
+    config.flay     = { :dirs_to_flay => ['lib']  }
     config.flog     = { :dirs_to_flog => ['lib']  }
     config.reek     = { :dirs_to_reek => ['lib']  }
     config.roodi    = { :dirs_to_roodi => ['lib'] }
-    config.saikuro  = { :output_directory => 'tmp/tmp_saikuro', 
+    config.saikuro  = { :output_directory => 'tmp/tmp_saikuro',
       :input_directory => ['lib'],
       :cyclo => "",
       :filter_cyclo => "0",
@@ -48,8 +55,8 @@ begin
       :formater => "text"} #this needs to be set to "text"
     config.churn    = { :start_date => "3 months ago", :minimum_churn_count => 10}
     config.rcov     = { :test_files => ['test/unit/**/*_test.rb'],
-      :rcov_opts => ["--sort coverage", 
-                     "--no-html", 
+      :rcov_opts => ["--sort coverage",
+                     "--no-html",
                      "--text-coverage",
                      "--no-color",
                      "--profile",

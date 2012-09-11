@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Mayer"]
-  s.date = "2012-01-12"
+  s.date = "2012-09-11"
   s.description = "High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. "
   s.email = "dan@mayerdan.com"
   s.executables = ["churn"]
@@ -58,11 +58,11 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<test-construct>, [">= 0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<mocha>, ["~> 0.9.5"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6"])
       s.add_runtime_dependency(%q<main>, [">= 0"])
       s.add_runtime_dependency(%q<json_pure>, [">= 0"])
       s.add_runtime_dependency(%q<chronic>, [">= 0.2.3"])
@@ -70,11 +70,11 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<ruby_parser>, ["~> 2.3"])
       s.add_runtime_dependency(%q<hirb>, [">= 0"])
     else
-      s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<test-construct>, [">= 0"])
+      s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<mocha>, ["~> 0.9.5"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6"])
       s.add_dependency(%q<main>, [">= 0"])
       s.add_dependency(%q<json_pure>, [">= 0"])
       s.add_dependency(%q<chronic>, [">= 0.2.3"])
@@ -83,11 +83,11 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<hirb>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<test-construct>, [">= 0"])
+    s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<mocha>, ["~> 0.9.5"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6"])
     s.add_dependency(%q<main>, [">= 0"])
     s.add_dependency(%q<json_pure>, [">= 0"])
     s.add_dependency(%q<chronic>, [">= 0.2.3"])
