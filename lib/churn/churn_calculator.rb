@@ -25,7 +25,8 @@ module Churn
     def initialize(options={})
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
-      @source_control = set_source_control(start_date)
+      @ignore_files     = (options.fetch(:ignore_files){ "" }).split(',').map(&:strip)
+      @source_control   = set_source_control(start_date)
       @changes          = {}
       @revision_changes = {}
       @class_changes    = {}
@@ -37,16 +38,16 @@ module Churn
     # @param [Bolean] format to return the data, true for string or false for hash
     # @return [Object] returns either a pretty string or a hash representing the chrun of the project
     def report(print = true)
-      self.emit 
+      self.emit
       self.analyze
       print ? self.to_s : self.to_h
     end
-    
+
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
     def emit
-      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count}
-      @revisions = parse_log_for_revision_changes  
-    end 
+      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count || @ignore_files.include?(file) }
+      @revisions = parse_log_for_revision_changes
+    end
 
     # Analyze the source control data, filter, sort, and find more information on the editted files
     def analyze
@@ -83,7 +84,7 @@ module Churn
     # Pretty print the data as a string for the user
     def to_s
       hash   = to_h[:churn]
-      result = seperator 
+      result = seperator
       result +="* Revision Changes \n"
       result += seperator
       result += "Files: \n"
@@ -92,7 +93,7 @@ module Churn
       result += display_array(hash[:changed_classes])
       result += "\nMethods: \n"
       result += display_array(hash[:changed_methods]) + "\n"
-      result += seperator 
+      result += seperator
       result +="* Project Churn \n"
       result += seperator
       result += "Files: \n"
@@ -106,7 +107,7 @@ module Churn
     end
 
     private
-    
+
     def collect_items(collection, match)
       collection.map {|item| (item.delete(match) || {}).merge(item) }
     end
@@ -165,14 +166,14 @@ module Churn
         end
         calculate_changes!(changed_methods, @method_changes) if changed_methods
         calculate_changes!(changed_classes, @class_changes) if changed_classes
-        
+
         @revision_changes[revision] = { :files => changed_files, :classes => changed_classes, :methods => changed_methods }
       end
     end
 
     def calculate_revision_data(revision)
       changed_files   = parse_logs_for_updated_files(revision, @revisions)
-      
+
       changed_classes = []
       changed_methods = []
       changed_files.each do |file_changes|
@@ -225,10 +226,10 @@ module Churn
       end
       changed_items
     end
-    
+
     def parse_log_for_changes
       changes = {}
-      
+
       logs = @source_control.get_logs
       logs.each do |line|
         changes[line] ? changes[line] += 1 : changes[line] = 1
@@ -240,11 +241,12 @@ module Churn
       return [] unless @source_control.respond_to?(:get_revisions)
       @source_control.get_revisions
     end
-    
+
     def parse_logs_for_updated_files(revision, revisions)
       #TODO SVN doesn't support this
       return {} unless @source_control.respond_to?(:get_updated_files_change_info)
-      @source_control.get_updated_files_change_info(revision, revisions)
+      files = @source_control.get_updated_files_change_info(revision, revisions)
+      files.select{ |file| !@ignore_files.include?(file.first) }
     end
 
   end

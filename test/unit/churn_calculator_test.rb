@@ -1,12 +1,12 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class ChurnCalculatorTest < Test::Unit::TestCase
- 
+
   should "use minimum churn count" do
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
- 
+
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 4],['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
       churn.stubs(:analyze)
@@ -16,11 +16,25 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     end
   end
 
+  should "use ignore_files filter" do
+    within_construct do |container|
+      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      churn = Churn::ChurnCalculator.new({:ignore_files => "file.rb"})
+
+      churn.stubs(:parse_log_for_changes).returns([['file.rb', 10],['new.rb',11]])
+      churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
+      churn.stubs(:analyze)
+      report = churn.report(false)
+      assert_equal 1, report[:churn][:changes].length
+      assert_equal ["new.rb", 11], report[:churn][:changes].first
+    end
+  end
+
   should "analize sorts changes" do
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
- 
+
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 4],['most.rb', 9],['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
       report = churn.report(false)
@@ -36,7 +50,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
-      
+
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
       churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
@@ -49,7 +63,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
-      
+
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
       churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
@@ -66,7 +80,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
-      
+
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
       churn.stubs(:parse_log_for_revision_changes).returns(['first'])
       churn.stubs(:parse_logs_for_updated_files).returns({'fake_file.rb'=>[]})
@@ -86,5 +100,5 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
   end
 
-  
+
 end

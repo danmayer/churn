@@ -15,9 +15,15 @@ Main do
     default false
   end
 
+  option('ignore_files', 'i') do
+    cast :string
+    argument :optional
+    default ''
+  end
+
   def report_churn(output_string)
     require File.join(File.dirname(__FILE__), '..', 'lib', 'churn', 'churn_calculator')
-    result = Churn::ChurnCalculator.new({:minimum_churn_count => params['minimum_churn_count'].value}).report(output_string)
+    result = Churn::ChurnCalculator.new({:minimum_churn_count => params['minimum_churn_count'].value, :ignore_files => params['ignore_files'].value}).report(output_string)
     unless output_string
       result = YAML::dump(result)
     end
