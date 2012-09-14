@@ -103,23 +103,21 @@ __Example Output__
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
     +-------------------------------+-----------------+-----------------------------------------+---------------+
 
-
-__Rake Usage:__
-
-* 'gem install churn'
-* on any project you want to use churn, add "require 'churn'" to your rake file
-* run 'rake churn' to view the current output, file churn history is immediate, class and method churn builds up a history as it is run on each revision
-* temporary files with class / method churn history are stored in /tmp, to clear churn history delete them
-
 __Options__
 
-* option('minimum_churn_count', 'c')
-    * the minimum number of changes on a file before counting it as churn (default is 3)       
-* option('yaml', 'y')
-    * output text or yaml (default false, ie text)
-* option('ignore_files', 'i')
-    * a string comma delimited of files to ignore (default '', example: 'Gemfile,Rakefile'
-* example CLI call: `churn -i "Gemfile.lock, churn.gemspec"`
+    [~/projects/churn] churn -h
+    NAME
+      churn
+    
+    SYNOPSIS
+      churn [options]+
+    
+    PARAMETERS
+      --minimum_churn_count=minimum_churn_count, -c (0 ~> 
+      int(minimum_churn_count=3)) 
+      --yaml, -y 
+      --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=)) 
+      --help, -h 
 
 __TODO:__  
 
@@ -131,7 +129,6 @@ __TODO:__
 * ignore files pattern, so you can ignore things like vendor/, lib/, or docs/
 * finish adding better documenation using YARD
 * rake task for building manpage (currently manually run  ronn -b1 README.rdoc)
-* bug that reports '/dev/null' as a file during revision changes
 * don't output methods and classes on a commit that has none detected (css and view only commits, etc)
 
 __Notes on Patches/Pull Requests__
