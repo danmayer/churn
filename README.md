@@ -12,10 +12,29 @@ Authors:
 * cldwalker
 * absurdhero
 
-Execute with:  
-    `rake churn` #after adding require 'churn' to projects rakefile  
-    or as a executable `churn`
-    
+__Churn Usage__  
+Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn'`
+
+* rake:
+  * add `require 'churn'` to Rakefile
+  * then run`rake churn` or `bundle exec rake churn`
+  * use environment variables to control churn defaults  
+  
+        ENV['CHURN_MINIMUM_CHURN_COUNT']  
+        ENV['CHURN_START_DATE']  
+        ENV['CHURN_IGNORE_FILES']
+  
+* CLI:  
+  * on command line run `churn` or `bundle exec churn`
+  * need help run `churn -h` to get additional information
+  * run the executable passing in options to override defaults
+  
+        churn -i "churn.gemspec, Gemfile" #ignore files
+        churn -y #output yaml format opposed to text
+        churn -c 10 #set minimum churn count on a file to 10
+        churn -c 5 -y -i "Gemfile" #mix and match
+        
+             
 __Example Output__  
 
     **********************************************************************
@@ -84,10 +103,6 @@ __Example Output__
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
     +-------------------------------+-----------------+-----------------------------------------+---------------+
 
-__Executable Usage:__  
-
-* `gem install churn`  
-* go to project root run `churn`
 
 __Rake Usage:__
 

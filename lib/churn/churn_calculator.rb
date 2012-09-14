@@ -26,6 +26,7 @@ module Churn
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
       @ignore_files     = (options.fetch(:ignore_files){ "" }).split(',').map(&:strip)
+      @ignore_files << '/dev/null'
       @source_control   = set_source_control(start_date)
       @changes          = {}
       @revision_changes = {}
@@ -246,7 +247,7 @@ module Churn
       #TODO SVN doesn't support this
       return {} unless @source_control.respond_to?(:get_updated_files_change_info)
       files = @source_control.get_updated_files_change_info(revision, revisions)
-      files.select{ |file| !@ignore_files.include?(file.first) }
+      files.select{ |file, value| !@ignore_files.include?(file) }
     end
 
   end
