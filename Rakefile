@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'rake'
-require 'lib/tasks/churn_tasks'
+require File.join(File.dirname(__FILE__), 'lib', 'tasks', 'churn_tasks')
 
 begin
   #Bug in jeweler or bundler to make jeweler
