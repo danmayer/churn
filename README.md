@@ -12,6 +12,12 @@ Authors:
 * cldwalker
 * absurdhero
 
+__CI Build Status__
+
+[![Build Status](https://secure.travis-ci.org/danmayer/churn.png)](http://travis-ci.org/danmayer/churn)
+
+This project runs [travis-ci.org](http://travis-ci.org)
+
 __Churn Usage__  
 Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn'`
 
