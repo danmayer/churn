@@ -24,7 +24,7 @@ module Churn
     # intialized the churn calculator object
     def initialize(options={})
       start_date = options.fetch(:start_date) { '3 months ago' }
-      @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }
+      @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }.to_i
       @ignore_files     = (options.fetch(:ignore_files){ "" }).split(',').map(&:strip)
       @ignore_files << '/dev/null'
       @source_control   = set_source_control(start_date)
