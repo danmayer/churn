@@ -16,6 +16,15 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     end
   end
 
+  should "ensure that minimum churn count is initialized as a Fixnum" do
+    within_construct do |container|
+      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      churn = Churn::ChurnCalculator.new({:minimum_churn_count => "3"})
+
+      assert_equal 3, churn.instance_variable_get(:@minimum_churn_count)
+    end
+  end
+
   should "use ignore_files filter" do
     within_construct do |container|
       Churn::ChurnCalculator.stubs(:git?).returns(true)
