@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "churn"
-  s.version = "0.0.22"
+  s.version = "0.0.23"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Mayer"]
-  s.date = "2012-09-14"
+  s.date = "2012-09-25"
   s.description = "High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. "
   s.email = "dan@mayerdan.com"
   s.executables = ["churn"]
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE",
