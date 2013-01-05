@@ -8,7 +8,7 @@ Currently has full Git, Mercurial (hg), and Bazaar (bzr) support, and partial SV
 Authors:
 
 * danmayer
-* ajwalters 
+* ajwalters
 * cldwalker
 * absurdhero
 
@@ -18,50 +18,50 @@ __CI Build Status__
 
 This project runs [travis-ci.org](http://travis-ci.org)
 
-__Churn Usage__  
+__Churn Usage__
 Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn'`
 
 * rake:
   * add `require 'churn'` to Rakefile
   * then run`rake churn` or `bundle exec rake churn`
-  * use environment variables to control churn defaults  
-  
-        ENV['CHURN_MINIMUM_CHURN_COUNT']  
-        ENV['CHURN_START_DATE']  
+  * use environment variables to control churn defaults
+
+        ENV['CHURN_MINIMUM_CHURN_COUNT']
+        ENV['CHURN_START_DATE']
         ENV['CHURN_IGNORE_FILES']
-  
-* CLI:  
+
+* CLI:
   * on command line run `churn` or `bundle exec churn`
   * need help run `churn -h` to get additional information
   * run the executable passing in options to override defaults
-  
+
         churn -i "churn.gemspec, Gemfile" #ignore files
         churn -y #output yaml format opposed to text
         churn -c 10 #set minimum churn count on a file to 10
         churn -c 5 -y -i "Gemfile" #mix and match
-        
-             
-__Example Output__  
+
+
+__Example Output__
 
     **********************************************************************
-    * Revision Changes 
+    * Revision Changes
     **********************************************************************
-    Files: 
+    Files:
     +-------------------------------+
     | file                          |
     +-------------------------------+
     | Rakefile                      |
     | lib/churn/churn_calculator.rb |
     +-------------------------------+
-     
-    Classes: 
+
+    Classes:
     +-------------------------------+-----------------+
     | file                          | klass           |
     +-------------------------------+-----------------+
     | lib/churn/churn_calculator.rb | ChurnCalculator |
     +-------------------------------+-----------------+
-     
-    Methods: 
+
+    Methods:
     +-------------------------------+-----------------  +-------------------------------+
     | file                          | klass           | method                        |
     +-------------------------------+-----------------+-------------------------------+
@@ -69,11 +69,11 @@ __Example Output__
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#display_array |
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s          |
     +-------------------------------+-----------------+-------------------------------+
-   
+
     **********************************************************************
-    * Project Churn 
+    * Project Churn
     **********************************************************************
-    Files: 
+    Files:
     +------------------------------------+---------------+
     | file_path                          | times_changed |
     +------------------------------------+---------------+
@@ -86,17 +86,17 @@ __Example Output__
     | test/test_helper.rb                | 4             |
     | test/unit/churn_calculator_test.rb | 3             |
     | test/churn_test.rb                 | 3             |
-    +------------------------------------+---------------+ 
-   
-    Classes: 
+    +------------------------------------+---------------+
+
+    Classes:
     +-------------------------------+-----------------+---------------+
     | file                          | klass           | times_changed |
     +-------------------------------+-----------------+---------------+
     | lib/churn/churn_calculator.rb | ChurnCalculator | 1             |
     | lib/churn/churn_calculator.rb | ChurnCalculator | 1             |
     +-------------------------------+-----------------+---------------+
-     
-    Methods: 
+
+    Methods:
     +-------------------------------+-----------------+-----------------------------------------+---------------+
     | file                          | klass           | method                                  | times_changed |
     +-------------------------------+-----------------+-----------------------------------------+---------------+
@@ -114,31 +114,32 @@ __Options__
     [~/projects/churn] churn -h
     NAME
       churn
-    
+
     SYNOPSIS
       churn [options]+
-    
+
     PARAMETERS
-      --minimum_churn_count=minimum_churn_count, -c (0 ~> 
-      int(minimum_churn_count=3)) 
-      --yaml, -y 
-      --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=)) 
-      --help, -h 
+      --minimum_churn_count=minimum_churn_count, -c (0 ~>
+      int(minimum_churn_count=3))
+      --yaml, -y
+      --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
+      --help, -h
 
-__TODO:__  
+__TODO:__
 
-* SVN only supports file, add full SVN support 
-* support bazaar, cvs, and darcs
+* SVN only supports file, add full SVN support (method and line numbers)
+* add support for cvs, and darcs
 * make storage directory configurable instead of using tmp
-* allow passing in directories to churn, directories to ignore
-* add a filter that allows for other files besides. *.rb
-* ignore files pattern, so you can ignore things like vendor/, lib/, or docs/
+* allow passing in directories to churn
+* add a filter that allows for other files besides. *.rb to get method/class checks
+* improve line number matching for Ruby files
+* add line number matching for other langauges
 * finish adding better documenation using YARD
-* rake task for building manpage (currently manually run  ronn -b1 README.rdoc)
+* rake task for building manpage (currently manually run `ronn -b1 README.rdoc`)
 * don't output methods and classes on a commit that has none detected (css and view only commits, etc)
 
 __Notes on Patches/Pull Requests__
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
