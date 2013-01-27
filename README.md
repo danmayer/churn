@@ -39,6 +39,7 @@ Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn'
         churn -y #output yaml format opposed to text
         churn -c 10 #set minimum churn count on a file to 10
         churn -c 5 -y -i "Gemfile" #mix and match
+        churn --start_date "6 months ago" #Start looking at file changes from 6 months ago
 
 
 __Example Output__
@@ -119,11 +120,11 @@ __Options__
       churn [options]+
 
     PARAMETERS
-      --minimum_churn_count=minimum_churn_count, -c (0 ~>
-      int(minimum_churn_count=3))
-      --yaml, -y
-      --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
-      --help, -h
+    --minimum_churn_count=minimum_churn_count, -c (0 ~>  int(minimum_churn_count=3))
+    --yaml, -y
+    --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
+    --start_date=[start_date], -s (0 ~> string(start_date=))
+    --help, -h
 
 __TODO:__
 
@@ -151,4 +152,4 @@ __Notes on Patches/Pull Requests__
 
 __Copyright__
 
-Copyright (c) 2012 Dan Mayer. See LICENSE for details.
+Copyright (c) 2013 Dan Mayer. See LICENSE for details.

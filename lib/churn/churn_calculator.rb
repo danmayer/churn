@@ -23,6 +23,7 @@ module Churn
 
     # intialized the churn calculator object
     def initialize(options={})
+      options[:start_date]=nil if options[:start_date]==''
       start_date = options.fetch(:start_date) { '3 months ago' }
       @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }.to_i
       @ignore_files     = (options.fetch(:ignore_files){ "" }).to_s.split(',').map(&:strip)
