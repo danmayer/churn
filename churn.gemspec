@@ -34,8 +34,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<main>, [">= 0"])
   s.add_runtime_dependency(%q<json_pure>, [">= 0"])
   s.add_runtime_dependency(%q<chronic>, [">= 0.2.3"])
-  s.add_runtime_dependency(%q<sexp_processor>, ["~> 4.1.0"])
-  s.add_runtime_dependency(%q<ruby_parser>, ["~> 3.1.0"])
+  s.add_runtime_dependency(%q<sexp_processor>, ["~> 4.1"])
+  s.add_runtime_dependency(%q<ruby_parser>, ["~> 3.0"])
   s.add_runtime_dependency(%q<hirb>, [">= 0"])
 
 end
