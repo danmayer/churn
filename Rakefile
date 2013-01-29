@@ -31,15 +31,11 @@ task :build_gem do
 end
 
 require 'rdoc/task'
+$:.push File.expand_path("../lib", __FILE__)
+require "churn/version"
 Rake::RDocTask.new do |rdoc|
-  if File.exist?('VERSION')
-    version = File.read('VERSION')
-  else
-    version = ""
-  end
-
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "churn #{version}"
+  rdoc.title = "churn #{Churn::VERSION}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
