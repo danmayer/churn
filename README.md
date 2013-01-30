@@ -1,6 +1,6 @@
 __churn__
 
-A Project to give the churn file, class, and method for a project for a given checkin. Over time the tool adds up the history of chruns to give the number of times a file, class, or method is changing during the life of a project.
+A Project to give the churn file, class, and method for a project for a given checkin. Over time the tool adds up the history of churns to give the number of times a file, class, or method is changing during the life of a project.
 Churn for files is immediate, but classes and methods requires buildings up a history using churn between revisions. The history is stored in ./tmp
 
 Currently has full Git, Mercurial (hg), and Bazaar (bzr) support, and partial SVN support (supports only file level churn currently)
