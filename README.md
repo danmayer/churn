@@ -11,6 +11,7 @@ Authors:
 * ajwalters
 * cldwalker
 * absurdhero
+* bf4
 
 __CI Build Status__
 
