@@ -20,7 +20,9 @@ __CI Build Status__
 This project runs [travis-ci.org](http://travis-ci.org)
 
 __Churn Usage__
-Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn'`
+Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn', :require => false`. 
+
+The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests. Previous versions required this change, churn will now do the right thing if you forget to add `require => false`. 
 
 * rake:
   * add `require 'churn'` to Rakefile
