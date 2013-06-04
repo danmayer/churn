@@ -1,4 +1,5 @@
-__churn__
+Churn
+===
 
 A Project to give the churn file, class, and method for a project for a given checkin. Over time the tool adds up the history of churns to give the number of times a file, class, or method is changing during the life of a project.
 Churn for files is immediate, but classes and methods requires buildings up a history using churn between revisions. The history is stored in ./tmp
@@ -13,13 +14,14 @@ Authors:
 * absurdhero
 * bf4
 
-__CI Build Status__
+## CI Build Status
 
 [![Build Status](https://secure.travis-ci.org/danmayer/churn.png)](http://travis-ci.org/danmayer/churn)
 
 This project runs [travis-ci.org](http://travis-ci.org)
 
-__Churn Usage__
+## Churn Usage
+
 Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn', :require => false`. 
 
 The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests. Previous versions required this change, churn will now do the right thing if you forget to add `require => false`. 
@@ -45,7 +47,7 @@ The reason you want require false is that when required by default churn is expe
         churn --start_date "6 months ago" #Start looking at file changes from 6 months ago
 
 
-__Example Output__
+## Example Output
 
     **********************************************************************
     * Revision Changes
@@ -113,7 +115,7 @@ __Example Output__
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
     +-------------------------------+-----------------+-----------------------------------------+---------------+
 
-__Options__
+## Options
 
     [~/projects/churn] churn -h
     NAME
@@ -129,20 +131,22 @@ __Options__
     --start_date=[start_date], -s (0 ~> string(start_date=))
     --help, -h
 
-__TODO:__
+## TODO
 
 * SVN only supports file, add full SVN support (method and line numbers)
 * add support for cvs, and darcs
-* make storage directory configurable instead of using tmp
-* allow passing in directories to churn
+* make storage directory configurable instead of using tmp, nest default directory under tmp/churn
+* allow passing in directories to churn (I don't remember entirely what I meant by this)
 * add a filter that allows for other files besides. *.rb to get method/class checks
 * improve line number matching for Ruby files
-* add line number matching for other langauges
-* finish adding better documenation using YARD
+* add line number matching for other languages (python, JS, etc)
+* finish adding better documentation using YARD
 * rake task for building manpage (currently manually run `ronn -b1 README.rdoc`)
 * don't output methods and classes on a commit that has none detected (css and view only commits, etc)
+* A way to call churn to build up all past history for a project. Or perhaps just past history for 3-6 months
+* Better error trapping / detection
 
-__Notes on Patches/Pull Requests__
+## Notes on Patches/Pull Requests
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -153,6 +157,6 @@ __Notes on Patches/Pull Requests__
    bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-__Copyright__
+## Copyright
 
 Copyright (c) 2013 Dan Mayer. See LICENSE for details.
