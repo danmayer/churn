@@ -136,7 +136,7 @@ The reason you want require false is that when required by default churn is expe
 * SVN only supports file, add full SVN support (method and line numbers)
 * add support for cvs, and darcs
 * make storage directory configurable instead of using tmp, nest default directory under tmp/churn
-* allow passing in directories to churn (I don't remember entirely what I meant by this)
+* allow passing in directories to churn (I don't remember entirely what I meant by this, I think I mean not defaulting to /tmp and allowing other directories and by default moving files to /tmp/churn/)
 * add a filter that allows for other files besides. *.rb to get method/class checks
 * improve line number matching for Ruby files
 * add line number matching for other languages (python, JS, etc)
