@@ -135,6 +135,8 @@ The reason you want require false is that when required by default churn is expe
 
 The list of items has been moved to the [churn wafflie.io](http://waffle.io/danmayer/churn)
 
+[![Stories in Ready](https://badge.waffle.io/danmayer/churn.png)](http://waffle.io/danmayer/churn)
+
 ## Notes on Patches/Pull Requests
 
 * Fork the project.
