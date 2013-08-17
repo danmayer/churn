@@ -27,9 +27,15 @@ Main do
     default ''
   end
 
+  option('data_directory', 'd') do
+    cast :string
+    argument :optional
+    default ''
+  end
+
   def report_churn(output_string)
     require File.join(File.dirname(__FILE__), '..', 'lib', 'churn', 'churn_calculator')
-    result = Churn::ChurnCalculator.new({:minimum_churn_count => params['minimum_churn_count'].value, :ignore_files => params['ignore_files'].value, :start_date => params['start_date'].value}).report(output_string)
+    result = Churn::ChurnCalculator.new({:minimum_churn_count => params['minimum_churn_count'].value, :ignore_files => params['ignore_files'].value, :start_date => params['start_date'].value, :data_directory => params['data_directory'].value}).report(output_string)
     unless output_string
       result = YAML::dump(result)
     end

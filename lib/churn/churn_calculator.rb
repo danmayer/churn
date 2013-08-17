@@ -13,22 +13,26 @@ require 'hg_analyzer'
 require 'bzr_analyzer'
 require 'location_mapping'
 require 'churn_history'
+require 'churn_options'
 
 module Churn
 
-  # The work horse of the the churn library. This class takes user input, determins the SCM the user is using. It then determines changes
-  # made during this revision. Finally it reads all the changes from previous revisions and displays human readable output to the command
-  # line. It can also ouput a yaml format readable by other tools such as metric_fu and Caliper.
+  # The work horse of the the churn library.
+  # This class takes user input, determins the SCM the user is using.
+  # It then determines changes made during this revision.
+  # Finally it reads all the changes from previous revisions and displays human readable output on the command line.
+  # It can also ouput a yaml format readable by other tools such as metric_fu and Caliper.
   class ChurnCalculator
 
     # intialized the churn calculator object
     def initialize(options={})
-      options[:start_date]=nil if options[:start_date]==''
-      start_date = options.fetch(:start_date) { '3 months ago' }
-      @minimum_churn_count = options.fetch(:minimum_churn_count) { 5 }.to_i
-      @ignore_files     = (options.fetch(:ignore_files){ "" }).to_s.split(',').map(&:strip)
-      @ignore_files << '/dev/null'
-      @source_control   = set_source_control(start_date)
+      @churn_options = ChurnOptions.instance.set_options(options)
+      
+      @minimum_churn_count = @churn_options.minimum_churn_count
+      @ignore_files        = @churn_options.ignore_files
+      start_date           = @churn_options.start_date
+      @source_control      = set_source_control(start_date)
+
       @changes          = {}
       @revision_changes = {}
       @class_changes    = {}
