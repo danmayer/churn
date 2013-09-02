@@ -112,7 +112,7 @@ module Churn
 
     # Pretty print the data as a string for the user
     def to_s
-      ChurnCalculator(to_h[:churn])
+      ChurnCalculator.to_s(to_h[:churn])
     end
 
     private
