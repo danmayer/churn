@@ -117,7 +117,7 @@ module Churn
 
     private
 
-    def collect_items(collection, match)
+    def self.collect_items(collection, match)
       collection.map {|item| (item.delete(match) || {}).merge(item) }
     end
 
@@ -129,12 +129,16 @@ module Churn
       /.*\.rb/
     end
 
-    def display_array(array, options={})
+    def self.display_array(array, options={})
       array ? Hirb::Helpers::AutoTable.render(array, options.merge(:description=>false)) + "\n" : ''
     end
 
-    def seperator
+    def self.seperator
       "*"*70+"\n"
+    end
+
+    def seperator
+      ChurnCalculator.seperator
     end
 
     def self.git?
