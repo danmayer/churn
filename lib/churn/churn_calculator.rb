@@ -87,9 +87,7 @@ module Churn
       hash
     end
 
-    # Pretty print the data as a string for the user
-    def to_s
-      hash   = to_h[:churn]
+    def self.to_s(hash)
       result = seperator
       result +="* Revision Changes \n"
       result += seperator
@@ -110,6 +108,11 @@ module Churn
       result += "\nMethods: \n"
       method_churn = collect_items(hash[:method_churn], 'method')
       result += display_array(method_churn)
+    end
+
+    # Pretty print the data as a string for the user
+    def to_s
+      ChurnCalculator(to_h[:churn])
     end
 
     private
