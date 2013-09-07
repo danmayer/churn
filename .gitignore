@@ -8,3 +8,4 @@ tmp
 .bundle
 specs
 .yardoc/
+coverage

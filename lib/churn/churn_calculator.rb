@@ -87,6 +87,11 @@ module Churn
       hash
     end
 
+    def to_s
+      ChurnCalculator.to_s(to_h[:churn])
+    end
+
+    # Pretty print the data as a string for the user
     def self.to_s(hash)
       result = seperator
       result +="* Revision Changes \n"
@@ -110,14 +115,10 @@ module Churn
       result += display_array(method_churn)
     end
 
-    # Pretty print the data as a string for the user
-    def to_s
-      ChurnCalculator.to_s(to_h[:churn])
-    end
-
     private
 
     def self.collect_items(collection, match)
+      return [] unless collection
       collection.map {|item| (item.delete(match) || {}).merge(item) }
     end
 
@@ -135,10 +136,6 @@ module Churn
 
     def self.seperator
       "*"*70+"\n"
-    end
-
-    def seperator
-      ChurnCalculator.seperator
     end
 
     def self.git?

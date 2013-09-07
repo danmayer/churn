@@ -102,12 +102,55 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     end
   end
 
+  should "have expected output for self.to_s" do
+    output = Churn::ChurnCalculator.to_s({})
+    assert_match /Revision Changes/, output
+    assert_match /Project Churn/, output
+  end
+
+  should "have expected output for to_s" do
+    calc = Churn::ChurnCalculator.new
+    calc.expects(:to_h).returns({:churn => {}})
+    output = calc.to_s
+    assert_match /Revision Changes/, output
+    assert_match /Project Churn/, output
+  end
+
   should "initialize a churn calculator for hg repositories" do
     Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.expects(:`).with("hg branch 2>&1").returns(true)
+    Churn::ChurnCalculator.expects(:`).with("hg branch 2>&1").returns(true) #` fix syntax hilighting
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
   end
 
+  should "initialize a churn calculator for bzr repositories" do
+    Churn::ChurnCalculator.stubs(:git?).returns(false)
+    Churn::ChurnCalculator.stubs(:hg?).returns(false)
+    Churn::ChurnCalculator.expects(:`).with("bzr nick 2>&1").returns(true) #` fix syntax hilighting
+    churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
+    assert churn.instance_variable_get(:@source_control).is_a?(Churn::BzrAnalyzer)
+  end
+
+  should "initialize a churn calculator for svn repositories" do
+    Churn::ChurnCalculator.stubs(:git?).returns(false)
+    Churn::ChurnCalculator.stubs(:hg?).returns(false)
+    Churn::ChurnCalculator.stubs(:bzr?).returns(false)
+    File.stubs(:exist?).returns(true)
+    churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
+    assert churn.instance_variable_get(:@source_control).is_a?(Churn::SvnAnalyzer)
+  end
+
+  should "raise exception on a churn calculator for unknown repositories" do
+    Churn::ChurnCalculator.stubs(:git?).returns(false)
+    Churn::ChurnCalculator.stubs(:hg?).returns(false)
+    Churn::ChurnCalculator.stubs(:bzr?).returns(false)
+    File.stubs(:exist?).returns(false)
+    assert_raises RuntimeError do
+      churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
+    end
+  end
+
+
+  
 
 end

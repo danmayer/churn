@@ -48,6 +48,10 @@ GEM
     shoulda-context (1.0.2)
     shoulda-matchers (1.4.1)
       activesupport (>= 3.0.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     test-construct (1.2.0)
 
 PLATFORMS
@@ -59,4 +63,5 @@ DEPENDENCIES
   mocha (~> 0.9.5)
   rake
   shoulda
+  simplecov
   test-construct

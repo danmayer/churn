@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<test-construct>, [">= 0"])
   s.add_development_dependency(%q<rake>, [">= 0"])
   s.add_development_dependency(%q<mocha>, ["~> 0.9.5"])
+  s.add_development_dependency(%q<simplecov>,[">= 0"])
   #s.add_development_dependency(%q<ruby-debug>, ["~> 0.10.4"])
   s.add_runtime_dependency(%q<main>, [">= 0"])
   s.add_runtime_dependency(%q<json_pure>, [">= 0"])
