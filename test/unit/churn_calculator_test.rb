@@ -104,7 +104,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "initialize a churn calculator for hg repositories" do
     Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.stubs(:system).with('hg branch').returns(true)
+    Churn::ChurnCalculator.expects(:`).with("hg branch 2>&1").returns(true)
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
   end

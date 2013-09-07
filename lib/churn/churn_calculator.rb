@@ -142,15 +142,15 @@ module Churn
     end
 
     def self.git?
-      system("git branch")
+      !!(`git branch 2>&1` && $?.success?)
     end
-
+    
     def self.hg?
-      system("hg branch")
+      !!(`hg branch 2>&1` && $?.success?)
     end
-
+    
     def self.bzr?
-        system("bzr nick")
+      !!(`bzr nick 2>&1` && $?.success?)
     end
 
     def set_source_control(start_date)

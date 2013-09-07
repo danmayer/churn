@@ -14,4 +14,3 @@ class GitAnalyzerTest < Test::Unit::TestCase
   end
   
 end
-
