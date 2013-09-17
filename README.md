@@ -37,21 +37,24 @@ The reason you want require false is that when required by default churn is expe
   * then run`rake churn` or `bundle exec rake churn`
   * use environment variables to control churn defaults
 
+      ``` ruby
         ENV['CHURN_MINIMUM_CHURN_COUNT']
         ENV['CHURN_START_DATE']
         ENV['CHURN_IGNORE_FILES']
+      ```
 
 * CLI:
   * on command line run `churn` or `bundle exec churn`
   * need help run `churn -h` to get additional information
   * run the executable passing in options to override defaults
-
+ 
+      ``` bash
         churn -i "churn.gemspec, Gemfile" #ignore files
         churn -y #output yaml format opposed to text
         churn -c 10 #set minimum churn count on a file to 10
         churn -c 5 -y -i "Gemfile" #mix and match
         churn --start_date "6 months ago" #Start looking at file changes from 6 months ago
-
+      ```
 
 ## Example Output
 
