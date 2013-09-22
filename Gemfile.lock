@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    churn (0.0.33)
+    churn (0.0.34)
       chronic (>= 0.2.3)
       hirb
       json_pure

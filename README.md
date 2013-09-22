@@ -6,8 +6,9 @@ Churn for files is immediate, but classes and methods requires buildings up a hi
 
 Currently has full Git, Mercurial (hg), and Bazaar (bzr) support, and partial SVN support (supports only file level churn currently)
 
-Authors:
+File changes can be calculated on any single commit to look at method changes you need to be running churn over time. Using a git post-commit hook, configuring your CI to run churn, or using [churn-site](http://churn.picoappz.com) is the best way to build up your churn history. See the --past_history (-p) option to do a one time run building up past class and method level churn.
 
+####Authors:
 * danmayer
 * ajwalters
 * cldwalker
@@ -30,7 +31,7 @@ Want to help out, there are easy tasks ready for some attention. The list of ite
 
 Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn', :require => false`. 
 
-The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests. Previous versions required this change, churn will now do the right thing if you forget to add `require => false`. 
+The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests. 
 
 * rake:
   * add `require 'churn'` to Rakefile
@@ -54,6 +55,8 @@ The reason you want require false is that when required by default churn is expe
         churn -c 10 #set minimum churn count on a file to 10
         churn -c 5 -y -i "Gemfile" #mix and match
         churn --start_date "6 months ago" #Start looking at file changes from 6 months ago
+        churn -p "4 months ago" #churn the past history to build up data for the last 4 months
+        churn --past_history #churn the past history for default 3 months to build up data
       ```
 
 ## Example Output
@@ -134,11 +137,14 @@ The reason you want require false is that when required by default churn is expe
       churn [options]+
 
     PARAMETERS
-    --minimum_churn_count=minimum_churn_count, -c (0 ~>  int(minimum_churn_count=3))
-    --yaml, -y
-    --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
-    --start_date=[start_date], -s (0 ~> string(start_date=))
-    --help, -h
+      --minimum_churn_count=minimum_churn_count, -c (0 ~>
+      int(minimum_churn_count=3))
+      --yaml, -y
+      --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
+      --start_date=[start_date], -s (0 ~> string(start_date=))
+      --data_directory=[data_directory], -d (0 ~> string(data_directory=))
+      --past_history=[past_history], -p (0 ~> string(past_history=))
+      --help, -h
 
 ## Notes on Patches/Pull Requests
 

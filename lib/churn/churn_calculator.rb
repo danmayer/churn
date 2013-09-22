@@ -57,10 +57,20 @@ module Churn
     # running the report for oldest commits first so they are built up correctly
     def generate_history
       if @source_control.is_a?(GitAnalyzer)
-        @source_control.get_commit_history.each do |commit|
-          `git checkout #{commit}; churn`
+        begin
+          history_starting_point = Chronic.parse(@churn_options.history)
+          @source_control.get_commit_history.each do |commit|
+            `git checkout #{commit}`
+            commit_date = `git show -s --format="%ci"`
+            commit_date = Time.parse(commit_date)
+            next if commit_date < history_starting_point
+            #7776000 == 3.months without adding active support depenancy
+            start_date  = (commit_date - 7776000)
+            `churn -s "#{start_date}"`
+          end
+        ensure
+          `git checkout master`
         end
-        `git checkout master`
         "churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be"
       else
         raise "currently generate history only supports git"

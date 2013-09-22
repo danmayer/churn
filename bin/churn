@@ -35,9 +35,9 @@ Main do
 
   #grrr h is already taken by --help / -h so whent with 'p'
   option('past_history', 'p') do
-    cast :boolean
+    cast :string
     argument :optional
-    default false
+    default ''
   end
 
   def report_churn(output_string)
