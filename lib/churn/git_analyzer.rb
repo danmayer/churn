@@ -9,6 +9,10 @@ module Churn
     def get_revisions
       `git log #{date_range} --pretty=format:"%H"`.split(/\n/).reject{|line| line == ""}
     end
+
+    def get_commit_history
+      `git log --reverse --pretty=format:"%H"`.split(/\n/).reject{|line| line == ""}
+    end
     
     private
 

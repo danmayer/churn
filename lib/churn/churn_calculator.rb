@@ -44,9 +44,27 @@ module Churn
     # @param [Bolean] format to return the data, true for string or false for hash
     # @return [Object] returns either a pretty string or a hash representing the chrun of the project
     def report(print = true)
-      self.emit
-      self.analyze
-      print ? self.to_s : self.to_h
+      if @churn_options.history
+        generate_history
+      else
+        self.emit
+        self.analyze
+        print ? self.to_s : self.to_h
+      end
+    end
+
+    # this method generates the past history of a churn project from first commit to current
+    # running the report for oldest commits first so they are built up correctly
+    def generate_history
+      if @source_control.is_a?(GitAnalyzer)
+        get_commit_history.each do |commit|
+          `git checkout #{commit}; churn`
+        end
+        `git checkout HEAD`
+        "churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be"
+      else
+        raise "currently generate history only supports git"
+      end
     end
 
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
