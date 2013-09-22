@@ -60,7 +60,7 @@ module Churn
         @source_control.get_commit_history.each do |commit|
           `git checkout #{commit}; churn`
         end
-        `git checkout HEAD`
+        `git checkout master`
         "churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be"
       else
         raise "currently generate history only supports git"
