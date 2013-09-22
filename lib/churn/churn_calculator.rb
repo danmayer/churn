@@ -57,7 +57,7 @@ module Churn
     # running the report for oldest commits first so they are built up correctly
     def generate_history
       if @source_control.is_a?(GitAnalyzer)
-        get_commit_history.each do |commit|
+        @source_control.get_commit_history.each do |commit|
           `git checkout #{commit}; churn`
         end
         `git checkout HEAD`
