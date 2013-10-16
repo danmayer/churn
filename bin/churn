@@ -1,4 +1,13 @@
 #! /usr/bin/env ruby
+# resolve bin path, ignoring symlinks
+require "pathname"
+bin_file = Pathname.new(__FILE__).realpath
+
+# add self to libpath
+puts File.expand_path("../../lib", bin_file)
+$:.unshift File.expand_path("../../lib", bin_file)
+
+require 'churn/churn_calculator'
 require 'main'
 require 'yaml'
 
@@ -16,6 +25,12 @@ Main do
   end
 
   option('ignore_files', 'i') do
+    cast :string
+    argument :optional
+    default ''
+  end
+
+  option('report', 'r') do
     cast :string
     argument :optional
     default ''
@@ -41,12 +56,12 @@ Main do
   end
 
   def report_churn(output_string)
-    require File.join(File.dirname(__FILE__), '..', 'lib', 'churn', 'churn_calculator')
     options = {:minimum_churn_count => params['minimum_churn_count'].value,
       :ignore_files => params['ignore_files'].value,
       :start_date => params['start_date'].value,
       :data_directory => params['data_directory'].value,
-      :history => params['past_history'].value
+      :history => params['past_history'].value,
+      :report => params['report'].value
     }
     result = Churn::ChurnCalculator.new(options).report(output_string)
     unless output_string

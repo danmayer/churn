@@ -49,6 +49,9 @@ module Churn
       else
         self.emit
         self.analyze
+        if @churn_options.report_host
+          puts @churn_options.report_host
+        end
         print ? self.to_s : self.to_h
       end
     end
