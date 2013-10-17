@@ -39,5 +39,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<sexp_processor>, ["~> 4.1"])
   s.add_runtime_dependency(%q<ruby_parser>, ["~> 3.0"])
   s.add_runtime_dependency(%q<hirb>, [">= 0"])
-
+  s.add_runtime_dependency(%q<rest-client>, [">= 1.6.0"])
 end

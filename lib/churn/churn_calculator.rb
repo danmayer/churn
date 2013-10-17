@@ -4,6 +4,7 @@ require 'ruby_parser'
 require 'json'
 require 'hirb'
 require 'fileutils'
+require 'rest_client'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'source_control'
@@ -50,7 +51,9 @@ module Churn
         self.emit
         self.analyze
         if @churn_options.report_host
-          puts @churn_options.report_host
+          puts "posting churn results to #{@churn_options.report_host}"
+          data = self.to_h
+          RestClient.post @churn_options.report_host, data, :content_type => :json, :accept => :json
         end
         print ? self.to_s : self.to_h
       end
