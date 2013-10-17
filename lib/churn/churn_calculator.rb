@@ -52,7 +52,7 @@ module Churn
         self.analyze
         if @churn_options.report_host
           puts "posting churn results to #{@churn_options.report_host}"
-          data = self.to_h
+          data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}
           RestClient.post @churn_options.report_host, data, :content_type => :json, :accept => :json
         end
         print ? self.to_s : self.to_h
