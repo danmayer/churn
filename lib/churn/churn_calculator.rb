@@ -48,15 +48,21 @@ module Churn
       if @churn_options.history
         generate_history
       else
-        self.emit
-        self.analyze
-        if @churn_options.report_host
-          puts "posting churn results to #{@churn_options.report_host}"
-          data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}
-          RestClient.post @churn_options.report_host, data, :content_type => :json, :accept => :json
-        end
+        emit
+        analyze
+        remote_report
         print ? self.to_s : self.to_h
       end
+    end
+
+    def remote_report
+      if @churn_options.report_host
+        puts "posting churn results to #{@churn_options.report_host}"
+        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json        
+        RestClient.post @churn_options.report_host, {"results" => data}, :content_type => :json, :accept => :json
+      end
+    rescue Errno::ECONNREFUSED
+      puts "error posting churn results connection refused to host: #{@churn_options.report_host}"
     end
 
     # this method generates the past history of a churn project from first commit to current
