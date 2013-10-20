@@ -19,15 +19,8 @@ GEM
     arrayfields (4.9.0)
     chronic (0.10.2)
     fattr (2.2.1)
-    git (1.2.5)
     hirb (0.7.1)
     i18n (0.6.1)
-    jeweler (1.8.4)
-      bundler (~> 1.0)
-      git (>= 1.2.5)
-      rake
-      rdoc
-    json (1.7.6)
     json_pure (1.8.0)
     main (5.2.0)
       arrayfields (>= 4.7.4)
@@ -39,8 +32,6 @@ GEM
     mocha (0.9.12)
     multi_json (1.5.0)
     rake (10.0.3)
-    rdoc (3.12)
-      json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby_parser (3.2.2)
@@ -63,7 +54,6 @@ PLATFORMS
 
 DEPENDENCIES
   churn!
-  jeweler
   mocha (~> 0.9.5)
   rake
   shoulda

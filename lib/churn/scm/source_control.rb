@@ -2,8 +2,35 @@ module Churn
 
   # Base clase for analyzing various SCM systems like git, HG, and SVN
   class SourceControl
+
+    def self.set_source_control(start_date)
+      if GitAnalyzer.supported?
+        GitAnalyzer.new(start_date)
+      elsif HgAnalyzer.supported?
+        HgAnalyzer.new(start_date)
+      elsif BzrAnalyzer.supported?
+        BzrAnalyzer.new(start_date)
+      elsif SvnAnalyzer.supported?
+        SvnAnalyzer.new(start_date)
+      else
+        raise "Churn requires a bazaar, git, mercurial, or subversion source control"
+      end
+    end
+    
+    def self.supported?
+      raise "child class must implement"
+    end
+
     def initialize(start_date=nil)
       @start_date = start_date
+    end
+
+    def get_logs
+      raise "child class must implement"
+    end
+
+    def get_revisions
+      raise "child class must implement"
     end
 
     def get_updated_files_change_info(revision, revisions)

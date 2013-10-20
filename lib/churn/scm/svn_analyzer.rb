@@ -2,6 +2,11 @@ module Churn
 
   #analizes SVN SCM to find recently changed files, and what lines have been altered
   class SvnAnalyzer < SourceControl
+
+    def self.supported?
+      File.exist?(".svn")
+    end
+
     def get_logs
       `svn log #{date_range} --verbose`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
     end

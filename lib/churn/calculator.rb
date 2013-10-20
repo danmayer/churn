@@ -7,14 +7,15 @@ require 'fileutils'
 require 'rest_client'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'source_control'
-require 'git_analyzer'
-require 'svn_analyzer'
-require 'hg_analyzer'
-require 'bzr_analyzer'
+require 'scm/source_control'
+require 'scm/git_analyzer'
+require 'scm/svn_analyzer'
+require 'scm/hg_analyzer'
+require 'scm/bzr_analyzer'
+
 require 'location_mapping'
-require 'churn_history'
-require 'churn_options'
+require 'history'
+require 'options'
 
 module Churn
 
@@ -31,8 +32,7 @@ module Churn
       
       @minimum_churn_count = @churn_options.minimum_churn_count
       @ignore_files        = @churn_options.ignore_files
-      start_date           = @churn_options.start_date
-      @source_control      = set_source_control(start_date)
+      @source_control      = SourceControl.set_source_control(@churn_options.start_date)
 
       @changes          = {}
       @revision_changes = {}
@@ -176,32 +176,6 @@ module Churn
 
     def self.seperator
       "*"*70+"\n"
-    end
-
-    def self.git?
-      !!(`git branch 2>&1` && $?.success?)
-    end
-    
-    def self.hg?
-      !!(`hg branch 2>&1` && $?.success?)
-    end
-    
-    def self.bzr?
-      !!(`bzr nick 2>&1` && $?.success?)
-    end
-
-    def set_source_control(start_date)
-      if self.class.git?
-        GitAnalyzer.new(start_date)
-      elsif self.class.hg?
-        HgAnalyzer.new(start_date)
-      elsif self.class.bzr?
-        BzrAnalyzer.new(start_date)
-      elsif File.exist?(".svn")
-        SvnAnalyzer.new(start_date)
-      else
-        raise "Churning requires a bazaar, git, mercurial, or subversion repo"
-      end
     end
 
     def calculate_revision_changes

@@ -2,6 +2,11 @@ module Churn
 
   #analizes Bzr / Bazaar SCM to find recently changed files, and what lines have been altered
   class BzrAnalyzer < SourceControl
+    
+    def self.supported?
+      !!(`bzr nick 2>&1` && $?.success?)
+    end
+
     def get_logs
       `bzr log -v --short #{date_range}`.split("\n").reject{|line| line !~ /^[ ]*(M|A)  /}.map{|line| line.strip.split(" ")[1..-1]}.flatten
     end

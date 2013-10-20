@@ -2,6 +2,11 @@ module Churn
 
   #analizes Hg / Mercurial SCM to find recently changed files, and what lines have been altered
   class HgAnalyzer < SourceControl
+
+    def self.supported?
+      !!(`hg branch 2>&1` && $?.success?)
+    end
+
     def get_logs
       `hg log -v#{date_range}`.split("\n").reject{|line| line !~ /^files:/}.map{|line| line.split(" ")[1..-1]}.flatten
     end

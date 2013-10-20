@@ -4,7 +4,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "use minimum churn count" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
 
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 4],['less.rb',1]])
@@ -18,7 +18,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "ensure that minimum churn count is initialized as a Fixnum" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => "3"})
 
       assert_equal 3, churn.instance_variable_get(:@minimum_churn_count)
@@ -27,7 +27,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "use ignore_files filter" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:ignore_files => "file.rb"})
 
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 10],['new.rb',11]])
@@ -41,7 +41,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "analize sorts changes" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
 
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 4],['most.rb', 9],['less.rb',1]])
@@ -57,7 +57,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "have correct changed_files data" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
 
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
@@ -70,7 +70,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "have correct changed classes and methods data" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
 
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
@@ -87,7 +87,7 @@ class ChurnCalculatorTest < Test::Unit::TestCase
 
   should "have correct churn method and classes at 1 change" do
     within_construct do |container|
-      Churn::ChurnCalculator.stubs(:git?).returns(true)
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
 
       churn.stubs(:parse_log_for_changes).returns([['less.rb',1]])
@@ -117,40 +117,37 @@ class ChurnCalculatorTest < Test::Unit::TestCase
   end
 
   should "initialize a churn calculator for hg repositories" do
-    Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.expects(:`).with("hg branch 2>&1").returns(true) #` fix syntax hilighting
+    Churn::GitAnalyzer.stubs(:supported?).returns(false)
+    Churn::HgAnalyzer.expects(:`).with("hg branch 2>&1").returns(true) #` fix syntax hilighting
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
   end
 
   should "initialize a churn calculator for bzr repositories" do
-    Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.stubs(:hg?).returns(false)
-    Churn::ChurnCalculator.expects(:`).with("bzr nick 2>&1").returns(true) #` fix syntax hilighting
+    Churn::GitAnalyzer.stubs(:supported?).returns(false)
+    Churn::HgAnalyzer.stubs(:supported?).returns(false)
+    Churn::BzrAnalyzer.expects(:`).with("bzr nick 2>&1").returns(true) #` fix syntax hilighting
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::BzrAnalyzer)
   end
 
   should "initialize a churn calculator for svn repositories" do
-    Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.stubs(:hg?).returns(false)
-    Churn::ChurnCalculator.stubs(:bzr?).returns(false)
+    Churn::GitAnalyzer.stubs(:supported?).returns(false)
+    Churn::HgAnalyzer.stubs(:supported?).returns(false)
+    Churn::BzrAnalyzer.stubs(:supported?).returns(false)
     File.stubs(:exist?).returns(true)
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::SvnAnalyzer)
   end
 
   should "raise exception on a churn calculator for unknown repositories" do
-    Churn::ChurnCalculator.stubs(:git?).returns(false)
-    Churn::ChurnCalculator.stubs(:hg?).returns(false)
-    Churn::ChurnCalculator.stubs(:bzr?).returns(false)
+    Churn::GitAnalyzer.stubs(:supported?).returns(false)
+    Churn::HgAnalyzer.stubs(:supported?).returns(false)
+    Churn::BzrAnalyzer.stubs(:supported?).returns(false)
     File.stubs(:exist?).returns(false)
     assert_raises RuntimeError do
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     end
   end
-
-
-  
 
 end

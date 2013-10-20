@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   ]
 
   s.add_development_dependency(%q<shoulda>, [">= 0"])
-  s.add_development_dependency(%q<jeweler>, [">= 0"])
   s.add_development_dependency(%q<test-construct>, [">= 0"])
   s.add_development_dependency(%q<rake>, [">= 0"])
   s.add_development_dependency(%q<mocha>, ["~> 0.9.5"])
