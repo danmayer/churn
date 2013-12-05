@@ -4,7 +4,7 @@ Churn
 A Project to give the churn file, class, and method for a project for a given checkin. Over time the tool adds up the history of churns to give the number of times a file, class, or method is changing during the life of a project.
 Churn for files is immediate, but classes and methods requires buildings up a history using churn between revisions. The history is stored in ./tmp
 
-Currently has full Git, Mercurial (hg), and Bazaar (bzr) support, and partial SVN support (supports only file level churn currently)
+Currently has full Git, Mercurial (hg), Bazaar (bzr) support, and partial SVN support (supports only file level churn currently)
 
 File changes can be calculated on any single commit to look at method changes you need to be running churn over time. Using a git post-commit hook, configuring your CI to run churn, or using [churn-site](http://churn.picoappz.com) is the best way to build up your churn history. See the --past_history (-p) option to do a one time run building up past class and method level churn.
 
@@ -127,7 +127,7 @@ The reason you want require false is that when required by default churn is expe
     | lib/churn/churn_calculator.rb | ChurnCalculator | ChurnCalculator#to_s                    | 1             |
     +-------------------------------+-----------------+-----------------------------------------+---------------+
 
-## Options
+## CLI Options
 
     [~/projects/churn] churn -h
     NAME
@@ -145,6 +145,23 @@ The reason you want require false is that when required by default churn is expe
       --data_directory=[data_directory], -d (0 ~> string(data_directory=))
       --past_history=[past_history], -p (0 ~> string(past_history=))
       --help, -h
+      
+## Library Options
+
+All the CLI options are parsed and just passed into the library. If you want to run the library directly from other code. The best way to see current options is where the [churn executable](https://github.com/danmayer/churn/blob/master/bin/churn) passes the parsed options into the `ChurnCalculator` class
+    
+    ###
+    # Available options
+    ###
+    options = {:minimum_churn_count => params['minimum_churn_count'].value,
+      :ignore_files => params['ignore_files'].value,
+      :start_date => params['start_date'].value,
+      :data_directory => params['data_directory'].value,
+      :history => params['past_history'].value,
+      :report => params['report'].value,
+      :name => params['name'].value
+    }
+    result = Churn::ChurnCalculator.new(options).report(false)
 
 ## Notes on Patches/Pull Requests
 
