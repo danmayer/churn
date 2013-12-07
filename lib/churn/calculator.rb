@@ -136,23 +136,22 @@ module Churn
       result = seperator
       result +="* Revision Changes \n"
       result += seperator
-      result += "Files: \n"
-      result += display_array(hash[:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
-      result += "\nClasses: \n"
-      result += display_array(hash[:changed_classes])
-      result += "\nMethods: \n"
-      result += display_array(hash[:changed_methods]) + "\n"
+      result += display_array("Files", hash[:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
+      result += "\n"
+      result += display_array("Classes", hash[:changed_classes])
+      result += "\n"
+      result += display_array("Methods", hash[:changed_methods]) + "\n"
       result += seperator
       result +="* Project Churn \n"
       result += seperator
-      result += "Files: \n"
-      result += display_array(hash[:changes])
-      result += "\nClasses: \n"
+      result += "\n"
+      result += display_array("Files", hash[:changes])
+      result += "\n"
       class_churn = collect_items(hash[:class_churn], 'klass')
-      result += display_array(class_churn)
-      result += "\nMethods: \n"
+      result += display_array("Classes", class_churn)
+      result += "\n"
       method_churn = collect_items(hash[:method_churn], 'method')
-      result += display_array(method_churn)
+      result += display_array("Methods", method_churn)
     end
 
     private
@@ -170,8 +169,13 @@ module Churn
       /.*\.rb/
     end
 
-    def self.display_array(array, options={})
-      array ? Hirb::Helpers::AutoTable.render(array, options.merge(:description=>false)) + "\n" : ''
+    def self.display_array(title, array, options={})
+      response = ''
+      if array && array.length > 0
+        response = "#{title}\n"
+        response << Hirb::Helpers::AutoTable.render(array, options.merge(:description=>false)) + "\n"
+      end
+      response
     end
 
     def self.seperator
