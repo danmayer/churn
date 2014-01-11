@@ -8,10 +8,14 @@ module Churn
     end
 
     def get_logs
-      `svn log #{date_range} --verbose`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
+      `svn log --verbose#{date_range}#{svn_credentials}`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
     end
 
     private
+    def svn_credentials
+      " --username #{ENV['SVN_USR']} --password #{ENV['SVN_PWD']}"if ENV['SVN_PWD'] && ENV['SVN_USR']
+    end
+
     def date_range
       if @start_date
         date = Chronic.parse(@start_date)

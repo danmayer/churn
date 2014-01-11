@@ -24,6 +24,31 @@ class SvnAnalyzerTest < Test::Unit::TestCase
     assert_equal "--revision {2010-03-03}:{#{Date.today.to_s}}", svn_analyzer.send(:date_range)
   end
 
+  context "SvnAnalyzer#get_logs" do
+    should "return a list of changed files" do
+      ENV['SVN_PWD']= nil
+      ENV['SVN_USR']= nil
+      svn_analyzer = Churn::SvnAnalyzer.new
+      svn_analyzer.expects(:`).with('svn log --verbose').returns('
+      A /file1.rb
+      A /dir/file2.rb
+      A /file3.rb
+      M /file1.rb')
+      assert_equal ['/file1.rb', '/dir/file2.rb', '/file3.rb', '/file1.rb'], svn_analyzer.get_logs
+    end
+    should "invoke with svn credentials " do
+      ENV['SVN_PWD']= '123qwe'
+      ENV['SVN_USR']= 'user123'
+      svn_analyzer = Churn::SvnAnalyzer.new
+      svn_analyzer.expects(:`).with('svn log --verbose --username user123 --password 123qwe').returns('
+      A /file1.rb
+      A /dir/file2.rb
+      A /file3.rb
+      M /file1.rb')
+      assert_equal ['/file1.rb', '/dir/file2.rb', '/file3.rb', '/file1.rb'], svn_analyzer.get_logs
+    end
+  end
+
   protected
 
   def svn_output
