@@ -21,7 +21,7 @@ class SvnAnalyzerTest < Test::Unit::TestCase
 
   should "run date range correctly" do
     svn_analyzer = Churn::SvnAnalyzer.new(Date.parse('3/3/2010'))
-    assert_equal "--revision {2010-03-03}:{#{Date.today.to_s}}", svn_analyzer.send(:date_range)
+    assert_equal " --revision {2010-03-03}:{#{Date.today.to_s}}", svn_analyzer.send(:date_range)
   end
 
   context "SvnAnalyzer#get_logs" do

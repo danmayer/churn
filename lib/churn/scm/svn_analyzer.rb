@@ -13,13 +13,13 @@ module Churn
 
     private
     def svn_credentials
-      " --username #{ENV['SVN_USR']} --password #{ENV['SVN_PWD']}"if ENV['SVN_PWD'] && ENV['SVN_USR']
+      " --username #{ENV['SVN_USR']} --password #{ENV['SVN_PWD']}" if ENV['SVN_PWD'] && ENV['SVN_USR']
     end
 
     def date_range
       if @start_date
         date = Chronic.parse(@start_date)
-        "--revision {#{date.strftime('%Y-%m-%d')}}:{#{Time.now.strftime('%Y-%m-%d')}}"
+        " --revision {#{date.strftime('%Y-%m-%d')}}:{#{Time.now.strftime('%Y-%m-%d')}}"
       end
     end
 
