@@ -6,16 +6,15 @@ require 'hirb'
 require 'fileutils'
 require 'rest_client'
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'scm/source_control'
-require 'scm/git_analyzer'
-require 'scm/svn_analyzer'
-require 'scm/hg_analyzer'
-require 'scm/bzr_analyzer'
+require_relative 'scm/source_control'
+require_relative 'scm/git_analyzer'
+require_relative 'scm/svn_analyzer'
+require_relative 'scm/hg_analyzer'
+require_relative 'scm/bzr_analyzer'
 
-require 'location_mapping'
-require 'history'
-require 'options'
+require_relative 'location_mapping'
+require_relative 'history'
+require_relative 'options'
 
 module Churn
 
@@ -29,7 +28,7 @@ module Churn
     # intialized the churn calculator object
     def initialize(options={})
       @churn_options = ChurnOptions.instance.set_options(options)
-      
+
       @minimum_churn_count = @churn_options.minimum_churn_count
       @ignore_files        = @churn_options.ignore_files
       @source_control      = SourceControl.set_source_control(@churn_options.start_date)
@@ -58,7 +57,7 @@ module Churn
     def remote_report
       if @churn_options.report_host
         puts "posting churn results to #{@churn_options.report_host}"
-        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json        
+        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json
         RestClient.post @churn_options.report_host, {"results" => data}, :content_type => :json, :accept => :json
       end
     rescue Errno::ECONNREFUSED
