@@ -5,15 +5,15 @@ module Churn
   class ChurnHistory
 
     #takes current revision and its hash_data and stores it
-    def self.store_revision_history(revision, hash_data)
-      FileUtils.mkdir_p tmp_churn_directory
-      File.open("#{tmp_churn_directory}/#{revision}.json", 'w') {|file| file.write(hash_data.to_json) }
+    def self.store_revision_history(revision, hash_data, data_directory)
+      FileUtils.mkdir_p data_directory
+      File.open("#{data_directory}/#{revision}.json", 'w') {|file| file.write(hash_data.to_json) }
     end
 
     #given a previous project revision find and load the churn data from a json file
-    def self.load_revision_data(revision)
+    def self.load_revision_data(revision, data_directory)
       #load revision data from scratch folder if it exists
-      filename = "#{tmp_churn_directory}/#{revision}.json"
+      filename = "#{data_directory}/#{revision}.json"
       if File.exists?(filename)
         begin
           json_data = File.read(filename)
@@ -26,10 +26,6 @@ module Churn
         end
       end
       [changed_files, changed_classes, changed_methods]
-    end
-
-    def self.tmp_churn_directory
-      ChurnOptions.instance.data_directory
     end
 
   end

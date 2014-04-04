@@ -28,10 +28,10 @@ module Churn
 
     # intialized the churn calculator object
     def initialize(options={})
-      @churn_options = ChurnOptions.instance.set_options(options)
+      @churn_options = ChurnOptions.new.set_options(options)
       
       @minimum_churn_count = @churn_options.minimum_churn_count
-      @ignore_files        = @churn_options.ignore_files
+      @ignores             = @churn_options.ignores
       @source_control      = SourceControl.set_source_control(@churn_options.start_date)
 
       @changes          = {}
@@ -91,7 +91,7 @@ module Churn
 
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
     def emit
-      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count || @ignore_files.include?(file) }
+      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count || @ignores.any?{ |ignore| file.match(/#{ignore}/) } }
       @revisions = parse_log_for_revision_changes
     end
 
@@ -123,7 +123,7 @@ module Churn
         hash[:churn][:changed_methods] = changes[:methods]
       end
       #TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice
-      ChurnHistory.store_revision_history(first_revision, hash)
+      ChurnHistory.store_revision_history(first_revision, hash, @churn_options.data_directory)
       hash
     end
 
@@ -190,7 +190,7 @@ module Churn
           #parsing requires the files
           changed_files, changed_classes, changed_methods = calculate_revision_data(revision)
         else
-          changed_files, changed_classes, changed_methods = ChurnHistory.load_revision_data(revision)
+          changed_files, changed_classes, changed_methods = ChurnHistory.load_revision_data(revision, @churn_options.data_directory)
         end
         calculate_changes!(changed_methods, @method_changes) if changed_methods
         calculate_changes!(changed_classes, @class_changes) if changed_classes
@@ -274,7 +274,7 @@ module Churn
       #TODO SVN doesn't support this
       return {} unless @source_control.respond_to?(:get_updated_files_change_info)
       files = @source_control.get_updated_files_change_info(revision, revisions)
-      files.select{ |file, value| !@ignore_files.include?(file) }
+      files.select{ |file, value| !@ignores.any?{ |ignore| file.match(/#{ignore}/) } }
     end
 
   end

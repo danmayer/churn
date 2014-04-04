@@ -4,7 +4,7 @@ if defined?(RakeFileUtils) # self.respond_to?(:desc)
     options = {}
     { :minimum_churn_count => ENV['CHURN_MINIMUM_CHURN_COUNT'],
       :start_date          => ENV['CHURN_START_DATE'],
-      :ignore_files        => ENV['CHURN_IGNORE_FILES'],
+      :ignores        => ENV['CHURN_IGNORES'],
       :data_directory        => ENV['CHURN_DATA_DIRECTORY'],
     }.each {|k,v| options[k] = v unless v.nil? }
     Churn::ChurnCalculator.new(options).report

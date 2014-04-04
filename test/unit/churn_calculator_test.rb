@@ -25,10 +25,10 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     end
   end
 
-  should "use ignore_files filter" do
+  should "use ignores filter" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
-      churn = Churn::ChurnCalculator.new({:ignore_files => "file.rb"})
+      churn = Churn::ChurnCalculator.new({:ignores => "file.rb"})
 
       churn.stubs(:parse_log_for_changes).returns([['file.rb', 10],['new.rb',11]])
       churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
@@ -39,7 +39,35 @@ class ChurnCalculatorTest < Test::Unit::TestCase
     end
   end
 
-  should "analize sorts changes" do
+  should "use ignores with regex" do
+    within_construct do |container|
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
+      churn = Churn::ChurnCalculator.new({:ignores => "f.*le.rb"})
+
+      churn.stubs(:parse_log_for_changes).returns([['file.rb', 10],['new.rb',11]])
+      churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
+      churn.stubs(:analyze)
+      report = churn.report(false)
+      assert_equal 1, report[:churn][:changes].length
+      assert_equal ["new.rb", 11], report[:churn][:changes].first
+    end
+  end
+
+  should "use ignores with regex and directories" do
+    within_construct do |container|
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
+      churn = Churn::ChurnCalculator.new({:ignores => "lib/.*"})
+
+      churn.stubs(:parse_log_for_changes).returns([['lib/file.rb', 10],['new.rb',11]])
+      churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
+      churn.stubs(:analyze)
+      report = churn.report(false)
+      assert_equal 1, report[:churn][:changes].length
+      assert_equal ["new.rb", 11], report[:churn][:changes].first
+    end
+  end
+
+  should "analyze sorts changes" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
