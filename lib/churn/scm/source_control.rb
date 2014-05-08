@@ -4,14 +4,10 @@ module Churn
   class SourceControl
 
     def self.set_source_control(start_date)
-      if GitAnalyzer.supported?
-        GitAnalyzer.new(start_date)
-      elsif HgAnalyzer.supported?
-        HgAnalyzer.new(start_date)
-      elsif BzrAnalyzer.supported?
-        BzrAnalyzer.new(start_date)
-      elsif SvnAnalyzer.supported?
-        SvnAnalyzer.new(start_date)
+      analyzers = [GitAnalyzer, HgAnalyzer, BzrAnalyzer, SvnAnalyzer]
+      analyzer = analyzers.detect(&:supported?)
+      if analyzer
+        analyzer.new(start_date)
       else
         raise "Churn requires a bazaar, git, mercurial, or subversion source control"
       end
