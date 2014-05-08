@@ -133,17 +133,17 @@ module Churn
 
     # Pretty print the data as a string for the user
     def self.to_s(hash)
-      result = seperator
+      result = separator
       result +="* Revision Changes \n"
-      result += seperator
+      result += separator
       result += display_array("Files", hash[:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
       result += "\n"
       result += display_array("Classes", hash[:changed_classes])
       result += "\n"
       result += display_array("Methods", hash[:changed_methods]) + "\n"
-      result += seperator
+      result += separator
       result +="* Project Churn \n"
-      result += seperator
+      result += separator
       result += "\n"
       result += display_array("Files", hash[:changes])
       result += "\n"
@@ -178,7 +178,7 @@ module Churn
       response
     end
 
-    def self.seperator
+    def self.separator
       "*"*70+"\n"
     end
 
