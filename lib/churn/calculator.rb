@@ -68,25 +68,9 @@ module Churn
     # this method generates the past history of a churn project from first commit to current
     # running the report for oldest commits first so they are built up correctly
     def generate_history
-      if @source_control.is_a?(GitAnalyzer)
-        begin
-          history_starting_point = Chronic.parse(@churn_options.history)
-          @source_control.get_commit_history.each do |commit|
-            `git checkout #{commit}`
-            commit_date = `git show -s --format="%ci"`
-            commit_date = Time.parse(commit_date)
-            next if commit_date < history_starting_point
-            #7776000 == 3.months without adding active support depenancy
-            start_date  = (commit_date - 7776000)
-            `churn -s "#{start_date}"`
-          end
-        ensure
-          `git checkout master`
-        end
-        "churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be"
-      else
-        raise "currently generate history only supports git"
-      end
+      history_starting_point = Chronic.parse(@churn_options.history)
+      @source_control.generate_history(history_starting_point)
+      "churn history complete, this has manipulated your source control system so please make sure you are back on HEAD where you expect to be"
     end
 
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu

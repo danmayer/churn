@@ -15,6 +15,10 @@ module Churn
       `bzr log --line #{date_range}`.split("\n").map{|line| line[/^(\S+):/, 1] }
     end
 
+    def generate_history(starting_point)
+      raise "currently the generate history option does not support bazaar"
+    end
+
     private
 
     def get_diff(revision, previous_revision)

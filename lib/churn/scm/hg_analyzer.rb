@@ -15,6 +15,10 @@ module Churn
       `hg log#{date_range}`.split("\n").reject{|line| line !~ /^changeset:/}.map{|line| line[/:(\S+)$/, 1] }
     end
 
+    def generate_history(starting_point)
+      raise "currently the generate history option does not support mercurial"
+    end
+
     private
 
     def get_diff(revision, previous_revision)

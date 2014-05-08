@@ -33,6 +33,10 @@ module Churn
       raise "child class must implement"
     end
 
+    def generate_history(starting_point)
+      raise "child class must implement"
+    end
+
     def get_updated_files_change_info(revision, revisions)
       updated     = {}
       logs        = get_updated_files_from_log(revision, revisions)

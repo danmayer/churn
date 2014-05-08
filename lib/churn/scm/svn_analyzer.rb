@@ -11,6 +11,10 @@ module Churn
       `svn log --verbose#{date_range}#{svn_credentials}`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
     end
 
+    def generate_history(starting_point)
+      raise "currently the generate history option does not support subversion"
+    end
+
     #below 2 methods aren't supported by SVN so they become noops
     def get_revisions
       []
