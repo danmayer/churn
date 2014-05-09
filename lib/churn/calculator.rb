@@ -75,7 +75,7 @@ module Churn
 
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
     def emit
-      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count || @ignores.any?{ |ignore| file.match(/#{ignore}/) } }
+      @changes   = reject_ignored_files(reject_low_churn_files(parse_log_for_changes))
       @revisions = parse_log_for_revision_changes
     end
 
@@ -255,7 +255,15 @@ module Churn
 
     def parse_logs_for_updated_files(revision, revisions)
       files = @source_control.get_updated_files_change_info(revision, revisions)
-      files.select{ |file, value| !@ignores.any?{ |ignore| file.match(/#{ignore}/) } }
+      reject_ignored_files(files)
+    end
+
+    def reject_low_churn_files(files)
+      files.reject{ |_, change_count| change_count < @minimum_churn_count }
+    end
+
+    def reject_ignored_files(files)
+      files.reject{ |file, _| @ignores.any?{ |ignore| file.match(/#{ignore}/) } }
     end
 
   end
