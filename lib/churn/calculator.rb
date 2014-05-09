@@ -240,11 +240,11 @@ module Churn
     end
 
     def parse_log_for_changes
-      changes = {}
+      changes = Hash.new(0)
 
       logs = @source_control.get_logs
       logs.each do |line|
-        changes[line] ? changes[line] += 1 : changes[line] = 1
+        changes[line] += 1
       end
       changes
     end
