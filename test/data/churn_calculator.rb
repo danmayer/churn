@@ -176,13 +176,13 @@ module Churn
       return updated unless @source_control.respond_to?(:get_updated_files_from_log)
       logs = @source_control.get_updated_files_from_log(revision, revisions)
       logs.each do |line|
-        if line.match(/^---/) || line.match(/^\+\+\+/)
+        if /^---|^\+\+\+/ =~ line
           line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
           unless updated.include?(line)
             updated[line] = [] 
           end
           recent_file = line
-        elsif line.match(/^@@/)
+        elsif /^@@/ =~ line
           #TODO cleanup / refactor
           #puts "#{recent_file}: #{line}"
           removed        = line.match(/-[0-9]+/)

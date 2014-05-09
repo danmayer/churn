@@ -22,7 +22,7 @@ module Churn
     private
 
     def get_diff(revision, previous_revision)
-      `bzr diff -r #{previous_revision}..#{revision}`.split(/\n/).select{|line| line.match(/^@@/) || line.match(/^---/) || line.match(/^\+\+\+/) }
+      `bzr diff -r #{previous_revision}..#{revision}`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
 
     def date_range

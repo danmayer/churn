@@ -7,7 +7,7 @@ class ChurnHistoryTest < Test::Unit::TestCase
       Churn::ChurnHistory.store_revision_history('aaa','data','tmp/churn/')
       assert File.exists?('tmp/churn/aaa.json')
       data = File.read('tmp/churn/aaa.json')
-      assert data.match(/data/)
+      assert data =~ /data/
     end
   end
  

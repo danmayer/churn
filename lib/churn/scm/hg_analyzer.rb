@@ -22,7 +22,7 @@ module Churn
     private
 
     def get_diff(revision, previous_revision)
-      `hg diff -r #{revision}:#{previous_revision} -U 0`.split(/\n/).select{|line| line.match(/^@@/) || line.match(/^---/) || line.match(/^\+\+\+/) }
+      `hg diff -r #{revision}:#{previous_revision} -U 0`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
 
     def date_range

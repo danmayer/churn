@@ -38,18 +38,18 @@ module Churn
       logs        = get_updated_files_from_log(revision, revisions)
       recent_file = nil
       logs.each do |line|
-        if line.match(/^---/) || line.match(/^\+\+\+/)
+        if /^---|^\+\+\+/ =~ line
           # Remove the --- a/ and +++ b/ if present
           recent_file = get_recent_file(line)
           updated[recent_file] = [] unless updated.include?(recent_file)
-        elsif line.match(/^@@/)
+        elsif /^@@/ =~ line
           # Now add the added/removed ranges for the line
           removed_range = get_changed_range(line, '-')
           added_range   = get_changed_range(line, '\+')
           updated[recent_file] << removed_range
           updated[recent_file] << added_range
         else
-          puts line.match(/^---/)
+          puts /^---/ =~ line
           raise "diff lines that don't match the two patterns aren't expected: '#{line}'"
         end
       end
@@ -85,7 +85,7 @@ module Churn
     end
 
     def get_recent_file(line)
-      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
+      line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
     end
 
   end

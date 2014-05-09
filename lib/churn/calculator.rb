@@ -189,7 +189,7 @@ module Churn
       changed_classes = []
       changed_methods = []
       changed_files.each do |file_changes|
-        if file_changes.first.match(filters)
+        if file_changes.first =~ filters
           classes, methods = get_changes(file_changes)
           changed_classes += classes
           changed_methods += methods
@@ -263,7 +263,7 @@ module Churn
     end
 
     def reject_ignored_files(files)
-      files.reject{ |file, _| @ignores.any?{ |ignore| file.match(/#{ignore}/) } }
+      files.reject{ |file, _| @ignores.any?{ |ignore| /#{ignore}/ =~ file } }
     end
 
   end
