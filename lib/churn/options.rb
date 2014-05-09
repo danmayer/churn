@@ -1,7 +1,7 @@
 require 'singleton'
 
 module Churn
-  
+
   # responsible for storing the churn configuration
   class ChurnOptions
     DEFAULT_CHURN_DIRECTORY = "tmp/churn"
@@ -31,7 +31,7 @@ module Churn
       if @history=='true'
         @history = DEFAULT_START_TIME
       end
-      if !options[:report].nil? && options[:report]!='' 
+      if !options[:report].nil? && options[:report]!=''
         @report_host         = options[:report]
         if @report_host=='true'
           @report_host = DEFAULT_REPORT_HOST
@@ -45,7 +45,7 @@ module Churn
 
       self
     end
-        
+
   end
 
 end

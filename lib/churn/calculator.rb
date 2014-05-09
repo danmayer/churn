@@ -29,7 +29,7 @@ module Churn
     # intialized the churn calculator object
     def initialize(options={})
       @churn_options = ChurnOptions.new.set_options(options)
-      
+
       @minimum_churn_count = @churn_options.minimum_churn_count
       @ignores             = @churn_options.ignores
       @source_control      = SourceControl.set_source_control(@churn_options.start_date)
@@ -58,7 +58,7 @@ module Churn
     def remote_report
       if @churn_options.report_host
         puts "posting churn results to #{@churn_options.report_host}"
-        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json        
+        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json
         RestClient.post @churn_options.report_host, {"results" => data}, :content_type => :json, :accept => :json
       end
     rescue Errno::ECONNREFUSED

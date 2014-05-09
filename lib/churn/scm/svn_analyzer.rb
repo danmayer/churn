@@ -25,6 +25,7 @@ module Churn
     end
 
     private
+
     def svn_credentials
       " --username #{ENV['SVN_USR']} --password #{ENV['SVN_PWD']}" if ENV['SVN_PWD'] && ENV['SVN_USR']
     end

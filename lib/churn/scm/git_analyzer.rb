@@ -10,7 +10,7 @@ module Churn
     def get_logs
       `git log #{date_range} --name-only --pretty=format:`.split(/\n/).reject{|line| line == ""}
     end
-    
+
     def get_revisions
       `git log #{date_range} --pretty=format:"%H"`.split(/\n/).reject{|line| line == ""}
     end
@@ -45,6 +45,6 @@ module Churn
         "--after=#{date.strftime('%Y-%m-%d')}"
       end
     end
-    
+
   end
 end

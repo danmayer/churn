@@ -12,7 +12,7 @@ module Churn
         raise "Churn requires a bazaar, git, mercurial, or subversion source control"
       end
     end
-    
+
     def self.supported?
       raise "child class must implement"
     end
@@ -66,7 +66,7 @@ module Churn
         []
       end
     end
-    
+
     private
 
     def get_changed_range(line, matcher)
@@ -74,7 +74,7 @@ module Churn
       change_end   = line.match(/#{matcher}[0-9]+,[0-9]+/)
       change_start = change_start.to_s.gsub(/#{matcher}/,'')
       change_end   = change_end.to_s.gsub(/.*,/,'')
-      
+
       change_start_num = change_start.to_i
       range  = if change_end && change_end!=''
                  (change_start_num..(change_start_num+change_end.to_i))
