@@ -1,0 +1,15 @@
+Mon, 23 Jun 2014 18:45:10 -0400
+./lib/churn/calculator.rb	Mon, 23 Jun 2014 18:43:18 -0400
+./lib/churn/history.rb	Thu, 03 Apr 2014 21:09:39 -0400
+./lib/churn/location_mapping.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/churn/options.rb	Thu, 03 Apr 2014 21:13:51 -0400
+./lib/churn/scm/bzr_analyzer.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/churn/scm/git_analyzer.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/churn/scm/hg_analyzer.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/churn/scm/source_control.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/churn/scm/svn_analyzer.rb	Mon, 23 Jun 2014 18:44:12 -0400
+./lib/churn/version.rb	Mon, 23 Jun 2014 18:44:30 -0400
+./lib/churn.rb	Sun, 24 Nov 2013 15:02:41 -0500
+./lib/tasks/churn_tasks.rb	Thu, 03 Apr 2014 20:46:44 -0400
+./bin/churn	Sun, 24 Nov 2013 15:02:41 -0500
+./LICENSE	Sun, 24 Nov 2013 15:02:41 -0500

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Churn::ChurnCalculator - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/churn/calculator.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-to_s">::to_s</a>
+    
+    <li ><a href="#method-i-analyze">#analyze</a>
+    
+    <li ><a href="#method-i-emit">#emit</a>
+    
+    <li ><a href="#method-i-generate_history">#generate_history</a>
+    
+    <li ><a href="#method-i-remote_report">#remote_report</a>
+    
+    <li ><a href="#method-i-report">#report</a>
+    
+    <li ><a href="#method-i-to_h">#to_h</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Churn.html">Churn</a>
+  
+    <li><a href="../Churn/BzrAnalyzer.html">Churn::BzrAnalyzer</a>
+  
+    <li><a href="../Churn/ChurnCalculator.html">Churn::ChurnCalculator</a>
+  
+    <li><a href="../Churn/ChurnHistory.html">Churn::ChurnHistory</a>
+  
+    <li><a href="../Churn/ChurnOptions.html">Churn::ChurnOptions</a>
+  
+    <li><a href="../Churn/GitAnalyzer.html">Churn::GitAnalyzer</a>
+  
+    <li><a href="../Churn/HgAnalyzer.html">Churn::HgAnalyzer</a>
+  
+    <li><a href="../Churn/LocationMapping.html">Churn::LocationMapping</a>
+  
+    <li><a href="../Churn/SourceControl.html">Churn::SourceControl</a>
+  
+    <li><a href="../Churn/SvnAnalyzer.html">Churn::SvnAnalyzer</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Churn::ChurnCalculator</h1>
+
+  <div id="description" class="description">
+    
+<p>The work horse of the the churn library. This class takes user input,
+determins the SCM the user is using. It then determines changes made during
+this revision. Finally it reads all the changes from previous revisions and
+displays human readable output on the command line. It can also ouput a
+yaml format readable by other tools such as metric_fu and Caliper.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>intialized the churn calculator object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>={})
+  <span class="ruby-ivar">@churn_options</span> = <span class="ruby-constant">ChurnOptions</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">set_options</span>(<span class="ruby-identifier">options</span>)
+  
+  <span class="ruby-ivar">@minimum_churn_count</span> = <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">minimum_churn_count</span>
+  <span class="ruby-ivar">@ignores</span>             = <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">ignores</span>
+  <span class="ruby-ivar">@source_control</span>      = <span class="ruby-constant">SourceControl</span>.<span class="ruby-identifier">set_source_control</span>(<span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">start_date</span>)
+
+  <span class="ruby-ivar">@changes</span>          = {}
+  <span class="ruby-ivar">@revision_changes</span> = {}
+  <span class="ruby-ivar">@class_changes</span>    = {}
+  <span class="ruby-ivar">@method_changes</span>   = {}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">(hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pretty print the data as a string for the user</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">seperator</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span><span class="ruby-string">&quot;* Revision Changes \n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">seperator</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Files&quot;</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-value">:changed_files</span>], <span class="ruby-value">:fields=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value">:to_str</span>], <span class="ruby-value">:headers=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-value">:to_str=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'file'</span>})
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Classes&quot;</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-value">:changed_classes</span>])
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Methods&quot;</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-value">:changed_methods</span>]) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">seperator</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span><span class="ruby-string">&quot;* Project Churn \n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">seperator</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Files&quot;</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-value">:changes</span>])
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">class_churn</span> = <span class="ruby-identifier">collect_items</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-value">:class_churn</span>], <span class="ruby-string">'klass'</span>)
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Classes&quot;</span>, <span class="ruby-identifier">class_churn</span>)
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">method_churn</span> = <span class="ruby-identifier">collect_items</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-value">:method_churn</span>], <span class="ruby-string">'method'</span>)
+  <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">display_array</span>(<span class="ruby-string">&quot;Methods&quot;</span>, <span class="ruby-identifier">method_churn</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-analyze" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">analyze</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Analyze the source control data, filter, sort, and find more information on
+the editted files</p>
+          
+          
+
+          
+          <div class="method-source-code" id="analyze-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">analyze</span>
+  <span class="ruby-ivar">@changes</span> = <span class="ruby-identifier">sort_changes</span>(<span class="ruby-ivar">@changes</span>)
+  <span class="ruby-ivar">@changes</span> = <span class="ruby-ivar">@changes</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">file_path</span>, <span class="ruby-identifier">times_changed</span><span class="ruby-operator">|</span> {<span class="ruby-value">:file_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">file_path</span>, <span class="ruby-value">:times_changed</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">times_changed</span> }}
+
+  <span class="ruby-identifier">calculate_revision_changes</span>
+
+  <span class="ruby-ivar">@method_changes</span> = <span class="ruby-identifier">sort_changes</span>(<span class="ruby-ivar">@method_changes</span>)
+  <span class="ruby-ivar">@method_changes</span> = <span class="ruby-ivar">@method_changes</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">method</span>, <span class="ruby-identifier">times_changed</span><span class="ruby-operator">|</span> {<span class="ruby-string">'method'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">method</span>, <span class="ruby-string">'times_changed'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">times_changed</span> }}
+  <span class="ruby-ivar">@class_changes</span>  = <span class="ruby-identifier">sort_changes</span>(<span class="ruby-ivar">@class_changes</span>)
+  <span class="ruby-ivar">@class_changes</span>  = <span class="ruby-ivar">@class_changes</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">klass</span>, <span class="ruby-identifier">times_changed</span><span class="ruby-operator">|</span> {<span class="ruby-string">'klass'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">klass</span>, <span class="ruby-string">'times_changed'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">times_changed</span> }}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- analyze-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- analyze-method -->
+
+    
+      <div id="method-i-emit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">emit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Emits various data from source control to be analyses later… Currently this
+is broken up like this as a throwback to metric_fu</p>
+          
+          
+
+          
+          <div class="method-source-code" id="emit-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">emit</span>
+  <span class="ruby-ivar">@changes</span>   = <span class="ruby-identifier">parse_log_for_changes</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span>, <span class="ruby-identifier">change_count</span><span class="ruby-operator">|</span> <span class="ruby-identifier">change_count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@minimum_churn_count</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@ignores</span>.<span class="ruby-identifier">any?</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">ignore</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">match</span>(<span class="ruby-node">/#{ignore}/</span>) } }
+  <span class="ruby-ivar">@revisions</span> = <span class="ruby-identifier">parse_log_for_revision_changes</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- emit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- emit-method -->
+
+    
+      <div id="method-i-generate_history" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_history</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>this method generates the past history of a churn project from first commit
+to current running the report for oldest commits first so they are built up
+correctly</p>
+          
+          
+
+          
+          <div class="method-source-code" id="generate_history-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_history</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@source_control</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">GitAnalyzer</span>)
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">history_starting_point</span> = <span class="ruby-constant">Chronic</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">history</span>)
+      <span class="ruby-ivar">@source_control</span>.<span class="ruby-identifier">get_commit_history</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">commit</span><span class="ruby-operator">|</span>
+        <span class="ruby-node">%xgit checkout #{commit}`</span>
+        <span class="ruby-identifier">commit_date</span> = <span class="ruby-value">%xgit show -s --format=&quot;%ci&quot;`</span>
+        <span class="ruby-identifier">commit_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">commit_date</span>)
+        <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">commit_date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">history_starting_point</span>
+        <span class="ruby-comment">#7776000 == 3.months without adding active support depenancy</span>
+        <span class="ruby-identifier">start_date</span>  = (<span class="ruby-identifier">commit_date</span> <span class="ruby-operator">-</span> <span class="ruby-value">7776000</span>)
+        <span class="ruby-node">%xchurn -s &quot;#{start_date}&quot;`</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-value">%xgit checkout master`</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-string">&quot;churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;currently generate history only supports git&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- generate_history-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- generate_history-method -->
+
+    
+      <div id="method-i-remote_report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remote_report</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remote_report-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remote_report</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">report_host</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;posting churn results to #{@churn_options.report_host}&quot;</span>
+    <span class="ruby-identifier">data</span> = {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:revision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@revisions</span>.<span class="ruby-identifier">first</span>, <span class="ruby-value">:data</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_h</span>}.<span class="ruby-identifier">to_json</span>        
+    <span class="ruby-constant">RestClient</span>.<span class="ruby-identifier">post</span> <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">report_host</span>, {<span class="ruby-string">&quot;results&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>}, <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:json</span>, <span class="ruby-value">:accept</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:json</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ECONNREFUSED</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error posting churn results connection refused to host: #{@churn_options.report_host}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remote_report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remote_report-method -->
+
+    
+      <div id="method-i-report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">report</span><span
+            class="method-args">(print = true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>prepares the data for the given project to be reported. reads git/svn logs
+analyzes the output, generates a report and either formats as a nice string
+or returns hash. @param [Bolean] format to return the data, true for string
+or false for hash @return [Object] returns either a pretty string or a hash
+representing the chrun of the project</p>
+          
+          
+
+          
+          <div class="method-source-code" id="report-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">report</span>(<span class="ruby-identifier">print</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">history</span>
+    <span class="ruby-identifier">generate_history</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">emit</span>
+    <span class="ruby-identifier">analyze</span>
+    <span class="ruby-identifier">remote_report</span>
+    <span class="ruby-identifier">print</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_h</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- report-method -->
+
+    
+      <div id="method-i-to_h" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_h</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>collect all the data into a single hash data structure.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_h</span>
+  <span class="ruby-identifier">hash</span>                        = {<span class="ruby-value">:churn</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:changes</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@changes</span>}}
+  <span class="ruby-identifier">hash</span>[<span class="ruby-value">:churn</span>][<span class="ruby-value">:class_churn</span>]  = <span class="ruby-ivar">@class_changes</span>
+  <span class="ruby-identifier">hash</span>[<span class="ruby-value">:churn</span>][<span class="ruby-value">:method_churn</span>] = <span class="ruby-ivar">@method_changes</span>
+  <span class="ruby-comment">#detail the most recent changes made this revision</span>
+  <span class="ruby-identifier">first_revision</span>         = <span class="ruby-ivar">@revisions</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">first_revision_changes</span> = <span class="ruby-ivar">@revision_changes</span>[<span class="ruby-identifier">first_revision</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first_revision_changes</span>
+    <span class="ruby-identifier">changes</span> = <span class="ruby-identifier">first_revision_changes</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-value">:churn</span>][<span class="ruby-value">:changed_files</span>]   = <span class="ruby-identifier">changes</span>[<span class="ruby-value">:files</span>]
+    <span class="ruby-identifier">hash</span>[<span class="ruby-value">:churn</span>][<span class="ruby-value">:changed_classes</span>] = <span class="ruby-identifier">changes</span>[<span class="ruby-value">:classes</span>]
+    <span class="ruby-identifier">hash</span>[<span class="ruby-value">:churn</span>][<span class="ruby-value">:changed_methods</span>] = <span class="ruby-identifier">changes</span>[<span class="ruby-value">:methods</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment">#TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice</span>
+  <span class="ruby-constant">ChurnHistory</span>.<span class="ruby-identifier">store_revision_history</span>(<span class="ruby-identifier">first_revision</span>, <span class="ruby-identifier">hash</span>, <span class="ruby-ivar">@churn_options</span>.<span class="ruby-identifier">data_directory</span>)
+  <span class="ruby-identifier">hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_h-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_h-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/churn/calculator.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-constant">ChurnCalculator</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">to_h</span>[<span class="ruby-value">:churn</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

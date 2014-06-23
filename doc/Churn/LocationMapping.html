@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Churn::LocationMapping - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/churn/location_mapping.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">SexpProcessor
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-analyze_list">#analyze_list</a>
+    
+    <li ><a href="#method-i-deep_last_line">#deep_last_line</a>
+    
+    <li ><a href="#method-i-get_info">#get_info</a>
+    
+    <li ><a href="#method-i-process_class">#process_class</a>
+    
+    <li ><a href="#method-i-process_defn">#process_defn</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Churn.html">Churn</a>
+  
+    <li><a href="../Churn/BzrAnalyzer.html">Churn::BzrAnalyzer</a>
+  
+    <li><a href="../Churn/ChurnCalculator.html">Churn::ChurnCalculator</a>
+  
+    <li><a href="../Churn/ChurnHistory.html">Churn::ChurnHistory</a>
+  
+    <li><a href="../Churn/ChurnOptions.html">Churn::ChurnOptions</a>
+  
+    <li><a href="../Churn/GitAnalyzer.html">Churn::GitAnalyzer</a>
+  
+    <li><a href="../Churn/HgAnalyzer.html">Churn::HgAnalyzer</a>
+  
+    <li><a href="../Churn/LocationMapping.html">Churn::LocationMapping</a>
+  
+    <li><a href="../Churn/SourceControl.html">Churn::SourceControl</a>
+  
+    <li><a href="../Churn/SvnAnalyzer.html">Churn::SvnAnalyzer</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Churn::LocationMapping</h1>
+
+  <div id="description" class="description">
+    
+<p>Given a ruby file, map the klass and methods to a range of line numbers The
+klass and method to line numbers mappings, are stored in
+@klasses_collection and @methods_collection this is based off <a
+href="https://github.com/seattlerb/ruby_parser">github.com/seattlerb/ruby_parser</a>
+which seems to have some known line number bugs perhaps look at and move
+more to the style of line numbers from metric_fu <a
+href="https://github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb">github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb</a></p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-klasses_collection" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">klasses_collection</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-methods_collection" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">methods_collection</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>()
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@klasses_collection</span>  = {}
+  <span class="ruby-ivar">@methods_collection</span>  = {}
+  <span class="ruby-ivar">@parser</span>              = <span class="ruby-constant">RubyParser</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">auto_shift_type</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">require_empty</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-analyze_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">analyze_list</span><span
+            class="method-args">(exp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="analyze_list-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">analyze_list</span> <span class="ruby-identifier">exp</span>
+  <span class="ruby-identifier">process</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span> <span class="ruby-keyword">until</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">exp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- analyze_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- analyze_list-method -->
+
+    
+      <div id="method-i-deep_last_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deep_last_line</span><span
+            class="method-args">(exp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="deep_last_line-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-identifier">lines</span> = []
+  <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">deep_each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">line</span> }
+  <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">max</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- deep_last_line-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- deep_last_line-method -->
+
+    
+      <div id="method-i-get_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_info</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_info-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_info</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-identifier">ast</span> = <span class="ruby-ivar">@parser</span>.<span class="ruby-identifier">process</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>), <span class="ruby-identifier">file</span>)
+  <span class="ruby-identifier">process</span> <span class="ruby-identifier">ast</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_info-method -->
+
+    
+      <div id="method-i-process_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_class</span><span
+            class="method-args">(exp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="process_class-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">process_class</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">start_line</span>     = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">line</span>
+  <span class="ruby-identifier">last_line</span>      = <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Sexp</span>) <span class="ruby-comment">#deals with cases like class Test::Unit::TestCase</span>
+  <span class="ruby-ivar">@current_class</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@klasses_collection</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@klasses_collection</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@klasses_collection</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">start_line</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_line</span>)
+  <span class="ruby-identifier">analyze_list</span> <span class="ruby-identifier">exp</span>
+  <span class="ruby-identifier">s</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- process_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- process_class-method -->
+
+    
+      <div id="method-i-process_defn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_defn</span><span
+            class="method-args">(exp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="process_defn-source">
+            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">process_defn</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-identifier">name</span>        = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">start_line</span>  = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">line</span>
+  <span class="ruby-identifier">last_line</span>   = <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-identifier">full_name</span>   = <span class="ruby-node">&quot;#{@current_class}##{name}&quot;</span>
+  <span class="ruby-ivar">@methods_collection</span>[<span class="ruby-identifier">full_name</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@methods_collection</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">full_name</span>)
+  <span class="ruby-ivar">@methods_collection</span>[<span class="ruby-identifier">full_name</span>] <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">start_line</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_line</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>(<span class="ruby-value">:defn</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">process</span>(<span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>), <span class="ruby-identifier">process</span>(<span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- process_defn-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- process_defn-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

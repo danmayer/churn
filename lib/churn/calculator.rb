@@ -266,13 +266,10 @@ module Churn
     end
 
     def parse_log_for_revision_changes
-      return [] unless @source_control.respond_to?(:get_revisions)
       @source_control.get_revisions
     end
 
     def parse_logs_for_updated_files(revision, revisions)
-      #TODO SVN doesn't support this
-      return {} unless @source_control.respond_to?(:get_updated_files_change_info)
       files = @source_control.get_updated_files_change_info(revision, revisions)
       files.select{ |file, value| !@ignores.any?{ |ignore| file.match(/#{ignore}/) } }
     end

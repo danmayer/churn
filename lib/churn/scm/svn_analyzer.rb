@@ -11,6 +11,15 @@ module Churn
       `svn log --verbose#{date_range}#{svn_credentials}`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
     end
 
+    #below 2 methods aren't supported by SVN so they become noops
+    def get_revisions
+      []
+    end
+
+    def get_updated_files_change_info(revision, revisions)
+      {}
+    end
+
     private
     def svn_credentials
       " --username #{ENV['SVN_USR']} --password #{ENV['SVN_PWD']}" if ENV['SVN_PWD'] && ENV['SVN_USR']
