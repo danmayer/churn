@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class SourceControlTest < Test::Unit::TestCase
+class SourceControlTest < Minitest::Test
   
   should "get_updated_files_from_log if revision and previous revision" do
     sc = Churn::SourceControl.new(Date.today)

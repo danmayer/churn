@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class ChurnHistoryTest < Test::Unit::TestCase
+class ChurnHistoryTest < Minitest::Test
  
   should "store results" do
     within_construct do |container|

@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class ChurnCalculatorTest < Test::Unit::TestCase
+class ChurnCalculatorTest < Minitest::Test
 
   should "use minimum churn count" do
     within_construct do |container|

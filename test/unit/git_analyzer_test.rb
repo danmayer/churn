@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class GitAnalyzerTest < Test::Unit::TestCase
+class GitAnalyzerTest < Minitest::Test
   
   should "parses logs correctly" do
     git_analyzer = Churn::GitAnalyzer.new

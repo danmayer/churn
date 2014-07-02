@@ -26,10 +26,11 @@ Gem::Specification.new do |s|
     "README.md"
   ]
 
+  s.add_development_dependency "minitest", "~> 5.3"
   s.add_development_dependency "shoulda", ">= 0"
-  s.add_development_dependency "test-construct", ">= 0"
+  s.add_development_dependency "test_construct", "~> 2.0.0"
   s.add_development_dependency "rake", ">= 0"
-  s.add_development_dependency "mocha", "~> 0.9.5"
+  s.add_development_dependency "mocha", "~> 1.1.0"
   s.add_development_dependency "simplecov", ">= 0"
   s.add_development_dependency "rdoc", ">= 0"
   #s.add_development_dependency "ruby-debug", "~> 0.10.4"

@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class ChurnOptionsTest < Test::Unit::TestCase
+class ChurnOptionsTest < Minitest::Test
  
   should "store get default directory" do
     assert_equal Churn::ChurnOptions::DEFAULT_CHURN_DIRECTORY, Churn::ChurnOptions.new.data_directory

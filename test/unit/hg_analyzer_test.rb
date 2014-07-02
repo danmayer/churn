@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class HgAnalyzerTest < Test::Unit::TestCase
+class HgAnalyzerTest < Minitest::Test
 
   context "HgAnalyzer#get_logs" do
     should "return a list of changed files" do
@@ -55,7 +55,7 @@ class HgAnalyzerTest < Test::Unit::TestCase
 
     should "raise an error if it encounters a line it cannot parse" do
       @hg_analyzer.expects(:get_updated_files_from_log).with("4760c1d7cd40", ["4760c1d7cd40", "3cb77114f02a"]).returns(["foo"])
-      assert_raise RuntimeError do
+      assert_raises RuntimeError do
         @hg_analyzer.stubs(:puts) # supress output from raised error
         @hg_analyzer.get_updated_files_change_info("4760c1d7cd40", ["4760c1d7cd40", "3cb77114f02a"])
       end
