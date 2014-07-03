@@ -17,7 +17,7 @@ File changes can be calculated on any single commit to look at method changes yo
 
 ## CI Build Status
 
-[![Build Status](https://secure.travis-ci.org/danmayer/churn.png)](http://travis-ci.org/danmayer/churn)
+[![Build Status](https://travis-ci.org/danmayer/churn.svg?branch=master)](http://travis-ci.org/danmayer/churn)
 
 This project runs [travis-ci.org](http://travis-ci.org)
 
