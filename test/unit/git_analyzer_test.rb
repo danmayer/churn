@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class GitAnalyzerTest < Test::Unit::TestCase
-  
+class GitAnalyzerTest < Minitest::Test
+
   should "parses logs correctly" do
     git_analyzer = Churn::GitAnalyzer.new
     revision     = 'first'
@@ -26,7 +26,7 @@ class GitAnalyzerTest < Test::Unit::TestCase
                   "8038f1b17c3749540650aaab3f4e5e846cfc3b47",
                   "4d7e4859b2ed8a7e4f73e3540e7879c00cba9783"], git_analyzer.get_revisions
   end
-  
+
   should "run date range correctly" do
     git_analyzer = Churn::GitAnalyzer.new(Date.parse('3/3/2010'))
     assert_equal "--after=2010-03-03", git_analyzer.send(:date_range)

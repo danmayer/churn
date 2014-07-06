@@ -9,7 +9,7 @@ if defined?(RakeFileUtils) # self.respond_to?(:desc)
     }.each {|k,v| options[k] = v unless v.nil? }
     Churn::ChurnCalculator.new(options).report
   end
-  
+
   desc "Report the current churn for the project"
   task :churn do
     report = report_churn()

@@ -15,10 +15,14 @@ module Churn
       `hg log#{date_range}`.split("\n").reject{|line| line !~ /^changeset:/}.map{|line| line[/:(\S+)$/, 1] }
     end
 
+    def generate_history(starting_point)
+      raise "currently the generate history option does not support mercurial"
+    end
+
     private
 
     def get_diff(revision, previous_revision)
-      `hg diff -r #{revision}:#{previous_revision} -U 0`.split(/\n/).select{|line| line.match(/^@@/) || line.match(/^---/) || line.match(/^\+\+\+/) }
+      `hg diff -r #{revision}:#{previous_revision} -U 0`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
 
     def date_range

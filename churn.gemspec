@@ -26,18 +26,19 @@ Gem::Specification.new do |s|
     "README.md"
   ]
 
-  s.add_development_dependency(%q<shoulda>, [">= 0"])
-  s.add_development_dependency(%q<test-construct>, [">= 0"])
-  s.add_development_dependency(%q<rake>, [">= 0"])
-  s.add_development_dependency(%q<mocha>, ["~> 0.9.5"])
-  s.add_development_dependency(%q<simplecov>,[">= 0"])
-  s.add_development_dependency(%q<rdoc>,[">= 0"])
-  #s.add_development_dependency(%q<ruby-debug>, ["~> 0.10.4"])
-  s.add_runtime_dependency(%q<main>, [">= 0"])
-  s.add_runtime_dependency(%q<json_pure>, [">= 0"])
-  s.add_runtime_dependency(%q<chronic>, [">= 0.2.3"])
-  s.add_runtime_dependency(%q<sexp_processor>, ["~> 4.1"])
-  s.add_runtime_dependency(%q<ruby_parser>, ["~> 3.0"])
-  s.add_runtime_dependency(%q<hirb>, [">= 0"])
-  s.add_runtime_dependency(%q<rest-client>, [">= 1.6.0"])
+  s.add_development_dependency "minitest", "~> 5.3"
+  s.add_development_dependency "shoulda", ">= 0"
+  s.add_development_dependency "test_construct", "~> 2.0.0"
+  s.add_development_dependency "rake", ">= 0"
+  s.add_development_dependency "mocha", "~> 1.1.0"
+  s.add_development_dependency "simplecov", ">= 0"
+  s.add_development_dependency "rdoc", ">= 0"
+  #s.add_development_dependency "ruby-debug", "~> 0.10.4"
+  s.add_runtime_dependency "main", ">= 0"
+  s.add_runtime_dependency "json_pure", ">= 0"
+  s.add_runtime_dependency "chronic", ">= 0.2.3"
+  s.add_runtime_dependency "sexp_processor", "~> 4.1"
+  s.add_runtime_dependency "ruby_parser", "~> 3.0"
+  s.add_runtime_dependency "hirb", ">= 0"
+  s.add_runtime_dependency "rest-client", ">= 1.6.0"
 end

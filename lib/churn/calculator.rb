@@ -29,7 +29,7 @@ module Churn
     # intialized the churn calculator object
     def initialize(options={})
       @churn_options = ChurnOptions.new.set_options(options)
-      
+
       @minimum_churn_count = @churn_options.minimum_churn_count
       @ignores             = @churn_options.ignores
       @source_control      = SourceControl.set_source_control(@churn_options.start_date)
@@ -58,7 +58,7 @@ module Churn
     def remote_report
       if @churn_options.report_host
         puts "posting churn results to #{@churn_options.report_host}"
-        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json        
+        data = {:name => @churn_options.name, :revision => @revisions.first, :data => self.to_h}.to_json
         RestClient.post @churn_options.report_host, {"results" => data}, :content_type => :json, :accept => :json
       end
     rescue Errno::ECONNREFUSED
@@ -68,30 +68,14 @@ module Churn
     # this method generates the past history of a churn project from first commit to current
     # running the report for oldest commits first so they are built up correctly
     def generate_history
-      if @source_control.is_a?(GitAnalyzer)
-        begin
-          history_starting_point = Chronic.parse(@churn_options.history)
-          @source_control.get_commit_history.each do |commit|
-            `git checkout #{commit}`
-            commit_date = `git show -s --format="%ci"`
-            commit_date = Time.parse(commit_date)
-            next if commit_date < history_starting_point
-            #7776000 == 3.months without adding active support depenancy
-            start_date  = (commit_date - 7776000)
-            `churn -s "#{start_date}"`
-          end
-        ensure
-          `git checkout master`
-        end
-        "churn history complete, this has munipulated git please make sure you are back on HEAD where you expect to be"
-      else
-        raise "currently generate history only supports git"
-      end
+      history_starting_point = Chronic.parse(@churn_options.history)
+      @source_control.generate_history(history_starting_point)
+      "churn history complete, this has manipulated your source control system so please make sure you are back on HEAD where you expect to be"
     end
 
     # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
     def emit
-      @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count || @ignores.any?{ |ignore| file.match(/#{ignore}/) } }
+      @changes   = reject_ignored_files(reject_low_churn_files(parse_log_for_changes))
       @revisions = parse_log_for_revision_changes
     end
 
@@ -133,17 +117,17 @@ module Churn
 
     # Pretty print the data as a string for the user
     def self.to_s(hash)
-      result = seperator
+      result = separator
       result +="* Revision Changes \n"
-      result += seperator
+      result += separator
       result += display_array("Files", hash[:changed_files], :fields=>[:to_str], :headers=>{:to_str=>'file'})
       result += "\n"
       result += display_array("Classes", hash[:changed_classes])
       result += "\n"
       result += display_array("Methods", hash[:changed_methods]) + "\n"
-      result += seperator
+      result += separator
       result +="* Project Churn \n"
-      result += seperator
+      result += separator
       result += "\n"
       result += display_array("Files", hash[:changes])
       result += "\n"
@@ -178,7 +162,7 @@ module Churn
       response
     end
 
-    def self.seperator
+    def self.separator
       "*"*70+"\n"
     end
 
@@ -205,7 +189,7 @@ module Churn
       changed_classes = []
       changed_methods = []
       changed_files.each do |file_changes|
-        if file_changes.first.match(filters)
+        if file_changes.first =~ filters
           classes, methods = get_changes(file_changes)
           changed_classes += classes
           changed_methods += methods
@@ -256,11 +240,11 @@ module Churn
     end
 
     def parse_log_for_changes
-      changes = {}
+      changes = Hash.new(0)
 
       logs = @source_control.get_logs
       logs.each do |line|
-        changes[line] ? changes[line] += 1 : changes[line] = 1
+        changes[line] += 1
       end
       changes
     end
@@ -271,7 +255,15 @@ module Churn
 
     def parse_logs_for_updated_files(revision, revisions)
       files = @source_control.get_updated_files_change_info(revision, revisions)
-      files.select{ |file, value| !@ignores.any?{ |ignore| file.match(/#{ignore}/) } }
+      reject_ignored_files(files)
+    end
+
+    def reject_low_churn_files(files)
+      files.reject{ |_, change_count| change_count < @minimum_churn_count }
+    end
+
+    def reject_ignored_files(files)
+      files.reject{ |file, _| @ignores.any?{ |ignore| /#{ignore}/ =~ file } }
     end
 
   end

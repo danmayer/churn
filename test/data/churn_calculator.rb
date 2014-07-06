@@ -30,15 +30,15 @@ module Churn
     end
 
     def report
-      self.emit 
+      self.emit
       self.analyze
       self.to_h
     end
-    
+
     def emit
       @changes   = parse_log_for_changes.reject {|file, change_count| change_count < @minimum_churn_count}
-      @revisions = parse_log_for_revision_changes  
-    end 
+      @revisions = parse_log_for_revision_changes
+    end
 
     def analyze
       @changes = @changes.to_a.sort {|x,y| y[1] <=> x[1]}
@@ -87,14 +87,14 @@ module Churn
         end
         calculate_changes!(changed_methods, @method_changes) if changed_methods
         calculate_changes!(changed_classes, @class_changes) if changed_classes
-        
+
         @revision_changes[revision] = { :files => changed_files, :classes => changed_classes, :methods => changed_methods }
       end
     end
 
     def calculate_revision_data(revision)
       changed_files   = parse_logs_for_updated_files(revision, @revisions)
-      
+
       changed_classes = []
       changed_methods = []
       changed_files.each do |file|
@@ -153,13 +153,13 @@ module Churn
       end
       changed_items
     end
-    
+
     def parse_log_for_changes
-      changes = {}
-      
+      changes = Hash.new(0)
+
       logs = @source_control.get_logs
       logs.each do |line|
-        changes[line] ? changes[line] += 1 : changes[line] = 1
+        changes[line] += 1
       end
       changes
     end
@@ -167,7 +167,7 @@ module Churn
     def parse_log_for_revision_changes
       @source_control.get_revisions
     end
-    
+
     def parse_logs_for_updated_files(revision, revisions)
       updated     = {}
       recent_file = nil
@@ -176,13 +176,13 @@ module Churn
       return updated unless @source_control.respond_to?(:get_updated_files_from_log)
       logs = @source_control.get_updated_files_from_log(revision, revisions)
       logs.each do |line|
-        if line.match(/^---/) || line.match(/^\+\+\+/)
+        if /^---|^\+\+\+/ =~ line
           line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
           unless updated.include?(line)
-            updated[line] = [] 
+            updated[line] = []
           end
           recent_file = line
-        elsif line.match(/^@@/)
+        elsif /^@@/ =~ line
           #TODO cleanup / refactor
           #puts "#{recent_file}: #{line}"
           removed        = line.match(/-[0-9]+/)

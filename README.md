@@ -17,7 +17,7 @@ File changes can be calculated on any single commit to look at method changes yo
 
 ## CI Build Status
 
-[![Build Status](https://secure.travis-ci.org/danmayer/churn.png)](http://travis-ci.org/danmayer/churn)
+[![Build Status](https://travis-ci.org/danmayer/churn.svg?branch=master)](http://travis-ci.org/danmayer/churn)
 
 This project runs [travis-ci.org](http://travis-ci.org)
 
@@ -29,9 +29,9 @@ Want to help out, there are easy tasks ready for some attention. The list of ite
 
 ## Churn Usage
 
-Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn', :require => false`. 
+Install with `gem install churn` or for bundler add to your Gemfile `gem 'churn', :require => false`.
 
-The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests. 
+The reason you want require false is that when required by default churn is expecting to add some rake tasks, you don't really want or need it loading when running your server or tests.
 
 * rake:
   * add `require 'churn'` to Rakefile
@@ -48,7 +48,7 @@ The reason you want require false is that when required by default churn is expe
   * on command line run `churn` or `bundle exec churn`
   * need help run `churn -h` to get additional information
   * run the executable passing in options to override defaults
- 
+
       ``` bash
         churn -i "churn.gemspec, Gemfile" #ignore files
         churn -y #output yaml format opposed to text
@@ -145,11 +145,11 @@ The reason you want require false is that when required by default churn is expe
       --data_directory=[data_directory], -d (0 ~> string(data_directory=))
       --past_history=[past_history], -p (0 ~> string(past_history=))
       --help, -h
-      
+
 ## Library Options
 
 All the CLI options are parsed and just passed into the library. If you want to run the library directly from other code. The best way to see current options is where the [churn executable](https://github.com/danmayer/churn/blob/master/bin/churn) passes the parsed options into the `ChurnCalculator` class
-    
+
     ###
     # Available options
     ###

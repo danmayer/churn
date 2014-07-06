@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class LocationMappingTest < Test::Unit::TestCase
+class LocationMappingTest < Minitest::Test
 
   #todo unfortunately it looks like ruby parser can't handle construct tmp dirs
   #<Pathname:/private/var/folders/gl/glhHkYYSGgG5nb6+4OG0yU+++TI/-Tmp-/construct_container-56784-851001101/fake_class.rb>
@@ -27,7 +27,7 @@ class LocationMappingTest < Test::Unit::TestCase
     file = 'test/data/test_helper.rb'
     locationmapping = Churn::LocationMapping.new
     locationmapping.get_info(file.to_s)
-    klass_hash = {"TestCase"=>[12..15]}
+    klass_hash = {"Test"=>[12..15]}
     assert_equal klass_hash.sort, locationmapping.klasses_collection.sort
   end
 

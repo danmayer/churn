@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class BzrAnalyzerTest < Test::Unit::TestCase
+class BzrAnalyzerTest < Minitest::Test
   context "BzrAnalyzer#get_logs" do
     should "return a list of changed files" do
       bzr_analyzer = Churn::BzrAnalyzer.new
@@ -54,7 +54,7 @@ class BzrAnalyzerTest < Test::Unit::TestCase
 
     should "raise an error if it encounters a line it cannot parse" do
       @bzr_analyzer.expects(:get_updated_files_from_log).with("1947", ["1947", "1946"]).returns(["foo"])
-      assert_raise RuntimeError do
+      assert_raises RuntimeError do
         @bzr_analyzer.stubs(:puts) # supress output from raised error
         @bzr_analyzer.get_updated_files_change_info("1947", ["1947", "1946"])
       end

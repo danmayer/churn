@@ -2,7 +2,7 @@ module Churn
 
   #analizes Bzr / Bazaar SCM to find recently changed files, and what lines have been altered
   class BzrAnalyzer < SourceControl
-    
+
     def self.supported?
       !!(`bzr nick 2>&1` && $?.success?)
     end
@@ -15,10 +15,14 @@ module Churn
       `bzr log --line #{date_range}`.split("\n").map{|line| line[/^(\S+):/, 1] }
     end
 
+    def generate_history(starting_point)
+      raise "currently the generate history option does not support bazaar"
+    end
+
     private
 
     def get_diff(revision, previous_revision)
-      `bzr diff -r #{previous_revision}..#{revision}`.split(/\n/).select{|line| line.match(/^@@/) || line.match(/^---/) || line.match(/^\+\+\+/) }
+      `bzr diff -r #{previous_revision}..#{revision}`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
 
     def date_range

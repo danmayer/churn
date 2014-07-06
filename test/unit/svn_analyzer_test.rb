@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
-class SvnAnalyzerTest < Test::Unit::TestCase
-  
+class SvnAnalyzerTest < Minitest::Test
+
   should "parses logs correctly" do
     svn_analyzer = Churn::SvnAnalyzer.new
     revision     = 'first'
@@ -61,5 +61,5 @@ Changed paths:
 Initial import of project1
 ------------------------------------------------------------------------"
   end
-  
+
 end

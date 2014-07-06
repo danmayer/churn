@@ -4,19 +4,15 @@ module Churn
   class SourceControl
 
     def self.set_source_control(start_date)
-      if GitAnalyzer.supported?
-        GitAnalyzer.new(start_date)
-      elsif HgAnalyzer.supported?
-        HgAnalyzer.new(start_date)
-      elsif BzrAnalyzer.supported?
-        BzrAnalyzer.new(start_date)
-      elsif SvnAnalyzer.supported?
-        SvnAnalyzer.new(start_date)
+      analyzers = [GitAnalyzer, HgAnalyzer, BzrAnalyzer, SvnAnalyzer]
+      analyzer = analyzers.detect(&:supported?)
+      if analyzer
+        analyzer.new(start_date)
       else
         raise "Churn requires a bazaar, git, mercurial, or subversion source control"
       end
     end
-    
+
     def self.supported?
       raise "child class must implement"
     end
@@ -33,23 +29,27 @@ module Churn
       raise "child class must implement"
     end
 
+    def generate_history(starting_point)
+      raise "child class must implement"
+    end
+
     def get_updated_files_change_info(revision, revisions)
       updated     = {}
       logs        = get_updated_files_from_log(revision, revisions)
       recent_file = nil
       logs.each do |line|
-        if line.match(/^---/) || line.match(/^\+\+\+/)
+        if /^---|^\+\+\+/ =~ line
           # Remove the --- a/ and +++ b/ if present
           recent_file = get_recent_file(line)
           updated[recent_file] = [] unless updated.include?(recent_file)
-        elsif line.match(/^@@/)
+        elsif /^@@/ =~ line
           # Now add the added/removed ranges for the line
           removed_range = get_changed_range(line, '-')
           added_range   = get_changed_range(line, '\+')
           updated[recent_file] << removed_range
           updated[recent_file] << added_range
         else
-          puts line.match(/^---/)
+          puts /^---/ =~ line
           raise "diff lines that don't match the two patterns aren't expected: '#{line}'"
         end
       end
@@ -66,7 +66,7 @@ module Churn
         []
       end
     end
-    
+
     private
 
     def get_changed_range(line, matcher)
@@ -74,7 +74,7 @@ module Churn
       change_end   = line.match(/#{matcher}[0-9]+,[0-9]+/)
       change_start = change_start.to_s.gsub(/#{matcher}/,'')
       change_end   = change_end.to_s.gsub(/.*,/,'')
-      
+
       change_start_num = change_start.to_i
       range  = if change_end && change_end!=''
                  (change_start_num..(change_start_num+change_end.to_i))
@@ -85,7 +85,7 @@ module Churn
     end
 
     def get_recent_file(line)
-      line = line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
+      line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
     end
 
   end
