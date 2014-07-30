@@ -20,13 +20,15 @@ require 'options'
 module Churn
 
   # The work horse of the the churn library.
-  # This class takes user input, determins the SCM the user is using.
+  # This class takes user input, determines the SCM the user is using.
   # It then determines changes made during this revision.
-  # Finally it reads all the changes from previous revisions and displays human readable output on the command line.
-  # It can also ouput a yaml format readable by other tools such as metric_fu and Caliper.
+  # Finally it reads all the changes from previous revisions and displays human
+  # readable output on the command line.
+  # It can also output a yaml format readable by other tools such as metric_fu
+  # and Caliper.
   class ChurnCalculator
 
-    # intialized the churn calculator object
+    # intialize the churn calculator object
     def initialize(options={})
       @churn_options = ChurnOptions.new.set_options(options)
 
@@ -41,9 +43,11 @@ module Churn
     end
 
     # prepares the data for the given project to be reported.
-    # reads git/svn logs analyzes the output, generates a report and either formats as a nice string or returns hash.
-    # @param [Bolean] format to return the data, true for string or false for hash
-    # @return [Object] returns either a pretty string or a hash representing the chrun of the project
+    # reads git/svn logs analyzes the output, generates a report and either
+    # formats as a nice string or returns hash.
+    # @param [Boolean] format to return the data, true for string or false for hash
+    # @return [Object] returns either a pretty string or a hash representing the
+    # churn of the project
     def report(print = true)
       if @churn_options.history
         generate_history
@@ -65,21 +69,24 @@ module Churn
       puts "error posting churn results connection refused to host: #{@churn_options.report_host}"
     end
 
-    # this method generates the past history of a churn project from first commit to current
-    # running the report for oldest commits first so they are built up correctly
+    # this method generates the past history of a churn project from first
+    # commit to current running the report for oldest commits first so they
+    # are built up correctly
     def generate_history
       history_starting_point = Chronic.parse(@churn_options.history)
       @source_control.generate_history(history_starting_point)
       "churn history complete, this has manipulated your source control system so please make sure you are back on HEAD where you expect to be"
     end
 
-    # Emits various data from source control to be analyses later... Currently this is broken up like this as a throwback to metric_fu
+    # Emits various data from source control to be analyzed later...
+    # Currently this is broken up like this as a throwback to metric_fu
     def emit
       @changes   = reject_ignored_files(reject_low_churn_files(parse_log_for_changes))
       @revisions = parse_log_for_revision_changes
     end
 
-    # Analyze the source control data, filter, sort, and find more information on the editted files
+    # Analyze the source control data, filter, sort, and find more information
+    # on the edited files
     def analyze
       @changes = sort_changes(@changes)
       @changes = @changes.map {|file_path, times_changed| {:file_path => file_path, :times_changed => times_changed }}
@@ -106,7 +113,8 @@ module Churn
         hash[:churn][:changed_classes] = changes[:classes]
         hash[:churn][:changed_methods] = changes[:methods]
       end
-      #TODO crappy place to do this but save hash to revision file but while entirely under metric_fu only choice
+      # TODO crappy place to do this but save hash to revision file but
+      # while entirely under metric_fu only choice
       ChurnHistory.store_revision_history(first_revision, hash, @churn_options.data_directory)
       hash
     end
