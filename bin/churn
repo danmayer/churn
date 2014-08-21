@@ -4,7 +4,6 @@ require "pathname"
 bin_file = Pathname.new(__FILE__).realpath
 
 # add self to libpath
-puts File.expand_path("../../lib", bin_file)
 $:.unshift File.expand_path("../../lib", bin_file)
 
 require 'churn/calculator'
