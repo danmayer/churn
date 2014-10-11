@@ -1,4 +1,7 @@
 language: ruby
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y bzr subversion git mercurial
 rvm:
   - 1.9.3
   - 2.0.0
