@@ -4,7 +4,7 @@ module Churn
   class BzrAnalyzer < SourceControl
 
     def self.supported?
-      !!(`bzr nick 2>&1` && $?.success?)
+      !!(`bzr nick 2>&1` && cmd_success?)
     end
 
     def get_logs
@@ -21,6 +21,9 @@ module Churn
 
     private
 
+    def self.cmd_success?
+      $?.success?
+    end
     def get_diff(revision, previous_revision)
       `bzr diff -r #{previous_revision}..#{revision}`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end

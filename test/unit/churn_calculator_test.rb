@@ -146,6 +146,7 @@ class ChurnCalculatorTest < Minitest::Test
 
   should "initialize a churn calculator for hg repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
+    Churn::HgAnalyzer.expects(:cmd_success?).returns(true)
     Churn::HgAnalyzer.expects(:`).with("hg branch 2>&1").returns(true) #` fix syntax hilighting
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
@@ -154,6 +155,7 @@ class ChurnCalculatorTest < Minitest::Test
   should "initialize a churn calculator for bzr repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
     Churn::HgAnalyzer.stubs(:supported?).returns(false)
+    Churn::BzrAnalyzer.expects(:cmd_success?).returns(true)
     Churn::BzrAnalyzer.expects(:`).with("bzr nick 2>&1").returns(true) #` fix syntax hilighting
     churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::BzrAnalyzer)

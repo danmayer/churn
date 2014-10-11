@@ -4,7 +4,7 @@ module Churn
   class HgAnalyzer < SourceControl
 
     def self.supported?
-      !!(`hg branch 2>&1` && $?.success?)
+      !!(`hg branch 2>&1` && cmd_success?)
     end
 
     def get_logs
@@ -21,6 +21,10 @@ module Churn
 
     private
 
+    def self.cmd_success?
+      $?.success?
+    end
+    
     def get_diff(revision, previous_revision)
       `hg diff -r #{revision}:#{previous_revision} -U 0`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
