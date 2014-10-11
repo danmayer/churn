@@ -6,25 +6,19 @@ Gem::Specification.new do |s|
   s.name = "churn"
   s.version = Churn::VERSION
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dan Mayer"]
-  s.date = "2012-12-17"
+  s.author = "Dan Mayer"
   s.summary = "Providing additional churn metrics over the original metric_fu churn"
   s.description = "High method and class churn has been shown to have increased bug and error rates. This gem helps you know what is changing a lot so you can do additional testing, code review, or refactoring to try to tame the volatile code. "
   s.email = "dan@mayerdan.com"
   s.homepage = "http://github.com/danmayer/churn"
-  s.rubyforge_project = "churn"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
-
-  s.license = 'MIT'
-  s.extra_rdoc_files = [
-    "LICENSE",
-    "README.md"
-  ]
+  s.executables = %w[churn]
+  s.extra_rdoc_files = %w[LICENSE README.md]
+  s.files = %w[churn.gemspec LICENSE README.md] + Dir["bin/*", "lib/**/*.rb", "man/*"]
+  s.license = "MIT"
+  s.require_paths = %w[lib]
+  s.required_ruby_version = ">= 1.9.3"
+  s.requirements = "bzr, git, hg or svn"
 
   s.add_development_dependency "minitest", "~> 5.3"
   s.add_development_dependency "shoulda", ">= 0"
