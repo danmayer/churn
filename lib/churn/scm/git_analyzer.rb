@@ -36,7 +36,7 @@ module Churn
     end
 
     def get_diff(revision, previous_revision)
-      `git diff #{revision} #{previous_revision} --unified=0`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
+      `git diff #{revision} #{previous_revision} --no-ext-diff --unified=0`.split(/\n/).select{|line| /^@@|^---|^\+\+\+/ =~ line }
     end
 
     def date_range
