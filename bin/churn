@@ -39,7 +39,7 @@ Main do
     cast :string
     argument :optional
     default ''
-    description 'name is require if remotely reporting churn results. If available as a github project, pass name in the form of username/project_name'
+    description 'name is required if remotely reporting churn results. If available as a github project, pass name in the form of username/project_name'
   end
 
   option('start_date', 's') do
