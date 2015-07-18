@@ -41,7 +41,7 @@ The reason you want require false is that when required by default churn is expe
       ``` ruby
         ENV['CHURN_MINIMUM_CHURN_COUNT']
         ENV['CHURN_START_DATE']
-        ENV['CHURN_IGNORE_FILES']
+        ENV['CHURN_IGNORES']
       ```
 
 * CLI:
