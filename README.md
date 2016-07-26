@@ -6,7 +6,7 @@ Churn for files is immediate, but classes and methods requires building up a his
 
 Currently has full Git, Mercurial (hg), Bazaar (bzr) support, and partial SVN support (supports only file level churn currently)
 
-File changes can be calculated on any single commit to look at method changes you need to be running churn over time. Using a git post-commit hook, configuring your CI to run churn, or using [churn-site](http://churn.picoappz.com) is the best way to build up your churn history. See the --past_history (-p) option to do a one time run building up past class and method level churn.
+File changes can be calculated on any single commit to look at method changes you need to be running churn over time. Using a git post-commit hook, configuring your CI to run churn. See the --past_history (-p) option to do a one time run building up past class and method level churn.
 
 ####Authors:
 * danmayer
