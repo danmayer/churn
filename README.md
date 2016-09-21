@@ -11,7 +11,7 @@ File changes can be calculated on any single commit to look at method changes yo
 
 ## TODO
 
-Want to help out, there are easy tasks ready for some attention. The list of items has been moved to the [churn wafflie.io](http://waffle.io/danmayer/churn)
+Want to help out, there are easy tasks ready for some attention. The list of items has been moved to the [churn waffle.io](http://waffle.io/danmayer/churn)
 
 [![Stories in Ready](https://badge.waffle.io/danmayer/churn.png)](http://waffle.io/danmayer/churn)
 
