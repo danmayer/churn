@@ -1,20 +1,24 @@
 module Churn
 
-  #analizes Hg / Mercurial SCM to find recently changed files, and what lines have been altered
+  # Analyzes Hg / Mercurial SCM to find recently changed files, and what lines have been altered
   class HgAnalyzer < SourceControl
 
+    # @return [Array]
     def self.supported?
       !!(`hg branch 2>&1` && cmd_success?)
     end
 
+    # @return [Array]
     def get_logs
       `hg log -v#{date_range}`.split("\n").reject{|line| line !~ /^files:/}.map{|line| line.split(" ")[1..-1]}.flatten
     end
 
+    # @return [Array]
     def get_revisions
       `hg log#{date_range}`.split("\n").reject{|line| line !~ /^changeset:/}.map{|line| line[/:(\S+)$/, 1] }
     end
 
+    # @raise RunTimeError Currently, the generate history option does not support Mercurial
     def generate_history(starting_point)
       raise "currently the generate history option does not support mercurial"
     end
@@ -39,6 +43,5 @@ module Churn
     def get_recent_file(line)
       super(line).split("\t")[0]
     end
-
   end
 end

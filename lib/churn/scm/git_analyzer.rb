@@ -1,16 +1,19 @@
 module Churn
 
-  #analizes git SCM to find recently changed files, and what lines have been altered
+  # Analyzes git SCM to find recently changed files, and what lines have been altered
   class GitAnalyzer < SourceControl
 
+    # @return [Boolean]
     def self.supported?
       !!(`git branch 2>&1` && $?.success?)
     end
 
+    # @return [Array]
     def get_logs
       `git log #{date_range} --name-only --pretty=format:`.split(/\n/).reject{|line| line == ""}
     end
 
+    # @return [Array]
     def get_revisions
       `git log #{date_range} --pretty=format:"%H"`.split(/\n/).reject{|line| line == ""}
     end
@@ -45,6 +48,5 @@ module Churn
         "--after=#{date.strftime('%Y-%m-%d')}"
       end
     end
-
   end
 end

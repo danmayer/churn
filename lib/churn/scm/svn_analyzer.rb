@@ -1,25 +1,31 @@
 module Churn
 
-  #analizes SVN SCM to find recently changed files, and what lines have been altered
+  # Analyzes SVN SCM to find recently changed files, and what lines have been altered
   class SvnAnalyzer < SourceControl
 
+    # @return [Boolean]
     def self.supported?
       File.exist?(".svn")
     end
 
+    # @return [Array]
     def get_logs
       `svn log --verbose#{date_range}#{svn_credentials}`.split(/\n/).map { |line| clean_up_svn_line(line) }.compact
     end
 
+    # @raise RunTimeError Currently, the generate history option does not support Subversion
     def generate_history(starting_point)
       raise "currently the generate history option does not support subversion"
     end
 
-    #below 2 methods aren't supported by SVN so they become noops
+    # This method is not supported by SVN
+    # @return [Array]
     def get_revisions
       []
     end
 
+    # This method is not supported by SVN
+    # @return [Hash]
     def get_updated_files_change_info(revision, revisions)
       {}
     end

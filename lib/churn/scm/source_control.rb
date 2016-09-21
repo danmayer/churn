@@ -1,6 +1,6 @@
 module Churn
 
-  # Base clase for analyzing various SCM systems like git, HG, and SVN
+  # Base class for analyzing various SCM systems like git, HG, and SVN
   class SourceControl
 
     def self.set_source_control(start_date)
@@ -87,7 +87,5 @@ module Churn
     def get_recent_file(line)
       line.gsub(/^--- /,'').gsub(/^\+\+\+ /,'').gsub(/^a\//,'').gsub(/^b\//,'')
     end
-
   end
-
 end
