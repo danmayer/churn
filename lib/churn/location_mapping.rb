@@ -2,7 +2,7 @@ module Churn
 
   # Given a ruby file, map the klass and methods to a range of line numbers
   # The klass and method to line numbers mappings, are stored in
-  # @klasses_collection and @methods_collection
+  # klasses_collection and methods_collection
   # this is based off https://github.com/seattlerb/ruby_parser which seems to have some known line number bugs
   # perhaps look at and move more to the style of line numbers from metric_fu
   # https://github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb

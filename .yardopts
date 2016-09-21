@@ -1,0 +1,1 @@
+--no-private --protected lib/**/*.rb - README.md LICENSE.txt

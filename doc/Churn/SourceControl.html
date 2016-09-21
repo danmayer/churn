@@ -1,451 +1,691 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Churn::SourceControl
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
 
-<title>class Churn::SourceControl - RDoc Documentation</title>
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
+<script type="text/javascript" charset="utf-8">
+  pathId = "Churn::SourceControl";
+  relpath = '../';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
 
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Churn.html" title="Churn (module)">Churn</a></span></span>
+     &raquo; 
+    <span class="title">SourceControl</span>
+  
+</div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
 
+      <iframe id="search_frame" src="../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Churn::SourceControl
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Churn::SourceControl</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
 
   
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/churn/scm/source_control.rb
-  </ul>
-</nav>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/churn/scm/source_control.rb</dd>
+  </dl>
+  
+</div>
 
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link"><a href="../Object.html">Object</a>
-  
-</nav>
-
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li ><a href="#method-c-new">::new</a>
-    
-    <li ><a href="#method-c-set_source_control">::set_source_control</a>
-    
-    <li ><a href="#method-c-supported-3F">::supported?</a>
-    
-    <li ><a href="#method-i-get_logs">#get_logs</a>
-    
-    <li ><a href="#method-i-get_revisions">#get_revisions</a>
-    
-    <li ><a href="#method-i-get_updated_files_change_info">#get_updated_files_change_info</a>
-    
-    <li ><a href="#method-i-get_updated_files_from_log">#get_updated_files_from_log</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../LICENSE.html">LICENSE</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../Churn.html">Churn</a>
-  
-    <li><a href="../Churn/BzrAnalyzer.html">Churn::BzrAnalyzer</a>
-  
-    <li><a href="../Churn/ChurnCalculator.html">Churn::ChurnCalculator</a>
-  
-    <li><a href="../Churn/ChurnHistory.html">Churn::ChurnHistory</a>
-  
-    <li><a href="../Churn/ChurnOptions.html">Churn::ChurnOptions</a>
-  
-    <li><a href="../Churn/GitAnalyzer.html">Churn::GitAnalyzer</a>
-  
-    <li><a href="../Churn/HgAnalyzer.html">Churn::HgAnalyzer</a>
-  
-    <li><a href="../Churn/LocationMapping.html">Churn::LocationMapping</a>
-  
-    <li><a href="../Churn/SourceControl.html">Churn::SourceControl</a>
-  
-    <li><a href="../Churn/SvnAnalyzer.html">Churn::SvnAnalyzer</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class Churn::SourceControl</h1>
-
-  <div id="description" class="description">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
     
 <p>Base clase for analyzing various SCM systems like git, HG, and SVN</p>
 
-  </div><!-- description -->
 
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="BzrAnalyzer.html" title="Churn::BzrAnalyzer (class)">BzrAnalyzer</a></span>, <span class='object_link'><a href="GitAnalyzer.html" title="Churn::GitAnalyzer (class)">GitAnalyzer</a></span>, <span class='object_link'><a href="HgAnalyzer.html" title="Churn::HgAnalyzer (class)">HgAnalyzer</a></span>, <span class='object_link'><a href="SvnAnalyzer.html" title="Churn::SvnAnalyzer (class)">SvnAnalyzer</a></span></p>
+</div>
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_source_control-class_method" title="set_source_control (class method)">.<strong>set_source_control</strong>(start_date)  &#x21d2; Object </a>
+    
+
+    
+  </span>
   
   
   
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(start_date=nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">start_date</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-ivar">@start_date</span> = <span class="ruby-identifier">start_date</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-      <div id="method-c-set_source_control" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">set_source_control</span><span
-            class="method-args">(start_date)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="set_source_control-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_source_control</span>(<span class="ruby-identifier">start_date</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">GitAnalyzer</span>.<span class="ruby-identifier">supported?</span>
-    <span class="ruby-constant">GitAnalyzer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_date</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">HgAnalyzer</span>.<span class="ruby-identifier">supported?</span>
-    <span class="ruby-constant">HgAnalyzer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_date</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">BzrAnalyzer</span>.<span class="ruby-identifier">supported?</span>
-    <span class="ruby-constant">BzrAnalyzer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_date</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">SvnAnalyzer</span>.<span class="ruby-identifier">supported?</span>
-    <span class="ruby-constant">SvnAnalyzer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_date</span>)
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Churn requires a bazaar, git, mercurial, or subversion source control&quot;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- set_source_control-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- set_source_control-method -->
-
-    
-      <div id="method-c-supported-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">supported?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="supported-3F-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">supported?</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;child class must implement&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- supported-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- supported-3F-method -->
-
-    
-    </section><!-- public-class-method-details -->
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-get_logs" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_logs</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_logs-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_logs</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;child class must implement&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_logs-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_logs-method -->
-
-    
-      <div id="method-i-get_revisions" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_revisions</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_revisions-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_revisions</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;child class must implement&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_revisions-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_revisions-method -->
-
-    
-      <div id="method-i-get_updated_files_change_info" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_updated_files_change_info</span><span
-            class="method-args">(revision, revisions)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_updated_files_change_info-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_updated_files_change_info</span>(<span class="ruby-identifier">revision</span>, <span class="ruby-identifier">revisions</span>)
-  <span class="ruby-identifier">updated</span>     = {}
-  <span class="ruby-identifier">logs</span>        = <span class="ruby-identifier">get_updated_files_from_log</span>(<span class="ruby-identifier">revision</span>, <span class="ruby-identifier">revisions</span>)
-  <span class="ruby-identifier">recent_file</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-identifier">logs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^---/</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^\+\+\+/</span>)
-      <span class="ruby-comment"># Remove the --- a/ and +++ b/ if present</span>
-      <span class="ruby-identifier">recent_file</span> = <span class="ruby-identifier">get_recent_file</span>(<span class="ruby-identifier">line</span>)
-      <span class="ruby-identifier">updated</span>[<span class="ruby-identifier">recent_file</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">updated</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">recent_file</span>)
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^@@/</span>)
-      <span class="ruby-comment"># Now add the added/removed ranges for the line</span>
-      <span class="ruby-identifier">removed_range</span> = <span class="ruby-identifier">get_changed_range</span>(<span class="ruby-identifier">line</span>, <span class="ruby-string">'-'</span>)
-      <span class="ruby-identifier">added_range</span>   = <span class="ruby-identifier">get_changed_range</span>(<span class="ruby-identifier">line</span>, <span class="ruby-string">'\+'</span>)
-      <span class="ruby-identifier">updated</span>[<span class="ruby-identifier">recent_file</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">removed_range</span>
-      <span class="ruby-identifier">updated</span>[<span class="ruby-identifier">recent_file</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">added_range</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^---/</span>)
-      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;diff lines that don't match the two patterns aren't expected: '#{line}'&quot;</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">updated</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_updated_files_change_info-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_updated_files_change_info-method -->
-
-    
-      <div id="method-i-get_updated_files_from_log" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_updated_files_from_log</span><span
-            class="method-args">(revision, revisions)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_updated_files_from_log-source">
-            <pre><span class="ruby-comment"># File lib/churn/scm/source_control.rb, line 59</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_updated_files_from_log</span>(<span class="ruby-identifier">revision</span>, <span class="ruby-identifier">revisions</span>)
-  <span class="ruby-identifier">current_index</span> = <span class="ruby-identifier">revisions</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">revision</span>)
-  <span class="ruby-identifier">previous_index</span> = <span class="ruby-identifier">current_index</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
-  <span class="ruby-identifier">previous_revision</span> = <span class="ruby-identifier">revisions</span>[<span class="ruby-identifier">previous_index</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">revisions</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">previous_index</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">revision</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">previous_revision</span>
-    <span class="ruby-identifier">get_diff</span>(<span class="ruby-identifier">revision</span>, <span class="ruby-identifier">previous_revision</span>)
-  <span class="ruby-keyword">else</span>
-    []
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_updated_files_from_log-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_updated_files_from_log-method -->
-
-    
-    </section><!-- public-instance-method-details -->
   
-  </section><!-- 5Buntitled-5D -->
+  
+  
 
-</div><!-- documentation -->
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#supported%3F-class_method" title="supported? (class method)">.<strong>supported?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_history-instance_method" title="#generate_history (instance method)">#<strong>generate_history</strong>(starting_point)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_logs-instance_method" title="#get_logs (instance method)">#<strong>get_logs</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_revisions-instance_method" title="#get_revisions (instance method)">#<strong>get_revisions</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_updated_files_change_info-instance_method" title="#get_updated_files_change_info (instance method)">#<strong>get_updated_files_change_info</strong>(revision, revisions)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_updated_files_from_log-instance_method" title="#get_updated_files_from_log (instance method)">#<strong>get_updated_files_from_log</strong>(revision, revisions)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(start_date = nil)  &#x21d2; SourceControl </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of SourceControl.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(start_date = nil)  &#x21d2; <tt><span class='object_link'><a href="" title="Churn::SourceControl (class)">SourceControl</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of SourceControl</p>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+  </div>
+</div>
+<div class="tags">
+  
 
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_start_date'>start_date</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@start_date</span> <span class='op'>=</span> <span class='id identifier rubyid_start_date'>start_date</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="set_source_control-class_method">
+  
+    .<strong>set_source_control</strong>(start_date)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_source_control'>set_source_control</span><span class='lparen'>(</span><span class='id identifier rubyid_start_date'>start_date</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_analyzers'>analyzers</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>GitAnalyzer</span><span class='comma'>,</span> <span class='const'>HgAnalyzer</span><span class='comma'>,</span> <span class='const'>BzrAnalyzer</span><span class='comma'>,</span> <span class='const'>SvnAnalyzer</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_analyzer'>analyzer</span> <span class='op'>=</span> <span class='id identifier rubyid_analyzers'>analyzers</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:supported?</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_analyzer'>analyzer</span>
+    <span class='id identifier rubyid_analyzer'>analyzer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_start_date'>start_date</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Churn requires a bazaar, git, mercurial, or subversion source control</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="supported?-class_method">
+  
+    .<strong>supported?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_supported?'>supported?</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>child class must implement</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="generate_history-instance_method">
+  
+    #<strong>generate_history</strong>(starting_point)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_history'>generate_history</span><span class='lparen'>(</span><span class='id identifier rubyid_starting_point'>starting_point</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>child class must implement</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_logs-instance_method">
+  
+    #<strong>get_logs</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_logs'>get_logs</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>child class must implement</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_revisions-instance_method">
+  
+    #<strong>get_revisions</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_revisions'>get_revisions</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>child class must implement</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_updated_files_change_info-instance_method">
+  
+    #<strong>get_updated_files_change_info</strong>(revision, revisions)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_updated_files_change_info'>get_updated_files_change_info</span><span class='lparen'>(</span><span class='id identifier rubyid_revision'>revision</span><span class='comma'>,</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_updated'>updated</span>     <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_logs'>logs</span>        <span class='op'>=</span> <span class='id identifier rubyid_get_updated_files_from_log'>get_updated_files_from_log</span><span class='lparen'>(</span><span class='id identifier rubyid_revision'>revision</span><span class='comma'>,</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recent_file'>recent_file</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_logs'>logs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^---|^\+\+\+</span><span class='regexp_end'>/</span></span> <span class='op'>=~</span> <span class='id identifier rubyid_line'>line</span>
+      <span class='comment'># Remove the --- a/ and +++ b/ if present
+</span>      <span class='id identifier rubyid_recent_file'>recent_file</span> <span class='op'>=</span> <span class='id identifier rubyid_get_recent_file'>get_recent_file</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_updated'>updated</span><span class='lbracket'>[</span><span class='id identifier rubyid_recent_file'>recent_file</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_updated'>updated</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_recent_file'>recent_file</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^@@</span><span class='regexp_end'>/</span></span> <span class='op'>=~</span> <span class='id identifier rubyid_line'>line</span>
+      <span class='comment'># Now add the added/removed ranges for the line
+</span>      <span class='id identifier rubyid_removed_range'>removed_range</span> <span class='op'>=</span> <span class='id identifier rubyid_get_changed_range'>get_changed_range</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_added_range'>added_range</span>   <span class='op'>=</span> <span class='id identifier rubyid_get_changed_range'>get_changed_range</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\+</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_updated'>updated</span><span class='lbracket'>[</span><span class='id identifier rubyid_recent_file'>recent_file</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_removed_range'>removed_range</span>
+      <span class='id identifier rubyid_updated'>updated</span><span class='lbracket'>[</span><span class='id identifier rubyid_recent_file'>recent_file</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_added_range'>added_range</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^---</span><span class='regexp_end'>/</span></span> <span class='op'>=~</span> <span class='id identifier rubyid_line'>line</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diff lines that don&#39;t match the two patterns aren&#39;t expected: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_updated'>updated</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_updated_files_from_log-instance_method">
+  
+    #<strong>get_updated_files_from_log</strong>(revision, revisions)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/scm/source_control.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_updated_files_from_log'>get_updated_files_from_log</span><span class='lparen'>(</span><span class='id identifier rubyid_revision'>revision</span><span class='comma'>,</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_current_index'>current_index</span> <span class='op'>=</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='id identifier rubyid_revision'>revision</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_previous_index'>previous_index</span> <span class='op'>=</span> <span class='id identifier rubyid_current_index'>current_index</span><span class='op'>+</span><span class='int'>1</span>
+  <span class='id identifier rubyid_previous_revision'>previous_revision</span> <span class='op'>=</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='lbracket'>[</span><span class='id identifier rubyid_previous_index'>previous_index</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_revisions'>revisions</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_previous_index'>previous_index</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_revision'>revision</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_previous_revision'>previous_revision</span>
+    <span class='id identifier rubyid_get_diff'>get_diff</span><span class='lparen'>(</span><span class='id identifier rubyid_revision'>revision</span><span class='comma'>,</span> <span class='id identifier rubyid_previous_revision'>previous_revision</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Sep 22 00:19:49 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.3.0).
+</div>
+
+    </div>
+  </body>
+</html>

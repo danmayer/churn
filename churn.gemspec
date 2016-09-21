@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/danmayer/churn"
 
   s.executables = %w[churn]
-  s.extra_rdoc_files = %w[LICENSE README.md]
-  s.files = %w[churn.gemspec LICENSE README.md] + Dir["bin/*", "lib/**/*.rb", "man/*"]
+
+  s.files = %w[churn.gemspec LICENSE.txt README.md] + Dir["bin/*", "lib/**/*.rb", "man/*"]
   s.license = "MIT"
   s.require_paths = %w[lib]
   s.required_ruby_version = ">= 1.9.3"
@@ -26,7 +26,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", ">= 0"
   s.add_development_dependency "mocha", "~> 1.1.0"
   s.add_development_dependency "simplecov", ">= 0"
-  s.add_development_dependency "rdoc", ">= 0"
+  s.add_development_dependency "yard", ">= 0"
+  s.add_development_dependency "redcarpet"
   #s.add_development_dependency "ruby-debug", "~> 0.10.4"
   s.add_runtime_dependency "main", ">= 0"
   s.add_runtime_dependency "json_pure", ">= 0"
