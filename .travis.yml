@@ -18,6 +18,8 @@ matrix:
       gemfile: gemfiles/Gemfile.jruby-19mode
     - rvm: jruby-9.1.5.0
       gemfile: gemfiles/Gemfile.jruby-9_1_5_0
+      env:
+        - JRUBY_OPTS='--debug'
 addons:
   apt:
     packages:
