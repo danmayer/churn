@@ -3,19 +3,19 @@ sudo: false
 matrix:
   include:
     - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile_1_9_3
+      gemfile: gemfiles/Gemfile.1_9_3
     - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile_2_0
+      gemfile: gemfiles/Gemfile.2_0
     - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile_2_1
+      gemfile: gemfiles/Gemfile.2_1
     - rvm: 2.2.5
-      gemfile: gemfiles/Gemfile_2_2
+      gemfile: gemfiles/Gemfile.2_2
     - rvm: 2.3.1
-      gemfile: gemfiles/Gemfile_2_3
+      gemfile: gemfiles/Gemfile.2_3
     - rvm: jruby-19mode
-      gemfile: gemfiles/Gemfile_jruby-19mode
+      gemfile: gemfiles/Gemfile.jruby-19mode
     - rvm: jruby-9.1.5.0
-      gemfile: gemfiles/Gemfile_jruby-9_1_5_0
+      gemfile: gemfiles/Gemfile.jruby-9_1_5_0
 addons:
   apt:
     packages:
