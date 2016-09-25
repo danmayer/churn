@@ -62,24 +62,25 @@ Main do
   end
 
   def report_churn(output_string)
-    options = {:minimum_churn_count => params['minimum_churn_count'].value,
-      :ignore_files => params['ignore_files'].value,
-      :start_date => params['start_date'].value,
-      :data_directory => params['data_directory'].value,
-      :history => params['past_history'].value,
-      :report => params['report'].value,
-      :name => params['name'].value
+    options = {
+      minimum_churn_count: params['minimum_churn_count'].value,
+      ignore_files: params['ignore_files'].value,
+      start_date: params['start_date'].value,
+      data_directory: params['data_directory'].value,
+      history: params['past_history'].value,
+      report: params['report'].value,
+      name: params['name'].value
     }
     result = Churn::ChurnCalculator.new(options).report(output_string)
-    unless output_string
-      result = YAML::dump(result)
+    if output_string
+      result
+    else
+      YAML::dump(result)
     end
-    result
   end
 
   def run
     report = report_churn(!params['yaml'].value)
     puts report
   end
-
 end
