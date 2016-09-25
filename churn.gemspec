@@ -27,7 +27,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha", "~> 1.1.0"
   s.add_development_dependency "simplecov", ">= 0"
   s.add_development_dependency "yard", ">= 0"
-  s.add_development_dependency "redcarpet"
+  if defined?(JRUBY_VERSION)
+    s.add_development_dependency "kramdown"
+  else
+    s.add_development_dependency "redcarpet"
+  end
   #s.add_development_dependency "ruby-debug", "~> 0.10.4"
   s.add_runtime_dependency "main", ">= 0"
   s.add_runtime_dependency "json_pure", ">= 0"
