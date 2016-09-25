@@ -3,6 +3,8 @@ require File.expand_path('../test_helper', File.dirname(__FILE__))
 class SvnAnalyzerTest < Minitest::Test
 
   should "parses logs correctly" do
+    skip("This feature is currently unsupported on SVN")
+
     svn_analyzer = Churn::SvnAnalyzer.new
     revision     = 'first'
     revisions    = ['first']
@@ -10,7 +12,7 @@ class SvnAnalyzerTest < Minitest::Test
     svn_analyzer.stubs(:get_updated_files_from_log).returns(lines)
     updated = svn_analyzer.get_updated_files_change_info(revision, revisions)
     expected_hash = {"lib/churn/churn_calculator.rb"=>[18..18, 19..19]}
-    assert_equal = updated
+    assert_equal updated, expected_hash
   end
 
   should "run get_logs correctly" do

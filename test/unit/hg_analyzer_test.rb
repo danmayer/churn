@@ -50,7 +50,7 @@ class HgAnalyzerTest < Minitest::Test
 
     should "return all modified files with their line differences" do
       @hg_analyzer.expects(:get_updated_files_from_log).with("4760c1d7cd40", ["4760c1d7cd40", "3cb77114f02a"]).returns(["--- a/file1.rb\tSat Jan 16 14:21:28 2010 -0600", "+++ b/file1.rb\tSat Jan 16 14:19:32 2010 -0600", "@@ -1,3 +0,0 @@", "--- a/file2.rb\tSat Jan 16 14:21:28 2010 -0600", "+++ /dev/null\tThu Jan 01 00:00:00 1970 +0000", "@@ -1,7 +0,0 @@", "--- a/file3.rb\tSat Jan 16 14:21:28 2010 -0600", "+++ /dev/null\tThu Jan 01 00:00:00 1970 +0000", "@@ -1,5 +0,0 @@"])
-      assert_equal({"/dev/null" => [1..8, 0..0, 1..6, 0..0], "file3.rb" => [], "file1.rb" => [], "file2.rb" => [], "file1.rb" => [1..4, 0..0]}, @hg_analyzer.get_updated_files_change_info("4760c1d7cd40", ["4760c1d7cd40", "3cb77114f02a"]))
+      assert_equal({"/dev/null" => [1..8, 0..0, 1..6, 0..0], "file3.rb" => [], "file2.rb" => [], "file1.rb" => [1..4, 0..0]}, @hg_analyzer.get_updated_files_change_info("4760c1d7cd40", ["4760c1d7cd40", "3cb77114f02a"]))
     end
 
     should "raise an error if it encounters a line it cannot parse" do
