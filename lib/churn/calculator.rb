@@ -45,7 +45,7 @@ module Churn
     # prepares the data for the given project to be reported.
     # reads git/svn logs analyzes the output, generates a report and either
     # formats as a nice string or returns hash.
-    # @param [Boolean] format to return the data, true for string or false for hash
+    # @param [Boolean] print to return the data, true for string or false for hash
     # @return [Object] returns either a pretty string or a hash representing the
     # churn of the project
     def report(print = true)

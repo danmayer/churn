@@ -1,165 +1,129 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Churn
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
 
-<title>module Churn - RDoc Documentation</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+<script type="text/javascript" charset="utf-8">
+  pathId = "Churn";
+  relpath = '';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/churn/calculator.rb
-    <li>lib/churn/history.rb
-    <li>lib/churn/location_mapping.rb
-    <li>lib/churn/options.rb
-    <li>lib/churn/scm/bzr_analyzer.rb
-    <li>lib/churn/scm/git_analyzer.rb
-    <li>lib/churn/scm/hg_analyzer.rb
-    <li>lib/churn/scm/source_control.rb
-    <li>lib/churn/scm/svn_analyzer.rb
-    <li>lib/churn/version.rb
-    <li>lib/tasks/churn_tasks.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
+    <a href="_index.html">Index (C)</a> &raquo;
     
     
+    <span class="title">Churn</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src="class_list.html"></iframe>
+
+      <div id="content"><h1>Module: Churn
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/churn/history.rb<span class="defines">,<br />
+  lib/churn/options.rb,<br /> lib/churn/version.rb,<br /> lib/churn/calculator.rb,<br /> lib/churn/scm/hg_analyzer.rb,<br /> lib/churn/location_mapping.rb,<br /> lib/churn/scm/bzr_analyzer.rb,<br /> lib/churn/scm/git_analyzer.rb,<br /> lib/churn/scm/svn_analyzer.rb,<br /> lib/churn/scm/source_control.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
     
+  
     
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Churn/BzrAnalyzer.html" title="Churn::BzrAnalyzer (class)">BzrAnalyzer</a></span>, <span class='object_link'><a href="Churn/ChurnCalculator.html" title="Churn::ChurnCalculator (class)">ChurnCalculator</a></span>, <span class='object_link'><a href="Churn/ChurnHistory.html" title="Churn::ChurnHistory (class)">ChurnHistory</a></span>, <span class='object_link'><a href="Churn/ChurnOptions.html" title="Churn::ChurnOptions (class)">ChurnOptions</a></span>, <span class='object_link'><a href="Churn/GitAnalyzer.html" title="Churn::GitAnalyzer (class)">GitAnalyzer</a></span>, <span class='object_link'><a href="Churn/HgAnalyzer.html" title="Churn::HgAnalyzer (class)">HgAnalyzer</a></span>, <span class='object_link'><a href="Churn/LocationMapping.html" title="Churn::LocationMapping (class)">LocationMapping</a></span>, <span class='object_link'><a href="Churn/SourceControl.html" title="Churn::SourceControl (class)">SourceControl</a></span>, <span class='object_link'><a href="Churn/SvnAnalyzer.html" title="Churn::SvnAnalyzer (class)">SvnAnalyzer</a></span>
     
-  </div>
+  
+</p>
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./LICENSE.html">LICENSE</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Churn.html">Churn</a>
-  
-    <li><a href="./Churn/BzrAnalyzer.html">Churn::BzrAnalyzer</a>
-  
-    <li><a href="./Churn/ChurnCalculator.html">Churn::ChurnCalculator</a>
-  
-    <li><a href="./Churn/ChurnHistory.html">Churn::ChurnHistory</a>
-  
-    <li><a href="./Churn/ChurnOptions.html">Churn::ChurnOptions</a>
-  
-    <li><a href="./Churn/GitAnalyzer.html">Churn::GitAnalyzer</a>
-  
-    <li><a href="./Churn/HgAnalyzer.html">Churn::HgAnalyzer</a>
-  
-    <li><a href="./Churn/LocationMapping.html">Churn::LocationMapping</a>
-  
-    <li><a href="./Churn/SourceControl.html">Churn::SourceControl</a>
-  
-    <li><a href="./Churn/SvnAnalyzer.html">Churn::SvnAnalyzer</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module Churn</h1>
-
-  <div id="description" class="description">
+  <h2>Constant Summary</h2>
+  <dl class="constants">
     
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="VERSION">VERSION
+      <dt id="VERSION-constant" class="">VERSION =
         
-        <dd class="description">
-        
-      
-      </dl>
-    </section>
+      </dt>
+      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.0.2</span><span class='tstring_end'>&quot;</span></span></pre></dd>
     
-
-    
-
-    <!-- Methods -->
-    
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
+  </dl>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
 
+
+
+
+
+
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Sep 22 00:55:54 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.3.0).
+</div>
+
+    </div>
+  </body>
+</html>

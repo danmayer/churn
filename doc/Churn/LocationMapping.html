@@ -1,448 +1,693 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Churn::LocationMapping
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
 
-<title>class Churn::LocationMapping - RDoc Documentation</title>
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
+<script type="text/javascript" charset="utf-8">
+  pathId = "Churn::LocationMapping";
+  relpath = '../';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
 
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (L)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Churn.html" title="Churn (module)">Churn</a></span></span>
+     &raquo; 
+    <span class="title">LocationMapping</span>
+  
+</div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
 
+      <iframe id="search_frame" src="../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Churn::LocationMapping
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">SexpProcessor</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SexpProcessor</li>
+          
+            <li class="next">Churn::LocationMapping</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
 
   
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/churn/location_mapping.rb
-  </ul>
-</nav>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/churn/location_mapping.rb</dd>
+  </dl>
+  
+</div>
 
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link">SexpProcessor
-  
-</nav>
-
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li class="calls-super" ><a href="#method-c-new">::new</a>
-    
-    <li ><a href="#method-i-analyze_list">#analyze_list</a>
-    
-    <li ><a href="#method-i-deep_last_line">#deep_last_line</a>
-    
-    <li ><a href="#method-i-get_info">#get_info</a>
-    
-    <li ><a href="#method-i-process_class">#process_class</a>
-    
-    <li ><a href="#method-i-process_defn">#process_defn</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../LICENSE.html">LICENSE</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../Churn.html">Churn</a>
-  
-    <li><a href="../Churn/BzrAnalyzer.html">Churn::BzrAnalyzer</a>
-  
-    <li><a href="../Churn/ChurnCalculator.html">Churn::ChurnCalculator</a>
-  
-    <li><a href="../Churn/ChurnHistory.html">Churn::ChurnHistory</a>
-  
-    <li><a href="../Churn/ChurnOptions.html">Churn::ChurnOptions</a>
-  
-    <li><a href="../Churn/GitAnalyzer.html">Churn::GitAnalyzer</a>
-  
-    <li><a href="../Churn/HgAnalyzer.html">Churn::HgAnalyzer</a>
-  
-    <li><a href="../Churn/LocationMapping.html">Churn::LocationMapping</a>
-  
-    <li><a href="../Churn/SourceControl.html">Churn::SourceControl</a>
-  
-    <li><a href="../Churn/SvnAnalyzer.html">Churn::SvnAnalyzer</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class Churn::LocationMapping</h1>
-
-  <div id="description" class="description">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
     
 <p>Given a ruby file, map the klass and methods to a range of line numbers The
-klass and method to line numbers mappings, are stored in
-@klasses_collection and @methods_collection this is based off <a
+klass and method to line numbers mappings, are stored in klasses_collection
+and methods_collection this is based off <a
 href="https://github.com/seattlerb/ruby_parser">github.com/seattlerb/ruby_parser</a>
 which seems to have some known line number bugs perhaps look at and move
 more to the style of line numbers from metric_fu <a
 href="https://github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb">github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb</a></p>
 
-  </div><!-- description -->
 
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#klasses_collection-instance_method" title="#klasses_collection (instance method)">#<strong>klasses_collection</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
   
   
   
-  <section id="5Buntitled-5D" class="documentation-section">
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute klasses_collection.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#methods_collection-instance_method" title="#methods_collection (instance method)">#<strong>methods_collection</strong>  &#x21d2; Object </a>
     
 
     
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
 
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute methods_collection.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#analyze_list-instance_method" title="#analyze_list (instance method)">#<strong>analyze_list</strong>(exp)  &#x21d2; Object </a>
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
 
       
-      <div id="attribute-i-klasses_collection" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">klasses_collection</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-methods_collection" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">methods_collection</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-    </section><!-- attribute-method-details -->
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deep_last_line-instance_method" title="#deep_last_line (instance method)">#<strong>deep_last_line</strong>(exp)  &#x21d2; Object </a>
     
 
-    <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-            <div class="method-calls-super">
-              Calls superclass method
-              
-            </div>
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>()
-  <span class="ruby-keyword">super</span>
-  <span class="ruby-ivar">@klasses_collection</span>  = {}
-  <span class="ruby-ivar">@methods_collection</span>  = {}
-  <span class="ruby-ivar">@parser</span>              = <span class="ruby-constant">RubyParser</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">auto_shift_type</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">require_empty</span> = <span class="ruby-keyword">false</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-    </section><!-- public-class-method-details -->
+  </span>
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-analyze_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">analyze_list</span><span
-            class="method-args">(exp)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="analyze_list-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">analyze_list</span> <span class="ruby-identifier">exp</span>
-  <span class="ruby-identifier">process</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span> <span class="ruby-keyword">until</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">empty?</span>
-  <span class="ruby-identifier">exp</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- analyze_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- analyze_list-method -->
-
-    
-      <div id="method-i-deep_last_line" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">deep_last_line</span><span
-            class="method-args">(exp)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="deep_last_line-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
-  <span class="ruby-identifier">lines</span> = []
-  <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">deep_each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">line</span> }
-  <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">max</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- deep_last_line-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- deep_last_line-method -->
-
-    
-      <div id="method-i-get_info" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_info</span><span
-            class="method-args">(file)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_info-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_info</span>(<span class="ruby-identifier">file</span>)
-  <span class="ruby-identifier">ast</span> = <span class="ruby-ivar">@parser</span>.<span class="ruby-identifier">process</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>), <span class="ruby-identifier">file</span>)
-  <span class="ruby-identifier">process</span> <span class="ruby-identifier">ast</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_info-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_info-method -->
-
-    
-      <div id="method-i-process_class" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">process_class</span><span
-            class="method-args">(exp)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="process_class-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">process_class</span>(<span class="ruby-identifier">exp</span>)
-  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>
-  <span class="ruby-identifier">start_line</span>     = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">line</span>
-  <span class="ruby-identifier">last_line</span>      = <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
-  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
-  <span class="ruby-identifier">name</span>           = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Sexp</span>) <span class="ruby-comment">#deals with cases like class Test::Unit::TestCase</span>
-  <span class="ruby-ivar">@current_class</span> = <span class="ruby-identifier">name</span>
-  <span class="ruby-ivar">@klasses_collection</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@klasses_collection</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>)
-  <span class="ruby-ivar">@klasses_collection</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">start_line</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_line</span>)
-  <span class="ruby-identifier">analyze_list</span> <span class="ruby-identifier">exp</span>
-  <span class="ruby-identifier">s</span>()
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- process_class-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- process_class-method -->
-
-    
-      <div id="method-i-process_defn" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">process_defn</span><span
-            class="method-args">(exp)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="process_defn-source">
-            <pre><span class="ruby-comment"># File lib/churn/location_mapping.rb, line 51</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">process_defn</span>(<span class="ruby-identifier">exp</span>)
-  <span class="ruby-identifier">name</span>        = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>
-  <span class="ruby-identifier">start_line</span>  = <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">line</span>
-  <span class="ruby-identifier">last_line</span>   = <span class="ruby-identifier">deep_last_line</span>(<span class="ruby-identifier">exp</span>)
-  <span class="ruby-identifier">full_name</span>   = <span class="ruby-node">&quot;#{@current_class}##{name}&quot;</span>
-  <span class="ruby-ivar">@methods_collection</span>[<span class="ruby-identifier">full_name</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@methods_collection</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">full_name</span>)
-  <span class="ruby-ivar">@methods_collection</span>[<span class="ruby-identifier">full_name</span>] <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">start_line</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_line</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>(<span class="ruby-value">:defn</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">process</span>(<span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>), <span class="ruby-identifier">process</span>(<span class="ruby-identifier">exp</span>.<span class="ruby-identifier">shift</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- process_defn-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- process_defn-method -->
-
-    
-    </section><!-- public-instance-method-details -->
   
-  </section><!-- 5Buntitled-5D -->
+  
+  
+  
+  
+  
 
-</div><!-- documentation -->
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_info-instance_method" title="#get_info (instance method)">#<strong>get_info</strong>(file)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; LocationMapping </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of LocationMapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_class-instance_method" title="#process_class (instance method)">#<strong>process_class</strong>(exp)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_defn-instance_method" title="#process_defn (instance method)">#<strong>process_defn</strong>(exp)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Churn::LocationMapping (class)">LocationMapping</a></span></tt> 
+  
 
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of LocationMapping</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='ivar'>@klasses_collection</span>  <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@methods_collection</span>  <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@parser</span>              <span class='op'>=</span> <span class='const'>RubyParser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_auto_shift_type'>auto_shift_type</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_require_empty'>require_empty</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="klasses_collection-instance_method">
+  
+    #<strong>klasses_collection</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute klasses_collection</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_klasses_collection'>klasses_collection</span>
+  <span class='ivar'>@klasses_collection</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="methods_collection-instance_method">
+  
+    #<strong>methods_collection</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute methods_collection</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_methods_collection'>methods_collection</span>
+  <span class='ivar'>@methods_collection</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="analyze_list-instance_method">
+  
+    #<strong>analyze_list</strong>(exp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_analyze_list'>analyze_list</span> <span class='id identifier rubyid_exp'>exp</span>
+  <span class='id identifier rubyid_process'>process</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span> <span class='kw'>until</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_exp'>exp</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deep_last_line-instance_method">
+  
+    #<strong>deep_last_line</strong>(exp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deep_last_line'>deep_last_line</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_deep_each'>deep_each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_lines'>lines</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_lines'>lines</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='op'>+</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_info-instance_method">
+  
+    #<strong>get_info</strong>(file)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_info'>get_info</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ast'>ast</span> <span class='op'>=</span> <span class='ivar'>@parser</span><span class='period'>.</span><span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_process'>process</span> <span class='id identifier rubyid_ast'>ast</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="process_class-instance_method">
+  
+    #<strong>process_class</strong>(exp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_process_class'>process_class</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span>           <span class='op'>=</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
+  <span class='id identifier rubyid_start_line'>start_line</span>     <span class='op'>=</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span>
+  <span class='id identifier rubyid_last_line'>last_line</span>      <span class='op'>=</span> <span class='id identifier rubyid_deep_last_line'>deep_last_line</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span>           <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span>           <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Sexp</span><span class='rparen'>)</span> <span class='comment'>#deals with cases like class Test::Unit::TestCase
+</span>  <span class='ivar'>@current_class</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@klasses_collection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@klasses_collection</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@klasses_collection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_start_line'>start_line</span><span class='op'>..</span><span class='id identifier rubyid_last_line'>last_line</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_analyze_list'>analyze_list</span> <span class='id identifier rubyid_exp'>exp</span>
+  <span class='id identifier rubyid_s'>s</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="process_defn-instance_method">
+  
+    #<strong>process_defn</strong>(exp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/churn/location_mapping.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_process_defn'>process_defn</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span>        <span class='op'>=</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
+  <span class='id identifier rubyid_start_line'>start_line</span>  <span class='op'>=</span> <span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span>
+  <span class='id identifier rubyid_last_line'>last_line</span>   <span class='op'>=</span> <span class='id identifier rubyid_deep_last_line'>deep_last_line</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_full_name'>full_name</span>   <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@current_class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@methods_collection</span><span class='lbracket'>[</span><span class='id identifier rubyid_full_name'>full_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@methods_collection</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_full_name'>full_name</span><span class='rparen'>)</span>
+  <span class='ivar'>@methods_collection</span><span class='lbracket'>[</span><span class='id identifier rubyid_full_name'>full_name</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_start_line'>start_line</span><span class='op'>..</span><span class='id identifier rubyid_last_line'>last_line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span><span class='lparen'>(</span><span class='symbol'>:defn</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_exp'>exp</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Sep 22 00:55:55 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.3.0).
+</div>
+
+    </div>
+  </body>
+</html>
