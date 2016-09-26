@@ -9,3 +9,4 @@ tmp
 specs
 .yardoc/
 coverage
+Gemfile*.lock

@@ -1,9 +1,29 @@
 language: ruby
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y bzr subversion git mercurial
-rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.2
-  - jruby-19mode
+sudo: false
+before_install: gem i bundler
+cache: bundler
+matrix:
+  include:
+    - rvm: 1.9.3
+      gemfile: gemfiles/Gemfile.1_9_3
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.2_0
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.2_1
+    - rvm: 2.2.5
+      gemfile: gemfiles/Gemfile.2_2
+    - rvm: 2.3.1
+      gemfile: gemfiles/Gemfile.2_3
+    - rvm: jruby-19mode
+      gemfile: gemfiles/Gemfile.jruby-19mode
+    - rvm: jruby-9.1.5.0
+      gemfile: gemfiles/Gemfile.jruby-9_1_5_0
+      env:
+        - JRUBY_OPTS='--debug'
+addons:
+  apt:
+    packages:
+    - bzr
+    - subversion
+    - git
+    - mercurial
