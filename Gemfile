@@ -10,7 +10,7 @@ group :development, :test do
   gem "mocha", "~> 1.1.0"
   gem "simplecov", ">= 0"
   gem "yard", ">= 0"
-  gem "ronn"
+  gem "ronn", platform: :mri
   gem "kramdown", platform: :jruby
   gem "redcarpet", platform: :mri
 end
