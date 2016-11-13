@@ -14,7 +14,7 @@ module Churn
     def self.load_revision_data(revision, data_directory)
       #load revision data from scratch folder if it exists
       filename = "#{data_directory}/#{revision}.json"
-      if File.exists?(filename)
+      if File.exist?(filename)
         begin
           json_data = File.read(filename)
           data      = JSON.parse(json_data)

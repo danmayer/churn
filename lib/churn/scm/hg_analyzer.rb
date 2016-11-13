@@ -20,7 +20,7 @@ module Churn
 
     # @raise RunTimeError Currently, the generate history option does not support Mercurial
     def generate_history(starting_point)
-      raise "currently the generate history option does not support mercurial"
+      raise NotImplementedError, "currently the generate history option does not support mercurial"
     end
 
     private

@@ -5,7 +5,7 @@ class ChurnHistoryTest < Minitest::Test
   should "store results" do
     within_construct do |container|
       Churn::ChurnHistory.store_revision_history('aaa','data','tmp/churn/')
-      assert File.exists?('tmp/churn/aaa.json')
+      assert File.exist?('tmp/churn/aaa.json')
       data = File.read('tmp/churn/aaa.json')
       assert data =~ /data/
     end

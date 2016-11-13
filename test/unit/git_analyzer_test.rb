@@ -10,7 +10,7 @@ class GitAnalyzerTest < Minitest::Test
     git_analyzer.stubs(:get_updated_files_from_log).returns(lines)
     updated = git_analyzer.get_updated_files_change_info(revision, revisions)
     expected_hash = {"lib/churn/churn_calculator.rb"=>[18..18, 19..19]}
-    assert_equal = updated
+    assert_equal updated, expected_hash
   end
 
   should "run get_logs correctly" do

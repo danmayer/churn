@@ -15,7 +15,7 @@ module Churn
 
     # @raise RunTimeError Currently, the generate history option does not support Subversion
     def generate_history(starting_point)
-      raise "currently the generate history option does not support subversion"
+      raise NotImplementedError, "currently the generate history option does not support subversion"
     end
 
     # This method is not supported by SVN

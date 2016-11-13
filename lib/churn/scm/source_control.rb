@@ -13,8 +13,9 @@ module Churn
       end
     end
 
+    # @api public
     def self.supported?
-      raise "child class must implement"
+      raise NotImplementedError, "child class must implement"
     end
 
     def initialize(start_date=nil)
@@ -22,15 +23,15 @@ module Churn
     end
 
     def get_logs
-      raise "child class must implement"
+      raise NotImplementedError, "child class must implement"
     end
 
     def get_revisions
-      raise "child class must implement"
+      raise NotImplementedError, "child class must implement"
     end
 
     def generate_history(starting_point)
-      raise "child class must implement"
+      raise NotImplementedError, "child class must implement"
     end
 
     def get_updated_files_change_info(revision, revisions)
@@ -49,7 +50,6 @@ module Churn
           updated[recent_file] << removed_range
           updated[recent_file] << added_range
         else
-          puts /^---/ =~ line
           raise "diff lines that don't match the two patterns aren't expected: '#{line}'"
         end
       end

@@ -226,7 +226,7 @@ module Churn
       classes = classes.map{ |klass| {'file' => file, 'klass' => klass} }
       methods = methods.map{ |method| {'file' => file, 'klass' => get_klass_for(method), 'method' => method} }
       [classes, methods]
-    rescue => error
+    rescue
       [[],[]]
     end
 
