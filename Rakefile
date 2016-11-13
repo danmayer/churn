@@ -39,3 +39,9 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+desc "Build man page using ronn"
+task :build_man_page do |t|
+  puts "<#{t.name}> Building man page using ronn"
+  `ronn -b README.md`
+end
