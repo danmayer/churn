@@ -12,11 +12,13 @@ matrix:
       gemfile: gemfiles/Gemfile.2_1
     - rvm: 2.2.5
       gemfile: gemfiles/Gemfile.2_2
-    - rvm: 2.3.1
+    - rvm: 2.3.4
+      gemfile: gemfiles/Gemfile.2_3
+    - rvm: 2.4.1
       gemfile: gemfiles/Gemfile.2_3
     - rvm: jruby-19mode
       gemfile: gemfiles/Gemfile.jruby-19mode
-    - rvm: jruby-9.1.5.0
+    - rvm: jruby-9.1.10.0
       gemfile: gemfiles/Gemfile.jruby-9_1_5_0
       env:
         - JRUBY_OPTS='--debug'
