@@ -18,7 +18,7 @@ matrix:
       gemfile: gemfiles/Gemfile.2_3
     - rvm: jruby-19mode
       gemfile: gemfiles/Gemfile.jruby-19mode
-    - rvm: jruby-9.1.12.0
+    - rvm: jruby-9.1.13.0
       gemfile: gemfiles/Gemfile.jruby-9_1_5_0
       env:
         - JRUBY_OPTS='--debug'
