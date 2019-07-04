@@ -4,17 +4,13 @@ before_install: gem i bundler
 cache: bundler
 matrix:
   include:
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile.1_9_3
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.2_0
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.2_1
-    - rvm: 2.2.5
-      gemfile: gemfiles/Gemfile.2_2
     - rvm: 2.3.4
       gemfile: gemfiles/Gemfile.2_3
     - rvm: 2.4.1
+      gemfile: gemfiles/Gemfile.2_3
+    - rvm: 2.5
+      gemfile: gemfiles/Gemfile.2_3
+    - rvm: 2.6
       gemfile: gemfiles/Gemfile.2_3
     - rvm: jruby-19mode
       gemfile: gemfiles/Gemfile.jruby-19mode
