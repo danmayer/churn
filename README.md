@@ -11,18 +11,18 @@ File changes can be calculated on any single commit to look at method changes yo
 
 ## TODO
 
-Want to help out, there are easy tasks ready for some attention. The list of items has been moved to the [churn waffle.io](http://waffle.io/danmayer/churn)
-
-[![Stories in Ready](https://badge.waffle.io/danmayer/churn.png)](http://waffle.io/danmayer/churn)
+Want to help out, there are easy tasks ready for some attention. The list of items is hosted on [github issues](https://github.com/danmayer/churn/issues)
 
 ## Churn Usage
 
 Install with `gem install churn` or for bundler add to your Gemfile
-`gem 'churn', require: false`.
 
-The reason you want `require: false` is that when required by default
-churn is expecting to add some rake tasks, you don't really want or need
-it loading when running your server or tests.
+
+```
+group :development do
+  gem 'churn'
+end
+```
 
 ### Rake
 
@@ -181,6 +181,10 @@ result = Churn::ChurnCalculator.new(options).report(false)
 * absurdhero
 * bf4
 
+## Code of Conduct
+
+Please see our [Code of Conduct](https://github.com/danmayer/churn/blob/master/CODE_OF_CONDUCT.md)
+
 ## Copyright
 
-Copyright (c) 2013 Dan Mayer. See LICENSE for details.
+Copyright (c) 2019 Dan Mayer. See LICENSE for details.
