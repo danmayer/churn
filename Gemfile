@@ -9,7 +9,7 @@ group :development, :test do
   gem "rake", ">= 0"
   gem "mocha", "~> 1.1.0"
   gem "simplecov", ">= 0"
-  gem "yard", "~> 0.9.11"
+  gem "yard", "~> 0.9.20"
   gem "ronn", platform: :mri
   gem "kramdown", platform: :jruby
   gem "redcarpet", platform: :mri

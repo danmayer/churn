@@ -79,7 +79,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    yard (0.9.16)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
@@ -95,7 +95,7 @@ DEPENDENCIES
   shoulda
   simplecov
   test_construct (~> 2.0.0)
-  yard (~> 0.9.11)
+  yard (~> 0.9.20)
 
 BUNDLED WITH
-   1.13.1
+   1.17.2
