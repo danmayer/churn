@@ -12,8 +12,6 @@ matrix:
       gemfile: gemfiles/Gemfile.2_3
     - rvm: 2.6
       gemfile: gemfiles/Gemfile.2_3
-    - rvm: jruby-19mode
-      gemfile: gemfiles/Gemfile.jruby-19mode
 addons:
   apt:
     packages:
