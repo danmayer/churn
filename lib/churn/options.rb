@@ -9,7 +9,7 @@ module Churn
     DEFAULT_START_TIME = '3 months ago'
     DEFAULT_REPORT_HOST = 'http://churn.picoappz.com'
 
-    attr_accessor :data_directory, :minimum_churn_count, :ignores, :start_date, :history, :report_host, :name
+    attr_accessor :data_directory, :minimum_churn_count, :ignores, :start_date, :history, :report_host, :name, :file_extension
     
     def initialize()
       @data_directory      = DEFAULT_CHURN_DIRECTORY
@@ -19,10 +19,12 @@ module Churn
       @history             = nil
       @report_host         = nil
       @name                = nil
+      @file_extension      = nil
     end
 
     def set_options(options = {})
       @data_directory      = options.fetch(:data_directory){ @data_directory } unless options[:data_directory]==''
+      @file_extension      = options.fetch(:file_extension){ @file_extension } unless options[:file_extension]==''
       @minimum_churn_count = options.fetch(:minimum_churn_count){ @minimum_churn_count }.to_i
       @ignores             = (options.fetch(:ignores){ @ignores }).to_s.split(',').map(&:strip)
       @ignores << '/dev/null' unless @ignores.include?('/dev/null')
