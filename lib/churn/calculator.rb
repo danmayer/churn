@@ -89,6 +89,7 @@ module Churn
     # on the edited files
     def analyze
       @changes = sort_changes(@changes)
+      @changes = filter_changes(@changes) if @churn_options.file_extension && !@churn_options.file_extension.empty?
       @changes = @changes.map {|file_path, times_changed| {:file_path => file_path, :times_changed => times_changed }}
 
       calculate_revision_changes
@@ -155,6 +156,10 @@ module Churn
 
     def sort_changes(changes)
       changes.to_a.sort! {|first,second| second[1] <=> first[1]}
+    end
+
+    def filter_changes(changes)
+      changes.select { |file_path, _revision_count| file_path =~ /\.#{@churn_options.file_extension}\z/ }
     end
 
     def filters

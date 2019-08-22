@@ -13,4 +13,10 @@ class ChurnOptionsTest < Minitest::Test
     assert_equal tmp_dir, options.data_directory
   end
 
+  should "set the checked file extension" do
+    options = Churn::ChurnOptions.new
+    options.set_options({:file_extension => 'rb'})
+    assert_equal 'rb', options.file_extension
+  end
+
 end
