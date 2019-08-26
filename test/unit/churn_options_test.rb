@@ -19,4 +19,9 @@ class ChurnOptionsTest < Minitest::Test
     assert_equal 'rb', options.file_extension
   end
 
+  should "set the file prefix" do
+    options = Churn::ChurnOptions.new
+    options.set_options({:file_prefix => 'app/'})
+    assert_equal 'app/', options.file_prefix
+  end
 end
