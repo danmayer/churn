@@ -67,6 +67,12 @@ Main do
     default ''
   end
 
+  option('prefix', 'f') do
+    cast :string
+    argument :optional
+    default ''
+  end
+
   def report_churn(output_string)
     options = {
       minimum_churn_count: params['minimum_churn_count'].value,
@@ -76,7 +82,8 @@ Main do
       history: params['past_history'].value,
       report: params['report'].value,
       name: params['name'].value,
-      file_extension: params['extension'].value
+      file_extension: params['extension'].value,
+      file_prefix: params['prefix'].value
     }
     result = Churn::ChurnCalculator.new(options).report(output_string)
     if output_string
