@@ -47,6 +47,8 @@ churn -i "churn.gemspec, Gemfile"   # Ignore files
 churn -y                            # Output yaml format opposed to text
 churn -c 10                         # Set minimum churn count on a file to 10
 churn -c 5 -y -i "Gemfile"          # Mix and match
+churn -e rb                         # Specify a file extension. The dot will be prepended automatically ("rb" -> ".rb") 
+churn -f app                        # Specify a file prefix, e.g. app/models
 churn --start_date "6 months ago"   # Start looking at file changes from 6 months ago
 churn -p "4 months ago"             # Churn the past history to build up data for the last 4 months
 churn --past_history                # Churn the past history for default 3 months to build up data
@@ -136,6 +138,8 @@ Methods:
       --minimum_churn_count=minimum_churn_count, -c (0 ~>
       int(minimum_churn_count=3))
       --yaml, -y
+      --extension, -e (0 ~> string(file_extension=))
+      --prefix, -f (0 ~> string(file_prefix=))
       --ignore_files=[ignore_files], -i (0 ~> string(ignore_files=))
       --start_date=[start_date], -s (0 ~> string(start_date=))
       --data_directory=[data_directory], -d (0 ~> string(data_directory=))
@@ -153,6 +157,8 @@ All the CLI options are parsed and just passed into the library. If you want to 
 ###
 options = {:minimum_churn_count => params['minimum_churn_count'].value,
   :ignore_files => params['ignore_files'].value,
+  :file_extension => params['file_extension'].value,
+  :file_prefix => params['file_prefix'].value,
   :start_date => params['start_date'].value,
   :data_directory => params['data_directory'].value,
   :history => params['past_history'].value,
