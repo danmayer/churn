@@ -21,10 +21,13 @@ Gem::Specification.new do |s|
   s.requirements = "bzr, git, hg or svn"
 
   s.add_runtime_dependency "main", ">= 0"
-  s.add_runtime_dependency "json_pure", ">= 0"
+  # TODO: How to replace chronic, or just have less verbose time support
   s.add_runtime_dependency "chronic", ">= 0.2.3"
   s.add_runtime_dependency "sexp_processor", "~> 4.1"
   s.add_runtime_dependency "ruby_parser", "~> 3.0"
+  # TODO: Just have clean output and drop hirb
   s.add_runtime_dependency "hirb", ">= 0"
+  # TODO: Make this an optional depency and eventually
+  # replace dependency with straight net::http
   s.add_runtime_dependency "rest-client", ">= 1.6.0"
 end
