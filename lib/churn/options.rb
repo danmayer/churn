@@ -24,7 +24,7 @@ module Churn
     def set_options(options = {})
       @data_directory      = options.fetch(:data_directory){ @data_directory } unless options[:data_directory]==''
       @minimum_churn_count = options.fetch(:minimum_churn_count){ @minimum_churn_count }.to_i
-      @ignores             = (options.fetch(:ignores){ @ignores }).to_s.split(',').map(&:strip)
+      @ignores             = (options.fetch(:ignore_files){ @ignores }).to_s.split(',').map(&:strip)
       @ignores << '/dev/null' unless @ignores.include?('/dev/null')
       @start_date          = options[:start_date] if !options[:start_date].nil? && options[:start_date]!=''
       @history             = options[:history] if !options[:history].nil? && options[:history]!=''
