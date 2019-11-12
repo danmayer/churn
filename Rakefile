@@ -1,4 +1,4 @@
-require 'rubygems'
+require 'bundler/gem_tasks'
 require 'rake'
 require File.join(File.dirname(__FILE__), 'lib', 'tasks', 'churn_tasks')
 
