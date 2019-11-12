@@ -164,7 +164,7 @@ module Churn
       end
 
       if @churn_options.file_prefix && !@churn_options.file_prefix.empty?
-        changes = changes.select! { |file_path, _revision_count| file_path =~ /\A#{@churn_options.file_prefix}/ }
+        changes = changes.select { |file_path, _revision_count| file_path =~ /\A#{@churn_options.file_prefix}/ }
       end
 
       changes
