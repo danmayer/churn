@@ -47,8 +47,8 @@ churn -i "churn.gemspec, Gemfile"   # Ignore files
 churn -y                            # Output yaml format opposed to text
 churn -c 10                         # Set minimum churn count on a file to 10
 churn -c 5 -y -i "Gemfile"          # Mix and match
-churn -e rb                         # Specify a file extension. The dot will be prepended automatically ("rb" -> ".rb") 
-churn -f app                        # Specify a file prefix, e.g. app/models
+churn -e rb                         # Specify a file extension. The dot will be prepended automatically ("rb" -> ".rb"). The argument will be evaluated as a RegEx (i.e. you could specify "(js|jsx)").
+churn -f app                        # Specify a file prefix, e.g. app/models. The argument will be evaluated as a RegEx.
 churn --start_date "6 months ago"   # Start looking at file changes from 6 months ago
 churn -p "4 months ago"             # Churn the past history to build up data for the last 4 months
 churn --past_history                # Churn the past history for default 3 months to build up data
