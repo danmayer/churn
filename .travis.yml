@@ -5,13 +5,9 @@ cache: bundler
 matrix:
   include:
     - rvm: 2.3.4
-      gemfile: gemfiles/Gemfile.2_3
     - rvm: 2.4.1
-      gemfile: gemfiles/Gemfile.2_3
     - rvm: 2.5
-      gemfile: gemfiles/Gemfile.2_3
     - rvm: 2.6
-      gemfile: gemfiles/Gemfile.2_3
 addons:
   apt:
     packages:

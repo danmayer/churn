@@ -7,9 +7,8 @@ module Churn
     DEFAULT_CHURN_DIRECTORY = "tmp/churn"
     DEFAULT_MINIMUM_CHURN_COUNT = 5
     DEFAULT_START_TIME = '3 months ago'
-    DEFAULT_REPORT_HOST = 'http://churn.picoappz.com'
 
-    attr_accessor :data_directory, :minimum_churn_count, :ignores, :start_date, :history, :report_host, :name, :file_extension, :file_prefix
+    attr_accessor :data_directory, :minimum_churn_count, :ignores, :start_date, :history, :name, :file_extension, :file_prefix
 
     def initialize()
       @data_directory      = DEFAULT_CHURN_DIRECTORY
@@ -17,7 +16,6 @@ module Churn
       @ignores             = '/dev/null'
       @start_date          = DEFAULT_START_TIME
       @history             = nil
-      @report_host         = nil
       @name                = nil
       @file_extension      = nil
       @file_prefix         = nil
@@ -34,17 +32,6 @@ module Churn
       @history             = options[:history] if !options[:history].nil? && options[:history]!=''
       if @history=='true'
         @history = DEFAULT_START_TIME
-      end
-      if !options[:report].nil? && options[:report]!=''
-        @report_host         = options[:report]
-        if @report_host=='true'
-          @report_host = DEFAULT_REPORT_HOST
-        end
-      end
-
-      @name = options[:name] if !options[:name].nil? && options[:name]!=''
-      if !@report_host.nil? && @name.nil?
-        raise ArgumentError.new "If you are reporting churn results you must pass a valid github project name in the form of username/project_name"
       end
 
       self

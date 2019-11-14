@@ -27,9 +27,19 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "ruby_parser", "~> 3.0"
   # TODO: Just have clean output and drop hirb
   s.add_runtime_dependency "hirb", ">= 0"
-  # TODO: Make this an optional depency and eventually
-  # replace dependency with straight net::http
-  s.add_runtime_dependency "rest-client", ">= 1.6.0"
-  s.add_development_dependency 'pry-byebug'
 
+  s.add_development_dependency 'pry-byebug'
+  s.add_development_dependency "minitest", "~> 5.3"
+  s.add_development_dependency "shoulda", ">= 0"
+  s.add_development_dependency "test_construct", "~> 2.0.0"
+  s.add_development_dependency "rake", ">= 0"
+  s.add_development_dependency "mocha", "~> 1.1.0"
+  s.add_development_dependency "simplecov", ">= 0"
+  s.add_development_dependency "yard", "~> 0.9.20"
+  # TODO: what is using this ronn
+  s.add_development_dependency "ronn"
+  #s.add_development_dependency "kramdown", platform: :jruby
+  s.add_development_dependency "redcarpet"
+  # TODO: what is using this? Tests I think, remove
+  s.add_development_dependency 'activesupport', '>= 4.0'
 end
