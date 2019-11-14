@@ -20,7 +20,7 @@ module Churn
     end
 
     def get_info(file)
-      ast = @parser.process(File.read(file), file)
+      ast = @parser.process(File.read(file).chomp, file)
       process ast
     end
 
