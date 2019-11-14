@@ -10,3 +10,4 @@ specs
 .yardoc/
 coverage
 Gemfile*.lock
+.byebug_history

@@ -30,4 +30,6 @@ Gem::Specification.new do |s|
   # TODO: Make this an optional depency and eventually
   # replace dependency with straight net::http
   s.add_runtime_dependency "rest-client", ">= 1.6.0"
+  s.add_development_dependency 'pry-byebug'
+
 end

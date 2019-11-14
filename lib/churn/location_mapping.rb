@@ -6,6 +6,7 @@ module Churn
   # this is based off https://github.com/seattlerb/ruby_parser which seems to have some known line number bugs
   # perhaps look at and move more to the style of line numbers from metric_fu
   # https://github.com/metricfu/metric_fu/blob/master/lib/data_structures/line_numbers.rb
+  # NOTE: showing more line number issues with Ruby 2.6
   class LocationMapping < SexpProcessor
 
     attr_reader :klasses_collection, :methods_collection
@@ -39,7 +40,7 @@ module Churn
 
     def deep_last_line(exp)
       lines = []
-      exp.deep_each{|x| lines << x.line }
+      exp.deep_each{|x| lines << x.line; }
       lines.max + 1
     end
 
