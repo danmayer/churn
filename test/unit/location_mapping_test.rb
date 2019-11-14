@@ -10,7 +10,7 @@ class LocationMappingTest < Minitest::Test
   should "location_mapping gets correct file classes info" do
     file = 'test/data/churn_calculator.rb'
     locationmapping = Churn::LocationMapping.new
-    locationmapping.get_info(file.to_s)
+    locationmapping.get_info(file.to_s.chomp)
     klass_hash = {"ChurnCalculator"=>[14..213]}
     assert_equal klass_hash, locationmapping.klasses_collection
   end
@@ -26,7 +26,7 @@ class LocationMappingTest < Minitest::Test
   should "location_mapping gets correct classes info for test helper files" do
     file = 'test/data/test_helper.rb'
     locationmapping = Churn::LocationMapping.new
-    locationmapping.get_info(file.to_s)
+    locationmapping.get_info(file.to_s.chomp)
     klass_hash = {"Test"=>[12..15]}
     assert_equal klass_hash.sort, locationmapping.klasses_collection.sort
   end

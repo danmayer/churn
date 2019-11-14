@@ -19,5 +19,3 @@ addons:
     - subversion
     - git
     - mercurial
-[user]
-  email = danmayer@gmail.com
