@@ -45,7 +45,7 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
-    rake (11.3.0)
+    rake (13.0.1)
     rdiscount (2.2.0.1)
     redcarpet (3.3.4)
     ronn (0.7.3)
