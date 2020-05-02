@@ -53,6 +53,21 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
+  should "can parse ignores as an empty array and ignore it" do
+    within_construct do |container|
+      Churn::GitAnalyzer.stubs(:supported?).returns(true)
+      churn = Churn::ChurnCalculator.new({:ignores => "[]"})
+
+      churn.stubs(:parse_log_for_changes).returns([['file.rb', 10],['new.rb',11]])
+      churn.stubs(:parse_log_for_revision_changes).returns(['revision'])
+      churn.stubs(:analyze)
+      report = churn.report(false)
+      assert_equal 2, report[:churn][:changes].length
+      assert_equal ["file.rb", 10], report[:churn][:changes].first
+      assert_equal ["new.rb", 11], report[:churn][:changes].last
+    end
+  end
+
   should "use ignores with regex and directories" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)

@@ -271,7 +271,16 @@ module Churn
     end
 
     def reject_ignored_files(files)
-      files.reject{ |file, _| @ignores.any?{ |ignore| /#{ignore}/ =~ file } }
+       files.reject do |file, _|
+         @ignores.any? do |ignore|
+           begin
+             /#{ignore}/ =~ file
+           rescue RegexpError => e
+             puts "churn: ignoring invalid regex: #{e}"
+             false
+           end
+         end
+       end
     end
 
   end
