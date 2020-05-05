@@ -7,6 +7,7 @@ bin_file = Pathname.new(__FILE__).realpath
 $:.unshift File.expand_path("../../lib", bin_file)
 
 require 'churn/calculator'
+require 'churn/version'
 require 'main'
 require 'yaml'
 
