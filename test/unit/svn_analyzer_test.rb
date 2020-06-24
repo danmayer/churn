@@ -26,7 +26,7 @@ class SvnAnalyzerTest < Minitest::Test
     assert_equal " --revision {2010-03-03}:{#{Date.today.to_s}}", svn_analyzer.send(:date_range)
   end
 
-  context "SvnAnalyzer#get_logs" do
+  describe "SvnAnalyzer#get_logs" do
     should "return a list of changed files" do
       ENV['SVN_PWD']= nil
       ENV['SVN_USR']= nil

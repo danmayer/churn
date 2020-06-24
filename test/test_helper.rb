@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'simplecov'
 require 'minitest/autorun'
-require 'shoulda'
+#require 'shoulda'
 require 'test_construct'
 require 'mocha/mini_test'
 
@@ -19,3 +19,24 @@ Mocha::Configuration.prevent(:stubbing_non_existent_method)
 class Minitest::Test
   include TestConstruct::Helpers
 end
+
+# shoulda style test names
+def test(name, &block)
+  test_name = "test_#{name.gsub(/\s+/, "_")}".to_sym
+  defined = begin
+              instance_method(test_name)
+            rescue
+              false
+            end
+  raise "#{test_name} is already defined in #{self}" if defined
+
+  if block_given?
+    define_method(test_name, &block)
+  else
+    define_method(test_name) do
+      flunk "No implementation provided for #{name}"
+    end
+  end
+end
+
+alias :should :test

@@ -2,7 +2,7 @@ require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class ChurnCalculatorTest < Minitest::Test
 
-  should "use minimum churn count" do
+  test "use minimum churn count" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
@@ -16,7 +16,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "ensure that minimum churn count is initialized as a Fixnum" do
+  test "ensure that minimum churn count is initialized as a Fixnum" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => "3"})
@@ -25,7 +25,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "use ignores filter" do
+  test "use ignores filter" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:ignores => "file.rb"})
@@ -39,7 +39,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "use ignores with regex" do
+  test "use ignores with regex" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:ignores => "f.*le.rb"})
@@ -53,7 +53,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "can parse ignores as an empty array and ignore it" do
+  test "can parse ignores as an empty array and ignore it" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:ignores => "[]"})
@@ -68,7 +68,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "use ignores with regex and directories" do
+  test "use ignores with regex and directories" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:ignores => "lib/.*"})
@@ -82,7 +82,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "analyze sorts changes" do
+  test "analyze sorts changes" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
@@ -98,7 +98,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "have correct changed_files data" do
+  test "have correct changed_files data" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
@@ -111,7 +111,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "have correct changed classes and methods data" do
+  test "have correct changed classes and methods data" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
@@ -128,7 +128,7 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "have correct churn method and classes at 1 change" do
+  test "have correct churn method and classes at 1 change" do
     within_construct do |container|
       Churn::GitAnalyzer.stubs(:supported?).returns(true)
       churn = Churn::ChurnCalculator.new({:minimum_churn_count => 3})
@@ -145,13 +145,13 @@ class ChurnCalculatorTest < Minitest::Test
     end
   end
 
-  should "have expected output for self.to_s" do
+  test "have expected output for self.to_s" do
     output = Churn::ChurnCalculator.to_s({})
     assert_match /Revision Changes/, output
     assert_match /Project Churn/, output
   end
 
-  should "have expected output for to_s" do
+  test "have expected output for to_s" do
     calc = Churn::ChurnCalculator.new
     calc.expects(:to_h).returns({:churn => {}})
     output = calc.to_s
@@ -159,7 +159,7 @@ class ChurnCalculatorTest < Minitest::Test
     assert_match /Project Churn/, output
   end
 
-  should "initialize a churn calculator for hg repositories" do
+  test "initialize a churn calculator for hg repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
     Churn::HgAnalyzer.expects(:cmd_success?).returns(true)
     Churn::HgAnalyzer.expects(:`).with("hg branch 2>&1").returns(true) #` fix syntax hilighting
@@ -167,7 +167,7 @@ class ChurnCalculatorTest < Minitest::Test
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::HgAnalyzer)
   end
 
-  should "initialize a churn calculator for bzr repositories" do
+  test "initialize a churn calculator for bzr repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
     Churn::HgAnalyzer.stubs(:supported?).returns(false)
     Churn::BzrAnalyzer.expects(:cmd_success?).returns(true)
@@ -176,7 +176,7 @@ class ChurnCalculatorTest < Minitest::Test
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::BzrAnalyzer)
   end
 
-  should "initialize a churn calculator for svn repositories" do
+  test "initialize a churn calculator for svn repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
     Churn::HgAnalyzer.stubs(:supported?).returns(false)
     Churn::BzrAnalyzer.stubs(:supported?).returns(false)
@@ -185,7 +185,7 @@ class ChurnCalculatorTest < Minitest::Test
     assert churn.instance_variable_get(:@source_control).is_a?(Churn::SvnAnalyzer)
   end
 
-  should "raise exception on a churn calculator for unknown repositories" do
+  test "raise exception on a churn calculator for unknown repositories" do
     Churn::GitAnalyzer.stubs(:supported?).returns(false)
     Churn::HgAnalyzer.stubs(:supported?).returns(false)
     Churn::BzrAnalyzer.stubs(:supported?).returns(false)

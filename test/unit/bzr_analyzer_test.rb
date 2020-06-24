@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class BzrAnalyzerTest < Minitest::Test
-  context "BzrAnalyzer#get_logs" do
+  describe "BzrAnalyzer#get_logs" do
     should "return a list of changed files" do
       bzr_analyzer = Churn::BzrAnalyzer.new
       bzr_analyzer.expects(:`).with('bzr log -v --short ').returns(" 1947 Adam Walters    2010-01-16\n   Second commit with 3 files now.\n      M  file1.rb\n      M  file2.rb\n      M  file3.rb\n\n 1946 Adam Walters    2010-01-16\n      First commit\n      A  file1.rb\n")
@@ -15,7 +15,7 @@ class BzrAnalyzerTest < Minitest::Test
     end
   end
 
-  context "BzrAnalyzer#get_revisions" do
+  describe "BzrAnalyzer#get_revisions" do
     should "return a list of changeset ids" do
       bzr_analyzer = Churn::BzrAnalyzer.new
       bzr_analyzer.expects(:`).with('bzr log --line ').returns("1947: Adam Walters 2010-01-16 Second commit with 3 files now.\n1946: Adam Walters 2010-01-16 First commit\n")
@@ -29,7 +29,7 @@ class BzrAnalyzerTest < Minitest::Test
     end
   end
 
-  context "BzrAnalyzer#get_updated_files_from_log(revision, revisions)" do
+  describe "BzrAnalyzer#get_updated_files_from_log(revision, revisions)" do
     should "return a list of modified files and the change hunks (chunks)" do
       bzr_analyzer = Churn::BzrAnalyzer.new
       bzr_analyzer.expects(:`).with('bzr diff -r 1946..1947').returns("=== modified file 'a/file1.rb'\n--- a/file1.rb\tSat Jan 16 14:21:28 2010 -0600\n+++ b/file1.rb\tSat Jan 16 14:19:32 2010 -0600\n@@ -1,3 +0,0 @@\n-First\n-Adding sample data\n-Third line\ndiff -r 1947 -r 1946 file2.rb\n=== modified file 'a/file2.rb'\n--- a/file2.rb\tSat Jan 16 14:21:28 2010 -0600\n+++ /dev/null\tThu Jan 01 00:00:00 1970 +0000\n@@ -1,7 +0,0 @@\n-This is the second file.\n-\n-Little more data\n-\n-def cool_method\n-  \"hello\"\n-end\ndiff -r 1947 -r 1946 file3.rb\n--- a/file3.rb\tSat Jan 16 14:21:28 2010 -0600\n+++ /dev/null\tThu Jan 01 00:00:00 1970 +0000\n@@ -1,5 +0,0 @@\n-Third file here.\n-\n-def another_method\n-  \"foo\"\n-end\n")
@@ -42,8 +42,8 @@ class BzrAnalyzerTest < Minitest::Test
     end
   end
 
-  context "BzrAnalyzer#get_updated_files_change_info(revision, revisions)" do
-    setup do
+  describe "BzrAnalyzer#get_updated_files_change_info(revision, revisions)" do
+    before do
       @bzr_analyzer = Churn::BzrAnalyzer.new
     end
 
@@ -62,4 +62,3 @@ class BzrAnalyzerTest < Minitest::Test
   end
 
 end
-

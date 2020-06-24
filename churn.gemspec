@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency "minitest", "~> 5.3"
-  s.add_development_dependency "shoulda", ">= 0"
   s.add_development_dependency "test_construct", "~> 2.0.0"
   s.add_development_dependency "rake", ">= 0"
   s.add_development_dependency "mocha", "~> 1.1.0"
