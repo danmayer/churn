@@ -25,7 +25,6 @@ GEM
     docile (1.1.5)
     fattr (2.4.0)
     hirb (0.7.3)
-    hpricot (0.8.6)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     json (2.0.2)
@@ -40,7 +39,6 @@ GEM
     minitest (5.9.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    mustache (1.0.3)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -48,12 +46,7 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.10)
     rake (12.3.3)
-    rdiscount (2.2.0.1)
     redcarpet (3.3.4)
-    ronn (0.7.3)
-      hpricot (>= 0.8.2)
-      mustache (>= 0.7.0)
-      rdiscount (>= 1.5.8)
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
     sexp_processor (4.13.0)
@@ -79,14 +72,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport (>= 4.0)
   churn!
   minitest (~> 5.3)
   mocha (~> 1.1.0)
   pry-byebug
   rake
   redcarpet
-  ronn
   shoulda
   simplecov
   test_construct (~> 2.0.0)
