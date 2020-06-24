@@ -11,21 +11,23 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.0.0.1)
+    activesupport (6.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (~> 0.7)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     arrayfields (4.9.2)
     byebug (11.0.1)
     chronic (0.10.2)
     coderay (1.1.2)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.1.6)
     docile (1.1.5)
     fattr (2.4.0)
     hirb (0.7.3)
     hpricot (0.8.6)
-    i18n (0.7.0)
+    i18n (1.8.2)
+      concurrent-ruby (~> 1.0)
     json (2.0.2)
     main (6.2.3)
       arrayfields (~> 4.7, >= 4.7.4)
@@ -67,10 +69,11 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     test_construct (2.0.1)
-    thread_safe (0.3.5)
-    tzinfo (1.2.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     yard (0.9.20)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
