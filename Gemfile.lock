@@ -18,7 +18,7 @@ GEM
     docile (1.1.5)
     fattr (2.4.0)
     hirb (0.7.3)
-    json (2.0.2)
+    json (2.3.1)
     main (6.2.3)
       arrayfields (~> 4.7, >= 4.7.4)
       chronic (~> 0.6, >= 0.6.2)
