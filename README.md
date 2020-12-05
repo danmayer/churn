@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/danmayer/churn.svg?branch=master)](http://travis-ci.org/danmayer/churn)
 
+CI: [![Build Status](https://github.com/danmayer/churn/workflows/CI/badge.svg)](https://github.com/danmayer/churn/actions)
+
 # Churn
 
 A Project to give the churn file, class, and method for a project for a given checkin. Over time the tool adds up the history of churns to give the number of times a file, class, or method is changing during the life of a project.
@@ -17,7 +19,6 @@ Want to help out, there are easy tasks ready for some attention. The list of ite
 
 Install with `gem install churn` or for bundler add to your Gemfile
 
-
 ```
 group :development do
   gem 'churn'
@@ -26,11 +27,11 @@ end
 
 ### Rake
 
-* Add `require 'churn'` to Rakefile
-* Then run `rake churn` or `bundle exec rake churn`
-* Use environment variables to control churn defaults
+- Add `require 'churn'` to Rakefile
+- Then run `rake churn` or `bundle exec rake churn`
+- Use environment variables to control churn defaults
 
-``` ruby
+```ruby
 ENV['CHURN_MINIMUM_CHURN_COUNT']
 ENV['CHURN_START_DATE']
 ENV['CHURN_IGNORES']
@@ -38,9 +39,9 @@ ENV['CHURN_IGNORES']
 
 ### CLI
 
-* On the command line run `churn` or `bundle exec churn`
-* Need help? Run `churn -h` to get additional information
-* Run the executable, passing in options to override defaults
+- On the command line run `churn` or `bundle exec churn`
+- Need help? Run `churn -h` to get additional information
+- Run the executable, passing in options to override defaults
 
 ```shell
 churn -i "churn.gemspec, Gemfile"   # Ignore files
@@ -170,22 +171,22 @@ result = Churn::ChurnCalculator.new(options).report(false)
 
 ## Notes on Patches/Pull Requests
 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
+- Fork the project.
+- Make your feature addition or bug fix.
+- Add tests for it. This is important so I don't break it in a
   future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
+- Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  bump version in a commit by itself I can ignore when I pull)
+- Send me a pull request. Bonus points for topic branches.
 
 ## Authors
 
-* danmayer
-* ajwalters
-* cldwalker
-* absurdhero
-* bf4
+- danmayer
+- ajwalters
+- cldwalker
+- absurdhero
+- bf4
 
 ## Code of Conduct
 
