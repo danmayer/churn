@@ -23,16 +23,16 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "main", ">= 0"
   # TODO: How to replace chronic, or just have less verbose time support
   s.add_runtime_dependency "chronic", ">= 0.2.3"
-  s.add_runtime_dependency "sexp_processor", "~> 4.1"
+  s.add_runtime_dependency "sexp_processor", "~> 4.17"
   s.add_runtime_dependency "ruby_parser", "~> 3.0"
   # TODO: Just have clean output and drop hirb
   s.add_runtime_dependency "hirb", ">= 0"
 
   s.add_development_dependency 'pry-byebug'
-  s.add_development_dependency "minitest", "~> 5.3"
+  s.add_development_dependency "minitest", "~> 5.22"
   s.add_development_dependency "test_construct", "~> 2.0.0"
   s.add_development_dependency "rake", ">= 0"
-  s.add_development_dependency "mocha", "~> 1.1.0"
+  s.add_development_dependency "mocha", "~> 2.1.0"
   s.add_development_dependency "simplecov", ">= 0"
   s.add_development_dependency "yard", "~> 0.9.20"
   # NOTE: we haven't been updating the man file, and ronn was used to do that... clean up

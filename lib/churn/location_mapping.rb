@@ -30,7 +30,7 @@ module Churn
       start_line     = exp.line
       last_line      = deep_last_line(exp)
       name           = name if name.is_a?(Symbol)
-      name           = name.values.value if name.is_a?(Sexp) #deals with cases like class Test::Unit::TestCase
+      name           = name.to_a.last if name.is_a?(Sexp) #deals with cases like class Test::Unit::TestCase
       @current_class = name
       @klasses_collection[name.to_s] = [] unless @klasses_collection.include?(name)
       @klasses_collection[name.to_s] << (start_line..last_line)

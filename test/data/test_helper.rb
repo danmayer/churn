@@ -2,7 +2,7 @@ require 'rubygems'
 require 'minitest/autorun'
 require 'shoulda'
 require 'test_construct'
-require 'mocha/mini_test'
+require 'mocha/minitest'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
