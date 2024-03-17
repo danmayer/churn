@@ -7,6 +7,7 @@ bin_file = Pathname.new(__FILE__).realpath
 $:.unshift File.expand_path("../../lib", bin_file)
 
 require 'churn/calculator'
+require 'churn/reporter'
 require 'churn/version'
 require 'main'
 require 'yaml'
@@ -20,6 +21,11 @@ Main do
   end
 
   option('yaml', 'y') do
+    cast :boolean
+    default false
+  end
+
+  option('json', 'j') do
     cast :boolean
     default false
   end
@@ -80,33 +86,9 @@ Main do
     default false
   end
 
-  def report_churn(output_string)
-    options = {
-      minimum_churn_count: params['minimum_churn_count'].value,
-      ignore_files: params['ignore_files'].value,
-      start_date: params['start_date'].value,
-      data_directory: params['data_directory'].value,
-      history: params['past_history'].value,
-      report: params['report'].value,
-      name: params['name'].value,
-      file_extension: params['extension'].value,
-      file_prefix: params['prefix'].value,
-    }
-    if params['version'].value
-      puts Churn::VERSION
-      return
-    end
-
-    result = Churn::ChurnCalculator.new(options).report(output_string)
-    if output_string
-      result
-    else
-      YAML::dump(result)
-    end
-  end
-
   def run
-    report = report_churn(!params['yaml'].value)
+    reporter = Churn::ChurnReporter.new(params)
+    report = reporter.report_churn
     puts report
   end
 end
